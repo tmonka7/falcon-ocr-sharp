@@ -424,6 +424,15 @@ namespace FalconOcr.App.Pages
         private readonly TextBox _output;
         private readonly OcrOptionsEditor _advanced;
         private readonly Label _models;
+        private Label _license;
+
+        private void ShowLicense()
+        {
+            var l = Program.License;
+            string state = Program.IsTrial ? "⏳ " + Program.Trial.Message
+                : l == null ? "" : (l.IsValid ? "✓ " : "✗ ") + l.Message;
+            _license.Text = state + Environment.NewLine + "Machine code: " + Licensing.MachineIdentity.Code;
+        }
 
         public SettingsPage(IShell shell) : base(shell, "Settings", "Defaults for recognition and export. Everything runs offline with the bundled PaddleOCR models.")
         {
@@ -485,6 +494,20 @@ namespace FalconOcr.App.Pages
             Span(_advanced);
             Section("OCR models (offline)");
             Span(_models);
+            Section("License");
+            _license = new Label { AutoSize = true, MaximumSize = new Size(S(660), 0), ForeColor = Theme.Text };
+            var licenseButtons = new FlowLayoutPanel { AutoSize = true };
+            var changeKey = FlatButton("Change license key…", 170);
+            var machineCode = FlatButton("Copy machine code", 170);
+            licenseButtons.Controls.AddRange(new Control[] { changeKey, machineCode });
+            Span(_license);
+            Span(licenseButtons);
+            changeKey.Click += (s, e) =>
+            {
+                ((MainForm)FindForm()).ShowActivation();
+                ShowLicense();
+            };
+            machineCode.Click += (s, e) => { Clipboard.SetText(Licensing.MachineIdentity.Code); Shell.SetStatus("Machine code copied: " + Licensing.MachineIdentity.Code); };
 
             var buttons = new FlowLayoutPanel { Dock = DockStyle.Bottom, Height = S(50), FlowDirection = FlowDirection.LeftToRight, Padding = new Padding(0, S(8), 0, 0) };
             var save = new Button { Text = "Save", Width = S(120), Height = S(36), FlatStyle = FlatStyle.Flat, BackColor = Theme.Accent, ForeColor = Color.White, Font = Theme.Bold };
@@ -534,6 +557,7 @@ namespace FalconOcr.App.Pages
             }
             lines.Add("Languages: " + string.Join(", ", LanguageCatalog.All.Select(l => l.DisplayName)));
             _models.Text = string.Join(Environment.NewLine, lines);
+            ShowLicense();
         }
 
         private void LoadFrom(AppSettings s)

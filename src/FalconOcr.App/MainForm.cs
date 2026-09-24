@@ -74,6 +74,12 @@ namespace FalconOcr.App
             var close = WindowButton(IconKind.Close, (s, e) => Close());
             _maxButton = WindowButton(IconKind.Maximize, (s, e) => ToggleMaximize());
             var min = WindowButton(IconKind.Minimize, (s, e) => WindowState = FormWindowState.Minimized);
+            if (Program.IsTrial)
+            {
+                var badge = new TrialBadge(Program.Trial) { Dock = DockStyle.Right };
+                badge.Click += (s, e) => ShowActivation();
+                _titleBar.Controls.Add(badge);
+            }
             _titleBar.Controls.Add(min);
             _titleBar.Controls.Add(_maxButton);
             _titleBar.Controls.Add(close);
@@ -198,6 +204,50 @@ namespace FalconOcr.App
         }
 
         private int Scale(int v) => (int)Math.Round(v * DeviceDpi / 96f);
+
+        /// <summary>Opens the activation window (trial badge, Settings); removes the badge once activated.</summary>
+        public void ShowActivation()
+        {
+            using (var dlg = new ActivationForm(Program.License, startup: false, trial: Program.Trial))
+            {
+                if (dlg.ShowDialog(this) != DialogResult.OK) return;
+                Program.License = dlg.Result;
+                Program.Trial = null;
+            }
+            foreach (var b in _titleBar.Controls.OfType<TrialBadge>().ToList()) _titleBar.Controls.Remove(b);
+            SetStatus("Activated — " + Program.License.Message);
+        }
+
+        /// <summary>Amber "TRIAL · n days left" pill in the title bar; click to activate.</summary>
+        private sealed class TrialBadge : Control
+        {
+            private bool _hover;
+
+            public TrialBadge(Licensing.TrialStatus trial)
+            {
+                SetStyle(ControlStyles.UserPaint | ControlStyles.AllPaintingInWmPaint | ControlStyles.OptimizedDoubleBuffer | ControlStyles.SupportsTransparentBackColor, true);
+                BackColor = Color.Transparent;
+                Cursor = Cursors.Hand;
+                Font = Theme.Bold;
+                Text = $"TRIAL · {trial.DaysLeft} day{(trial.DaysLeft == 1 ? "" : "s")} left — Activate now";
+                Width = TextRenderer.MeasureText(Text, Font).Width + (int)(40 * DeviceDpi / 96f);
+            }
+
+            protected override void OnMouseEnter(EventArgs e) { _hover = true; Invalidate(); base.OnMouseEnter(e); }
+            protected override void OnMouseLeave(EventArgs e) { _hover = false; Invalidate(); base.OnMouseLeave(e); }
+
+            protected override void OnPaint(PaintEventArgs e)
+            {
+                var g = e.Graphics;
+                g.SmoothingMode = SmoothingMode.AntiAlias;
+                int h = (int)(30 * DeviceDpi / 96f);
+                var r = new RectangleF(6, (Height - h) / 2f, Width - 16, h);
+                using (var path = Icons.Rounded(r, h / 2f))
+                using (var b = new SolidBrush(_hover ? Color.FromArgb(255, 214, 102) : Color.FromArgb(255, 193, 7)))
+                    g.FillPath(b, path);
+                TextRenderer.DrawText(g, Text, Font, Rectangle.Round(r), Color.FromArgb(60, 40, 0), TextFormatFlags.HorizontalCenter | TextFormatFlags.VerticalCenter);
+            }
+        }
 
         // ------------------------------------------------------------ IShell
 

@@ -1213,7 +1213,8 @@ namespace FalconOcr.App.Pages
                 "    click a line to find it in the image, double-click (or F2) to correct it.\n" +
                 "4. Export to Word, Excel or HTML (Ctrl+E).\n\n" +
                 "Shortcuts: Ctrl+O add files · Ctrl+V paste image · Ctrl+R rotate · Del remove\n" +
-                "PgUp/PgDn pages · Ctrl+wheel zoom · middle mouse pans",
+                "PgUp/PgDn pages · Ctrl+wheel zoom · middle mouse pans\n\n" +
+                (Program.IsTrial ? Program.Trial.Message : Program.License?.IsValid == true ? Program.License.Message : "Unlicensed"),
                 "Help", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 

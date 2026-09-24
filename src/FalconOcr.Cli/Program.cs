@@ -26,7 +26,40 @@ namespace FalconOcr.Cli
             if (args.Length == 0 || args.Contains("-h") || args.Contains("--help"))
             {
                 Console.WriteLine("usage: falcon-ocr <files...> [-l en|zh|ja|ko|ru] [-f docx|xlsx|html|txt] [-o outDir] [--exact] [--seq] [--no-tables] [--ocr-only] [--dpi N] [--dump]");
+                Console.WriteLine("       falcon-ocr --license <KEY>     activate      falcon-ocr --machine-code");
                 return 1;
+            }
+
+            // Licensing: same key as the desktop application.
+            if (args.Contains("--machine-code"))
+            {
+                Console.WriteLine(Licensing.MachineIdentity.Code);
+                return 0;
+            }
+            int li = Array.IndexOf(args, "--license");
+            var license = li >= 0 && li + 1 < args.Length ? Licensing.LicenseManager.Activate(args[li + 1]) : Licensing.LicenseManager.CheckInstalled();
+            if (!license.IsValid && li < 0)
+            {
+                var trial = Licensing.TrialManager.Check();
+                if (!trial.Expired)
+                {
+                    Console.Error.WriteLine(trial.Message + " Activate with: falcon-ocr --license <KEY>");
+                    license = null;
+                }
+                else Console.Error.WriteLine(trial.Message);
+            }
+            if (license != null && !license.IsValid)
+            {
+                Console.Error.WriteLine("Falcon OCR is not activated: " + license.Message);
+                Console.Error.WriteLine("Machine code: " + Licensing.MachineIdentity.Code);
+                Console.Error.WriteLine("Activate with: falcon-ocr --license <KEY>   (or in the desktop application)");
+                return 3;
+            }
+            if (li >= 0)
+            {
+                Console.Error.WriteLine("Activated. " + license?.Message);
+                args = args.Where((a, i) => i != li && i != li + 1).ToArray();
+                if (args.Length == 0) return 0;
             }
 
             var inputs = new List<string>();

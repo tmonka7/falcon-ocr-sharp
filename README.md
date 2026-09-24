@@ -61,6 +61,41 @@ scanned pages (configurable).
 | **Exact Copy** | Every line in a positioned frame at its original place, width-fitted; tables and pictures positioned on the page | as Editable | Absolutely positioned lines, tables and images |
 | **Plain Text** | Paragraphs only | as Editable | Preformatted text |
 
+## Trial
+
+Without a license Falcon OCR runs as a **7-day trial** from the first start. The activation window appears at
+every start (Activate · Continue Trial · Exit) and the title bar shows `TRIAL · n days left — Activate now`.
+After 7 days only Activate / Exit remain. The trial state is stored in the registry and in a hidden file, both
+HMAC-protected and bound to the computer; edited data or a clock set back ends the trial. The CLI follows the same rules.
+
+## Licensing (KeyGen)
+
+Licensed use requires a license key produced by **`src/FalconOcr.KeyGen`**
+(`FalconOcrKeyGen.exe`, a vendor-only tool — `build.ps1` never copies it to `dist`).
+
+- Keys are signed with **ECDSA P-256**. The KeyGen holds the private key; the app contains only the public key
+  (`src/FalconOcr.Core/Licensing/LicensePublicKey.cs`), so it can verify keys but nobody can create them from the app.
+- A key carries: licensee, serial number, issue date, optional expiry date, optional machine binding.
+- **Machine binding:** the customer copies the *machine code* shown in the activation window
+  (or `falcon-ocr --machine-code`) and sends it to you; tick "Any computer" for an unbound (site) key.
+- The activated key is stored in `%LOCALAPPDATA%\FalconOCR\license.key`. Administrators can also deploy a
+  `license.key` next to `FalconOcr.exe` or in `%ProgramData%\FalconOCR\`.
+
+Vendor workflow:
+
+1. First time only: run `FalconOcrKeyGen.exe` and choose **New signing key** (or `FalconOcrKeyGen --init`).
+   It stores the private key DPAPI-encrypted in `%APPDATA%\FalconOcrKeyGen\signing.key`, writes the public key to
+   `LicensePublicKey.cs` — then **rebuild** — and asks you to save a backup. *Keep the backup offline and secret;
+   creating a new signing key invalidates every license issued before.*
+2. Per customer: enter the licensee, the machine code (or "Any computer") and the expiry → **Generate** →
+   send the key text or the saved `.lic` file. Every issued key is appended to `%APPDATA%\FalconOcrKeyGen\issued.csv`.
+
+Command line: `FalconOcrKeyGen --generate --name "ACME Ltd" --machine P9BB-82PR-DS2C-1R5Y --days 365`,
+`--verify <key>`, `--backup <file>`, `--import <file>`, `--machine-code`.
+
+Customers activate in the startup window (paste the key or *Load license file…*), later via
+*Settings → License → Change license key…*, or with `falcon-ocr --license <key>`.
+
 ## Command line
 
 ```
@@ -85,6 +120,7 @@ src/FalconOcr.Core      engine + layout + exporters (class library)
   Export/               DOCX / XLSX (OpenXML SDK), HTML, text
 src/FalconOcr.App       WinForms application (code-built UI, custom-drawn controls and vector icons)
 src/FalconOcr.Cli       command-line front end
+src/FalconOcr.KeyGen    license key generator (vendor-only, not shipped)
 models/                 PP-OCRv5 ONNX models + dictionaries (copied next to the exe at build time)
 lib/native/x64/         onnxruntime.dll, pdfium.dll, app-local VC++ 2015-2022 runtime
 packages/               vendored NuGet feed for offline restore
@@ -98,6 +134,19 @@ Notes:
 - Italic is taken from PDF text layers; for scanned pages bold, size and color are estimated from pixels.
 - Diagnostics for headless machines: set `FALCON_SNAPSHOT=<folder>` and start the app with a file argument —
   it recognizes the file, renders every page of the UI to PNG and exits.
+
+## Documentation
+
+| Document | File |
+|---|---|
+| User Manual | `docs/Falcon OCR - User Manual.docx` |
+| Software Requirements Specification | `docs/Falcon OCR - Software Requirements Specification.docx` |
+| System Design Document | `docs/Falcon OCR - System Design Document.docx` |
+| Screen Design Document | `docs/Falcon OCR - Screen Design Document.docx` |
+| Test Case Specification (with results) | `docs/Falcon OCR - Test Case Specification.docx` |
+
+The documents are generated from `tools/docs/*.py` (content) and converted by Microsoft Word
+(`python tools/docs/build_docs.py`; diagrams: `python tools/docs/diagrams.py docs/images`).
 
 ## Third-party components
 

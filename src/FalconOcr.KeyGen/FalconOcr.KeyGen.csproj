@@ -1,0 +1,23 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <!--
+    Vendor-only tool: signs license keys with the private key. Never ship it (build.ps1 does not copy it to dist).
+  -->
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <RootNamespace>FalconOcr.KeyGen</RootNamespace>
+    <AssemblyName>FalconOcrKeyGen</AssemblyName>
+    <ApplicationManifest>..\FalconOcr.App\app.manifest</ApplicationManifest>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\FalconOcr.Core\FalconOcr.Core.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Security" />
+  </ItemGroup>
+
+</Project>

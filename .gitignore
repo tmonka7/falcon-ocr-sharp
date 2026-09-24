@@ -6,5 +6,10 @@ dist/
 *.suo
 .vs/
 
+# Licensing secrets: signing-key backups and issued licenses must never be committed
+*.lic
+falcon-ocr-signing-*.key
+license.key
+
 # Scratch space of tools/fetch-dependencies.ps1 (the vendored results live in packages/, models/, lib/)
 .tmp/
