@@ -67,6 +67,9 @@ try {
     $r = $sec.Footers.Item(1).Range; $r.Collapse(0); $r.Fields.Add($r, 33) | Out-Null            # PAGE
     $r = $sec.Footers.Item(1).Range; $r.Collapse(0); $r.InsertAfter(" of "); $r.Collapse(0); $r.Fields.Add($r, 26) | Out-Null   # NUMPAGES
 
+    # Headings stay on the page of the text that follows them.
+    foreach ($id in -2, -3, -4) { try { $doc.Styles.Item($id).ParagraphFormat.KeepWithNext = -1 } catch {} }
+
     Write-Host "layout done"
     # Table of contents at the [[TOC]] marker.
     $find = $doc.Content
