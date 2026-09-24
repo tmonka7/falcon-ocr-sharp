@@ -1,0 +1,18 @@
+<Project>
+  <PropertyGroup>
+    <TargetFramework>net47</TargetFramework>
+    <LangVersion>7.3</LangVersion>
+    <Platforms>x64</Platforms>
+    <PlatformTarget>x64</PlatformTarget>
+    <Prefer32Bit>false</Prefer32Bit>
+    <Nullable>disable</Nullable>
+    <Company>Falcon OCR</Company>
+    <Product>Falcon OCR</Product>
+    <Version>1.0.0</Version>
+    <Copyright>Copyright © 2026</Copyright>
+    <!-- netstandard2.0 packages (ONNX Runtime) on net47 need the facade assemblies. -->
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <GenerateBindingRedirectsOutputType>true</GenerateBindingRedirectsOutputType>
+    <NoWarn>$(NoWarn);NU1701;NU1603</NoWarn>
+  </PropertyGroup>
+</Project>

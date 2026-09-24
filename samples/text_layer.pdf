@@ -1,0 +1,46 @@
+%PDF-1.4
+1 0 obj
+<< /Type /Catalog /Pages 2 0 R >>
+endobj
+2 0 obj
+<< /Type /Pages /Kids [3 0 R] /Count 1 >>
+endobj
+3 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 595 842] /Contents 4 0 R /Resources << /Font << /F1 5 0 R /F2 6 0 R >> >> >>
+endobj
+4 0 obj
+<< /Length 915 >>
+stream
+BT /F2 22 Tf 0.071 0.431 0.282 rg 54 780 Td (Digital PDF Text Layer) Tj ET
+BT /F1 11 Tf 0.000 0.000 0.000 rg 54 750 Td (This page has real text objects, so Falcon OCR reads the embedded text) Tj ET
+BT /F1 11 Tf 0.000 0.000 0.000 rg 54 735 Td (directly instead of running recognition. Fonts, sizes and colors come) Tj ET
+BT /F1 11 Tf 0.000 0.000 0.000 rg 54 720 Td (from the PDF itself.) Tj ET
+BT /F2 14 Tf 0.000 0.000 0.000 rg 54 693 Td (Summary) Tj ET
+BT /F1 10 Tf 0.000 0.000 0.000 rg 54 665 Td (Left column text line one) Tj ET
+BT /F1 10 Tf 0.000 0.000 0.000 rg 54 652 Td (Left column text line two) Tj ET
+BT /F1 10 Tf 0.000 0.000 0.000 rg 54 639 Td (Left column text line three) Tj ET
+BT /F1 10 Tf 0.000 0.000 0.000 rg 320 665 Td (Right column line one) Tj ET
+BT /F1 10 Tf 0.000 0.000 0.000 rg 320 652 Td (Right column line two) Tj ET
+BT /F1 10 Tf 0.000 0.000 0.000 rg 320 639 Td (Right column line three) Tj ET
+endstream
+endobj
+5 0 obj
+<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica >>
+endobj
+6 0 obj
+<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica-Bold >>
+endobj
+xref
+0 7
+0000000000 65535 f 
+0000000009 00000 n 
+0000000058 00000 n 
+0000000115 00000 n 
+0000000251 00000 n 
+0000001217 00000 n 
+0000001287 00000 n 
+trailer
+<< /Size 7 /Root 1 0 R >>
+startxref
+1362
+%%EOF

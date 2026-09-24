@@ -1,0 +1,10 @@
+# Build output
+bin/
+obj/
+dist/
+*.user
+*.suo
+.vs/
+
+# Scratch space of tools/fetch-dependencies.ps1 (the vendored results live in packages/, models/, lib/)
+.tmp/
