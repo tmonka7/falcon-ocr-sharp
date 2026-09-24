@@ -22,6 +22,8 @@
   <ItemGroup>
     <None Include="..\..\lib\native\x64\*.dll" Link="%(Filename)%(Extension)" CopyToOutputDirectory="PreserveNewest" Visible="false" />
     <None Include="..\..\models\**\*" Link="models\%(RecursiveDir)%(Filename)%(Extension)" CopyToOutputDirectory="PreserveNewest" Visible="false" />
+    <!-- Interface translations (gettext PO), loaded by FalconOcr.Localization.L -->
+    <None Include="..\..\lang\*.po" Link="lang\%(Filename)%(Extension)" CopyToOutputDirectory="PreserveNewest" Visible="false" />
   </ItemGroup>
 
 </Project>

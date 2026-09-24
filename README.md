@@ -61,6 +61,17 @@ scanned pages (configurable).
 | **Exact Copy** | Every line in a positioned frame at its original place, width-fitted; tables and pictures positioned on the page | as Editable | Absolutely positioned lines, tables and images |
 | **Plain Text** | Paragraphs only | as Editable | Preformatted text |
 
+## Interface languages
+
+The user interface is available in **English, 简体中文 (Chinese) and 日本語 (Japanese)** —
+*Settings → General → Interface language* (first start: the Windows display language).
+Translations are gettext PO files in `lang/` (`zh_CN.po`, `ja.po`, template `falcon-ocr.pot`), copied next to
+the executable and editable with Poedit or any UTF-8 editor without rebuilding.
+
+- `python tools/i18n/po_tool.py extract` — collect all `L.T("…")` / `L.F("…")` strings, update the template and catalogs (translations are kept)
+- `python tools/i18n/po_tool.py check` — report untranslated entries and `{0}` placeholder mismatches
+- New language: copy `falcon-ocr.pot` to `lang/<code>.po`, translate, add the code to `L.Languages` (`src/FalconOcr.Core/Localization/L.cs`)
+
 ## Trial
 
 Without a license Falcon OCR runs as a **7-day trial** from the first start. The activation window appears at

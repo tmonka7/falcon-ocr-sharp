@@ -1,4 +1,5 @@
 using System;
+using FalconOcr.Localization;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Drawing.Drawing2D;
@@ -38,7 +39,7 @@ namespace FalconOcr.App.UI
         /// <summary>Highlight characters with low recognition confidence.</summary>
         public bool ShowConfidence { get; set; } = true;
 
-        public string Placeholder { get; set; } = "Click Recognize to convert this page";
+        public string Placeholder { get; set; } = L.T("Click Recognize to convert this page");
 
         public OcrPage Page
         {

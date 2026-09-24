@@ -1,4 +1,4 @@
-using System.Drawing;
+﻿using System.Drawing;
 
 namespace FalconOcr.App.UI
 {
@@ -31,11 +31,18 @@ namespace FalconOcr.App.UI
         public static readonly Color ExcelGreen = Color.FromArgb(16, 124, 65);
         public static readonly Color HtmlOrange = Color.FromArgb(228, 77, 38);
 
-        public static readonly Font Base = new Font("Segoe UI", 9.75f);
-        public static readonly Font Small = new Font("Segoe UI", 8.5f);
-        public static readonly Font Bold = new Font("Segoe UI Semibold", 10f);
-        public static readonly Font Title = new Font("Segoe UI Semibold", 15f);
-        public static readonly Font Heading = new Font("Segoe UI Semibold", 12f);
-        public static readonly Font Nav = new Font("Segoe UI", 11f);
+        // UI fonts follow the interface language (Segoe UI has no CJK glyphs). L.Load must run before first use.
+        public static readonly string Family = Localization.L.Current == "zh_CN" ? "Microsoft YaHei UI" : Localization.L.Current == "ja" ? "Yu Gothic UI" : "Segoe UI";
+        public static readonly string SemiboldFamily = Localization.L.IsCjk ? Family : "Segoe UI Semibold";
+        private static readonly FontStyle SemiboldStyle = Localization.L.IsCjk ? FontStyle.Bold : FontStyle.Regular;
+
+        public static readonly Font Base = new Font(Family, 9.75f);
+        public static readonly Font Small = new Font(Family, 8.5f);
+        public static readonly Font Bold = new Font(SemiboldFamily, 10f, SemiboldStyle);
+        public static readonly Font Title = new Font(SemiboldFamily, 15f, SemiboldStyle);
+        public static readonly Font Heading = new Font(SemiboldFamily, 12f, SemiboldStyle);
+        public static readonly Font Nav = new Font(Family, 11f);
+
+        public static Font Semibold(float size) => new Font(SemiboldFamily, size, SemiboldStyle);
     }
 }

@@ -3,6 +3,7 @@ using System.IO;
 using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
+using FalconOcr.Localization;
 using Microsoft.Win32;
 
 namespace FalconOcr.Licensing
@@ -26,10 +27,10 @@ namespace FalconOcr.Licensing
         public override string ToString()
         {
             var sb = new StringBuilder();
-            sb.Append("Licensed to ").Append(string.IsNullOrEmpty(Licensee) ? "(unnamed)" : Licensee);
-            sb.Append(" · serial ").Append(Serial);
-            sb.Append(Expires.HasValue ? " · valid until " + Expires.Value.ToString("yyyy-MM-dd") : " · perpetual");
-            sb.Append(AnyMachine ? " · any computer" : " · this computer only");
+            sb.Append(L.F("Licensed to {0}", string.IsNullOrEmpty(Licensee) ? L.T("(unnamed)") : Licensee));
+            sb.Append(" · ").Append(L.F("serial {0}", Serial));
+            sb.Append(" · ").Append(Expires.HasValue ? L.F("valid until {0}", Expires.Value.ToString("yyyy-MM-dd")) : L.T("perpetual"));
+            sb.Append(" · ").Append(AnyMachine ? L.T("any computer") : L.T("this computer only"));
             return sb.ToString();
         }
     }
@@ -59,12 +60,12 @@ namespace FalconOcr.Licensing
                 switch (Status)
                 {
                     case LicenseStatus.Valid: return Info.ToString();
-                    case LicenseStatus.Missing: return "No license key has been entered.";
-                    case LicenseStatus.Malformed: return "The license key is not in a valid format. Check that it was copied completely.";
-                    case LicenseStatus.InvalidSignature: return "The license key is not genuine.";
-                    case LicenseStatus.WrongMachine: return "This license key was issued for a different computer.";
-                    case LicenseStatus.Expired: return "The license expired on " + Info.Expires.Value.ToString("yyyy-MM-dd") + ".";
-                    case LicenseStatus.ClockTampered: return "The system clock is set earlier than the last use of the application.";
+                    case LicenseStatus.Missing: return L.T("No license key has been entered.");
+                    case LicenseStatus.Malformed: return L.T("The license key is not in a valid format. Check that it was copied completely.");
+                    case LicenseStatus.InvalidSignature: return L.T("The license key is not genuine.");
+                    case LicenseStatus.WrongMachine: return L.T("This license key was issued for a different computer.");
+                    case LicenseStatus.Expired: return L.F("The license expired on {0}.", Info.Expires.Value.ToString("yyyy-MM-dd"));
+                    case LicenseStatus.ClockTampered: return L.T("The system clock is set earlier than the last use of the application.");
                     default: return Status.ToString();
                 }
             }

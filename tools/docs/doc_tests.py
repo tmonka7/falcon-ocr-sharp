@@ -110,6 +110,37 @@ CASES = [
     ("TC-101", "FR-36", "KeyGen — generate and verify", "Signing key present.", "--generate --name … --machine …; --verify <key>.", "Key FOCR-… (≈ 190 chars); verify reports Valid with licensee/serial; logged in issued.csv.", PASS, "CLI, 2026-09-24"),
     ("TC-102", "FR-36", "KeyGen — build mismatch warning", "Application built with another public key.", "Open the KeyGen.", "'⚠ Does not match the public key compiled into this build'.", NOTRUN, "Manual"),
     ("TC-103", "FR-36", "KeyGen — backup and import", "Signing key present.", "Backup key…, then on another account Import backup…", "Imported key has the same fingerprint and matches the build.", NOTRUN, "Manual"),
+    # ---------------------------------------------------------------- user interface extensions (v1.1)
+    ("TC-110", "FR-37", "Font boxes show the selection", "report.png recognized.", "Select '2. Results by Region'.",
+     "Style box 'Heading 2', font box 'Calibri', size box '15.5'.", PASS, "Snapshot tour (en, ja), 2026-09-24"),
+    ("TC-111", "FR-37", "Font change is exported", "report.png recognized.", "Set the heading paragraph to Georgia 30 pt (same model change as the font boxes); export DOCX and HTML.",
+     "document.xml contains a Georgia run with w:sz=60; HTML contains font-size:30pt with font-family 'Georgia'.", PASS, "API script, 2026-09-24"),
+    ("TC-112", "FR-37", "Font boxes — interactive", "Recognized page, line selected.", "Pick 'Times New Roman' in the font box, type 20 + Enter in the size box.",
+     "Recognized Text shows the paragraph in Times New Roman 20 pt; status bar confirms.", NOTRUN, "Manual"),
+    ("TC-113", "FR-38", "Japanese interface", "Settings → Interface language = 日本語.", "Start the application; open every page.",
+     "All menus, buttons, tabs, messages, trial texts in Japanese; Yu Gothic UI font.", PASS, "Snapshot tour (ja), 2026-09-24"),
+    ("TC-114", "FR-38", "Chinese interface", "Interface language = 简体中文.", "Start the application; open every page.",
+     "All texts in Simplified Chinese; Microsoft YaHei UI font; Settings shows 常规 / 界面语言.", PASS, "Snapshot tour (zh_CN), 2026-09-24"),
+    ("TC-115", "FR-38", "Catalog completeness", "—", "python tools\\i18n\\po_tool.py check.",
+     "zh_CN and ja: 286/286 translated, 0 placeholder mismatches.", PASS, "po_tool, 2026-09-24"),
+    ("TC-116", "FR-38", "PO parsing", "—", "Read lang\\ja.po with FalconOcr.Localization.PoFile.",
+     "286 entries; multi-line help text, tab (\\t) and backslash keys resolve.", PASS, "API script, 2026-09-24"),
+    ("TC-117", "FR-38", "Switch language", "English interface.", "Settings → Interface language = 日本語 → Save → Yes (restart).",
+     "Application restarts in Japanese; setting persists.", NOTRUN, "Manual"),
+    ("TC-118", "FR-39", "Collapsed sidebar at start-up", "SidebarCollapsed = true in settings.", "Start the application.",
+     "Navigation shows icons only (64 px); » button at the bottom.", PASS, "Snapshot tour, 2026-09-24"),
+    ("TC-119", "FR-39", "Collapse / expand by click", "Sidebar expanded.", "Click « Collapse, then », restart.",
+     "Sidebar collapses and expands; last state restored after restart; tooltips show page names when collapsed.", NOTRUN, "Manual"),
+    ("TC-120", "FR-40", "Stored panel width applied", "RightPanelWidth = 420 in settings.", "Start the application.",
+     "Settings column is 420 px wide; centre area shrinks accordingly.", PASS, "Snapshot tour, 2026-09-24"),
+    ("TC-121", "FR-40", "Resize by dragging", "Workspace open.", "Drag the grip at the left edge of the settings column; restart.",
+     "Width follows the mouse within 280–640 px (centre ≥ 560 px); width restored after restart.", NOTRUN, "Manual"),
+    ("TC-122", "FR-41", "Trial notification", "Trial running.", "Start → Continue Trial.",
+     "Amber banner below the toolbar: 'You are using the trial version of Falcon OCR — 7 of 7 days left…', Activate now, ✕.", PASS, "Snapshot tour (en, ja, zh), 2026-09-24"),
+    ("TC-123", "FR-41", "Hide / activate from the notification", "Trial running.", "Click ✕; restart; click Activate now and enter a valid key.",
+     "✕ hides the banner until the next start; after activation banner and title-bar badge disappear.", NOTRUN, "Manual"),
+    ("TC-124", "FR-41", "No notification when licensed", "Valid license installed.", "Start the application.",
+     "No banner below the toolbar, no trial badge.", NOTRUN, "Manual (requires a key of the current signing key)"),
 ]
 
 
@@ -154,7 +185,7 @@ def build():
     groups = [
         ("4.1 Build and installation", "TC-00"), ("4.2 Input", "TC-01"), ("4.3 Page editing", "TC-02"), ("4.4 Recognition", "TC-03"),
         ("4.5 Layout reconstruction", "TC-04"), ("4.6 Results view", "TC-05"), ("4.7 Export", "TC-06"), ("4.8 Tools", "TC-07"),
-        ("4.9 Licensing", "TC-08"), ("4.10 Trial", "TC-09"), ("4.11 Key generator", "TC-10"),
+        ("4.9 Licensing", "TC-08"), ("4.10 Trial", "TC-09"), ("4.11 Key generator", "TC-10"), ("4.12 User interface extensions", ("TC-11", "TC-12")),
     ]
     for title, prefix in groups:
         d.h2(title)

@@ -90,6 +90,15 @@ namespace FalconOcr.App.UI
             set { _selected = value; Invalidate(); }
         }
 
+        /// <summary>Icon only (collapsed sidebar).</summary>
+        public bool Compact
+        {
+            get => _compact;
+            set { _compact = value; Invalidate(); }
+        }
+
+        private bool _compact;
+
         protected override void OnPaint(PaintEventArgs e)
         {
             var g = e.Graphics;
@@ -102,6 +111,11 @@ namespace FalconOcr.App.UI
                     g.FillPath(b, path);
             }
             int icon = Dpi(this, 26);
+            if (_compact)
+            {
+                Icons.Draw(g, _icon, new RectangleF((Width - Dpi(this, 6) - icon) / 2f, (Height - icon) / 2f, icon, icon), Color.White, Dpi(this, 2));
+                return;
+            }
             Icons.Draw(g, _icon, new RectangleF(Dpi(this, 22), (Height - icon) / 2f, icon, icon), Color.White, Dpi(this, 2));
             TextRenderer.DrawText(g, Text, Font, new Rectangle(Dpi(this, 62), 0, Width - Dpi(this, 62), Height), Color.White,
                 TextFormatFlags.VerticalCenter | TextFormatFlags.Left | TextFormatFlags.EndEllipsis);
@@ -201,7 +215,7 @@ namespace FalconOcr.App.UI
         {
             Text = text;
             Icon = icon;
-            Font = new Font("Segoe UI Semibold", 12f);
+            Font = Theme.Semibold(12f);
             Height = Dpi(this, 48);
         }
 

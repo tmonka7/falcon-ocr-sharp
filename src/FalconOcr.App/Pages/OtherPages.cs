@@ -1,4 +1,5 @@
 using System;
+using FalconOcr.Localization;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Drawing;
@@ -65,16 +66,16 @@ namespace FalconOcr.App.Pages
         private readonly Label _info;
         private OcrDocument _doc;
 
-        public QuickOcrPage(IShell shell) : base(shell, "Quick OCR", "Paste (Ctrl+V), drop or open an image to get its text instantly — nothing is saved.")
+        public QuickOcrPage(IShell shell) : base(shell, L.T("Quick OCR"), L.T("Paste (Ctrl+V), drop or open an image to get its text instantly — nothing is saved."))
         {
             var split = new SplitContainer { Dock = DockStyle.Fill, SplitterWidth = S(12), BackColor = Theme.Panel };
-            _image = new ImageViewer { Dock = DockStyle.Fill, Placeholder = "Drop an image here or press Ctrl+V", AllowDrop = true, ShowOverlay = true };
-            _text = new TextBox { Dock = DockStyle.Fill, Multiline = true, ScrollBars = ScrollBars.Both, WordWrap = false, Font = new Font("Segoe UI", 11f), BorderStyle = BorderStyle.FixedSingle };
+            _image = new ImageViewer { Dock = DockStyle.Fill, Placeholder = L.T("Drop an image here or press Ctrl+V"), AllowDrop = true, ShowOverlay = true };
+            _text = new TextBox { Dock = DockStyle.Fill, Multiline = true, ScrollBars = ScrollBars.Both, WordWrap = false, Font = new Font(Theme.Family, 11f), BorderStyle = BorderStyle.FixedSingle };
             var buttons = new FlowLayoutPanel { Dock = DockStyle.Top, Height = S(46) };
-            var open = FlatButton("Open image…");
-            var paste = FlatButton("Paste image");
-            var copy = FlatButton("Copy text");
-            var send = FlatButton("Open in workspace", 160);
+            var open = FlatButton(L.T("Open image…"));
+            var paste = FlatButton(L.T("Paste image"));
+            var copy = FlatButton(L.T("Copy text"));
+            var send = FlatButton(L.T("Open in workspace"), 160);
             buttons.Controls.AddRange(new Control[] { open, paste, copy, send });
             _info = new Label { Dock = DockStyle.Bottom, Height = S(28), ForeColor = Theme.SubText, TextAlign = ContentAlignment.MiddleLeft };
             split.Panel1.Controls.Add(_image);
@@ -85,7 +86,7 @@ namespace FalconOcr.App.Pages
 
             open.Click += (s, e) =>
             {
-                using (var dlg = new OpenFileDialog { Filter = "Images and PDF|*.png;*.jpg;*.jpeg;*.bmp;*.gif;*.tif;*.tiff;*.pdf" })
+                using (var dlg = new OpenFileDialog { Filter = L.T("Images and PDF|*.png;*.jpg;*.jpeg;*.bmp;*.gif;*.tif;*.tiff;*.pdf") })
                     if (dlg.ShowDialog(this) == DialogResult.OK) Run(OcrDocument.Open(dlg.FileName));
             };
             paste.Click += (s, e) => Paste();
@@ -140,7 +141,7 @@ namespace FalconOcr.App.Pages
                 old?.Dispose();
             }
             _text.Text = "";
-            _info.Text = "Recognizing…";
+            _info.Text = L.T("Recognizing…");
             try
             {
                 var sw = Stopwatch.StartNew();
@@ -149,11 +150,11 @@ namespace FalconOcr.App.Pages
                 _image.Result = r;
                 _image.Invalidate();
                 _text.Text = r.GetPlainText().Replace("\r\n", "\n").Replace("\n", Environment.NewLine);
-                _info.Text = $"{r.Lines.Count} lines · {r.MeanConfidence:P0} confidence · {sw.Elapsed.TotalSeconds:0.0}s · {LanguageCatalog.Get(o.Language).DisplayName}";
+                _info.Text = L.F("{0} lines · {1:P0} confidence · {2:0.0}s · {3}", r.Lines.Count, r.MeanConfidence, sw.Elapsed.TotalSeconds, L.T(LanguageCatalog.Get(o.Language).DisplayName));
             }
             catch (Exception ex)
             {
-                _info.Text = "Recognition failed: " + ex.Message;
+                _info.Text = L.T("Recognition failed: ") + ex.Message;
             }
         }
     }
@@ -172,45 +173,45 @@ namespace FalconOcr.App.Pages
         private readonly ListBox _log;
         private CancellationTokenSource _cts;
 
-        public BatchPage(IShell shell) : base(shell, "Batch Process", "Recognize and export many documents at once. Folders can be treated as one multi-page document.")
+        public BatchPage(IShell shell) : base(shell, L.T("Batch Process"), L.T("Recognize and export many documents at once. Folders can be treated as one multi-page document."))
         {
             var inputButtons = new FlowLayoutPanel { Height = S(44) };
-            var addFiles = FlatButton("Add files…");
-            var addFolder = FlatButton("Add folder…");
-            var clear = FlatButton("Clear list", 110);
+            var addFiles = FlatButton(L.T("Add files…"));
+            var addFolder = FlatButton(L.T("Add folder…"));
+            var clear = FlatButton(L.T("Clear list"), 110);
             inputButtons.Controls.AddRange(new Control[] { addFiles, addFolder, clear });
 
             _inputs = new ListView { View = View.Details, FullRowSelect = true, Height = S(220), AllowDrop = true, BorderStyle = BorderStyle.FixedSingle };
-            _inputs.Columns.Add("Input", S(520));
-            _inputs.Columns.Add("Type", S(140));
-            _inputs.Columns.Add("Status", S(260));
-            _foldersAsSequence = new CheckBox { Text = "Treat each folder as one document (image sequence)", Checked = true, Height = S(34) };
+            _inputs.Columns.Add(L.T("Input"), S(520));
+            _inputs.Columns.Add(L.T("Type"), S(140));
+            _inputs.Columns.Add(L.T("Status"), S(260));
+            _foldersAsSequence = new CheckBox { Text = L.T("Treat each folder as one document (image sequence)"), Checked = true, Height = S(34) };
 
             var options = new TableLayoutPanel { ColumnCount = 4, Height = S(84) };
             for (int i = 0; i < 4; i++) options.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 25));
-            _format = Field.Combo("Microsoft Word (.docx)", "Microsoft Excel (.xlsx)", "HTML (.html)", "Plain text (.txt)");
-            _mode = Field.Combo("Editable Document", "Exact Copy", "Plain Text");
-            _language = Field.Combo(LanguageCatalog.All.Select(l => (object)l.DisplayName).ToArray());
+            _format = Field.Combo(L.T("Microsoft Word (.docx)"), L.T("Microsoft Excel (.xlsx)"), L.T("HTML (.html)"), L.T("Plain text (.txt)"));
+            _mode = Field.Combo(L.T("Editable Document"), L.T("Exact Copy"), L.T("Plain Text"));
+            _language = Field.Combo(LanguageCatalog.All.Select(l => (object)L.T(l.DisplayName)).ToArray());
             _output = new TextBox { Dock = DockStyle.Top };
-            options.Controls.Add(Labeled("Output format", _format), 0, 0);
-            options.Controls.Add(Labeled("Document type", _mode), 1, 0);
-            options.Controls.Add(Labeled("Language", _language), 2, 0);
-            var outBox = Labeled("Output folder (double-click to browse)", _output);
+            options.Controls.Add(Labeled(L.T("Output format"), _format), 0, 0);
+            options.Controls.Add(Labeled(L.T("Document type"), _mode), 1, 0);
+            options.Controls.Add(Labeled(L.T("Language"), _language), 2, 0);
+            var outBox = Labeled(L.T("Output folder (double-click to browse)"), _output);
             options.Controls.Add(outBox, 3, 0);
 
             var run = new FlowLayoutPanel { Height = S(50) };
-            _start = new Button { Text = "▶  Start", Width = S(140), Height = S(38), FlatStyle = FlatStyle.Flat, BackColor = Theme.Accent, ForeColor = Color.White, Font = Theme.Bold };
+            _start = new Button { Text = L.T("▶  Start"), Width = S(140), Height = S(38), FlatStyle = FlatStyle.Flat, BackColor = Theme.Accent, ForeColor = Color.White, Font = Theme.Bold };
             _start.FlatAppearance.BorderSize = 0;
             _progress = new ProgressBar { Width = S(420), Height = S(20), Margin = new Padding(S(16), S(10), 0, 0) };
             run.Controls.AddRange(new Control[] { _start, _progress });
 
             _log = new ListBox { Dock = DockStyle.Fill, BorderStyle = BorderStyle.FixedSingle, IntegralHeight = false, HorizontalScrollbar = true };
             Body.Controls.Add(_log);
-            Stack(Body, Heading("1. Inputs"), inputButtons, _inputs, _foldersAsSequence, Heading("2. Options"), options, Heading("3. Run"), run);
+            Stack(Body, Heading(L.T("1. Inputs")), inputButtons, _inputs, _foldersAsSequence, Heading(L.T("2. Options")), options, Heading(L.T("3. Run")), run);
 
             addFiles.Click += (s, e) =>
             {
-                using (var dlg = new OpenFileDialog { Multiselect = true, Filter = "PDF and images|*.pdf;*.png;*.jpg;*.jpeg;*.bmp;*.gif;*.tif;*.tiff" })
+                using (var dlg = new OpenFileDialog { Multiselect = true, Filter = L.T("PDF and images|*.pdf;*.png;*.jpg;*.jpeg;*.bmp;*.gif;*.tif;*.tiff") })
                     if (dlg.ShowDialog(this) == DialogResult.OK) AddInputs(dlg.FileNames);
             };
             addFolder.Click += (s, e) =>
@@ -255,12 +256,12 @@ namespace FalconOcr.App.Pages
                 if (Directory.Exists(p))
                 {
                     if (_foldersAsSequence.Checked && Directory.GetFiles(p).Any(OcrDocument.IsImage))
-                        _inputs.Items.Add(new ListViewItem(new[] { p, "Image sequence", "Waiting" }) { Tag = p });
+                        _inputs.Items.Add(new ListViewItem(new[] { p, L.T("Image sequence"), L.T("Waiting") }) { Tag = p });
                     foreach (var f in Directory.GetFiles(p).Where(f => OcrDocument.IsSupported(f) && (!_foldersAsSequence.Checked || !OcrDocument.IsImage(f))))
-                        _inputs.Items.Add(new ListViewItem(new[] { f, Path.GetExtension(f).TrimStart('.').ToUpperInvariant(), "Waiting" }) { Tag = f });
+                        _inputs.Items.Add(new ListViewItem(new[] { f, Path.GetExtension(f).TrimStart('.').ToUpperInvariant(), L.T("Waiting") }) { Tag = f });
                 }
                 else if (OcrDocument.IsSupported(p))
-                    _inputs.Items.Add(new ListViewItem(new[] { p, Path.GetExtension(p).TrimStart('.').ToUpperInvariant(), "Waiting" }) { Tag = p });
+                    _inputs.Items.Add(new ListViewItem(new[] { p, Path.GetExtension(p).TrimStart('.').ToUpperInvariant(), L.T("Waiting") }) { Tag = p });
             }
         }
 
@@ -277,10 +278,10 @@ namespace FalconOcr.App.Pages
                 _cts.Cancel();
                 return;
             }
-            var items = _inputs.Items.Cast<ListViewItem>().Where(i => i.SubItems[2].Text != "Done").ToList();
+            var items = _inputs.Items.Cast<ListViewItem>().Where(i => i.SubItems[2].Text != L.T("Done")).ToList();
             if (items.Count == 0)
             {
-                MessageBox.Show(this, "Add files or folders first.", "Batch Process", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show(this, L.T("Add files or folders first."), L.T("Batch Process"), MessageBoxButtons.OK, MessageBoxIcon.Information);
                 return;
             }
             var format = (ExportFormat)_format.SelectedIndex;
@@ -291,15 +292,15 @@ namespace FalconOcr.App.Pages
             exportOptions.Language = o.Language;
             string outDir = string.IsNullOrWhiteSpace(_output.Text) ? Shell.Settings.OutputFolder : _output.Text.Trim();
             try { Directory.CreateDirectory(outDir); }
-            catch (Exception ex) { MessageBox.Show(this, ex.Message, "Output folder", MessageBoxButtons.OK, MessageBoxIcon.Error); return; }
+            catch (Exception ex) { MessageBox.Show(this, ex.Message, L.T("Output folder"), MessageBoxButtons.OK, MessageBoxIcon.Error); return; }
 
             _cts = new CancellationTokenSource();
-            _start.Text = "■  Stop";
+            _start.Text = L.T("■  Stop");
             _start.BackColor = Theme.Danger;
             _progress.Value = 0;
             int ok = 0, failed = 0;
             var total = Stopwatch.StartNew();
-            Log($"Started: {items.Count} document(s) → {format.ToString().ToUpperInvariant()} in {outDir}");
+            Log(L.F("Started: {0} document(s) → {1} in {2}", items.Count, format.ToString().ToUpperInvariant(), outDir));
             try
             {
                 for (int i = 0; i < items.Count; i++)
@@ -307,48 +308,48 @@ namespace FalconOcr.App.Pages
                     _cts.Token.ThrowIfCancellationRequested();
                     var item = items[i];
                     var path = (string)item.Tag;
-                    item.SubItems[2].Text = "Recognizing…";
+                    item.SubItems[2].Text = L.T("Recognizing…");
                     item.EnsureVisible();
                     var sw = Stopwatch.StartNew();
                     try
                     {
                         using (var doc = Directory.Exists(path) ? OcrDocument.OpenImageSequence(Directory.GetFiles(path), Path.GetFileName(path)) : OcrDocument.Open(path))
                         {
-                            var progress = new Progress<PageProgress>(p => { if (p.Total > 0) item.SubItems[2].Text = $"Page {Math.Min(p.Done + 1, p.Total)}/{p.Total}"; });
+                            var progress = new Progress<PageProgress>(p => { if (p.Total > 0) item.SubItems[2].Text = L.F("Page {0}/{1}", Math.Min(p.Done + 1, p.Total), p.Total); });
                             await Shell.Ocr.RecognizeAsync(doc.Pages, o, progress, null, _cts.Token);
                             var target = Exporter.UniquePath(outDir, Path.GetFileNameWithoutExtension(doc.Name), Exporter.Extension(format));
                             await Task.Run(() => Exporter.Export(doc, format, target, exportOptions));
-                            item.SubItems[2].Text = "Done";
+                            item.SubItems[2].Text = L.T("Done");
                             Log($"✓ {doc.Name} ({doc.Pages.Count} p., {sw.Elapsed.TotalSeconds:0.0}s) → {Path.GetFileName(target)}");
                             Shell.History.Add(new HistoryEntry { Time = DateTime.Now, Source = path, Output = target, Format = format.ToString().ToUpperInvariant(), Pages = doc.Pages.Count, Language = o.Language.ToString(), Seconds = sw.Elapsed.TotalSeconds });
                             ok++;
                         }
                     }
-                    catch (OperationCanceledException) { item.SubItems[2].Text = "Stopped"; throw; }
+                    catch (OperationCanceledException) { item.SubItems[2].Text = L.T("Stopped"); throw; }
                     catch (Exception ex)
                     {
-                        item.SubItems[2].Text = "Failed";
+                        item.SubItems[2].Text = L.T("Failed");
                         Log($"✗ {path}: {ex.Message}");
                         failed++;
                     }
                     _progress.Value = (int)((i + 1) * 100L / items.Count);
-                    Shell.SetStatus($"Batch: {i + 1}/{items.Count} documents", _progress.Value);
+                    Shell.SetStatus(L.F("Batch: {0}/{1} documents", i + 1, items.Count), _progress.Value);
                 }
-                Log($"Finished: {ok} succeeded, {failed} failed, {total.Elapsed.TotalSeconds:0}s.");
+                Log(L.F("Finished: {0} succeeded, {1} failed, {2:0}s.", ok, failed, total.Elapsed.TotalSeconds));
             }
             catch (OperationCanceledException)
             {
-                Log("Stopped by user.");
+                Log(L.T("Stopped by user."));
             }
             finally
             {
                 _cts.Dispose();
                 _cts = null;
-                _start.Text = "▶  Start";
+                _start.Text = L.T("▶  Start");
                 _start.BackColor = Theme.Accent;
-                Shell.SetStatus($"Batch finished: {ok} succeeded, {failed} failed.");
+                Shell.SetStatus(L.F("Batch finished: {0} succeeded, {1} failed.", ok, failed));
             }
-            if (ok > 0 && MessageBox.Show(this, $"{ok} document(s) exported. Open the output folder?", "Batch Process", MessageBoxButtons.YesNo, MessageBoxIcon.Information) == DialogResult.Yes)
+            if (ok > 0 && MessageBox.Show(this, L.F("{0} document(s) exported. Open the output folder?", ok), L.T("Batch Process"), MessageBoxButtons.YesNo, MessageBoxIcon.Information) == DialogResult.Yes)
                 Process.Start("explorer.exe", "\"" + outDir + "\"");
         }
     }
@@ -359,16 +360,16 @@ namespace FalconOcr.App.Pages
     {
         private readonly ListView _list;
 
-        public HistoryPage(IShell shell) : base(shell, "History", "Recent recognitions and exports.")
+        public HistoryPage(IShell shell) : base(shell, L.T("History"), L.T("Recent recognitions and exports."))
         {
             var buttons = new FlowLayoutPanel { Dock = DockStyle.Top, Height = S(46) };
-            var open = FlatButton("Open output");
-            var folder = FlatButton("Show in folder");
-            var reopen = FlatButton("Open source in workspace", 190);
-            var clear = FlatButton("Clear history");
+            var open = FlatButton(L.T("Open output"));
+            var folder = FlatButton(L.T("Show in folder"));
+            var reopen = FlatButton(L.T("Open source in workspace"), 190);
+            var clear = FlatButton(L.T("Clear history"));
             buttons.Controls.AddRange(new Control[] { open, folder, reopen, clear });
             _list = new ListView { Dock = DockStyle.Fill, View = View.Details, FullRowSelect = true, BorderStyle = BorderStyle.None };
-            foreach (var c in new[] { ("Time", 150), ("Source", 380), ("Output", 380), ("Format", 100), ("Pages", 60), ("Language", 90), ("Duration", 80) })
+            foreach (var c in new[] { (L.T("Time"), 150), (L.T("Source"), 380), (L.T("Output"), 380), (L.T("Format"), 100), (L.T("Pages"), 60), (L.T("Language"), 90), (L.T("Duration"), 80) })
                 _list.Columns.Add(c.Item1, S(c.Item2));
             Body.Controls.Add(_list);
             Body.Controls.Add(buttons);
@@ -385,7 +386,7 @@ namespace FalconOcr.App.Pages
             };
             clear.Click += (s, e) =>
             {
-                if (MessageBox.Show(this, "Clear the whole history?", "History", MessageBoxButtons.OKCancel, MessageBoxIcon.Question) == DialogResult.OK) Shell.History.Clear();
+                if (MessageBox.Show(this, L.T("Clear the whole history?"), L.T("History"), MessageBoxButtons.OKCancel, MessageBoxIcon.Question) == DialogResult.OK) Shell.History.Clear();
             };
             Shell.History.Changed += (s, e) => { if (Visible) Reload(); };
         }
@@ -405,7 +406,7 @@ namespace FalconOcr.App.Pages
                     h.Time.ToString("yyyy-MM-dd HH:mm"),
                     h.Source ?? "",
                     h.Output ?? "—",
-                    h.Format ?? "",
+                    h.Format == "Recognition" ? L.T("Recognition") : h.Format ?? "", // stored in English
                     h.Pages.ToString(),
                     h.Language ?? "",
                     h.Seconds.ToString("0.0") + "s"
@@ -419,7 +420,7 @@ namespace FalconOcr.App.Pages
 
     internal sealed class SettingsPage : PageBase, IActivatable
     {
-        private readonly ComboBox _language, _layout, _mode, _format;
+        private readonly ComboBox _language, _layout, _mode, _format, _uiLanguage;
         private readonly CheckBox _tables, _keepColors, _images, _openAfter, _autoRecognize, _confidence;
         private readonly TextBox _output;
         private readonly OcrOptionsEditor _advanced;
@@ -431,26 +432,27 @@ namespace FalconOcr.App.Pages
             var l = Program.License;
             string state = Program.IsTrial ? "⏳ " + Program.Trial.Message
                 : l == null ? "" : (l.IsValid ? "✓ " : "✗ ") + l.Message;
-            _license.Text = state + Environment.NewLine + "Machine code: " + Licensing.MachineIdentity.Code;
+            _license.Text = state + Environment.NewLine + L.T("Machine code: ") + Licensing.MachineIdentity.Code;
         }
 
-        public SettingsPage(IShell shell) : base(shell, "Settings", "Defaults for recognition and export. Everything runs offline with the bundled PaddleOCR models.")
+        public SettingsPage(IShell shell) : base(shell, L.T("Settings"), L.T("Defaults for recognition and export. Everything runs offline with the bundled PaddleOCR models."))
         {
             var scroll = new Panel { Dock = DockStyle.Fill, AutoScroll = true };
             var grid = new TableLayoutPanel { ColumnCount = 2, AutoSize = true, Location = new Point(0, 0) };
             grid.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, S(240)));
             grid.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, S(420)));
 
-            _language = Combo(LanguageCatalog.All.Select(l => (object)l.DisplayName).ToArray());
-            _layout = Combo("Automatic (columns, tables, figures)", "Single column", "Text lines only");
-            _mode = Combo("Editable Document (Recommended)", "Exact Copy (keep positions)", "Plain Text");
-            _format = Combo("Microsoft Word (.docx)", "Microsoft Excel (.xlsx)", "HTML (.html)", "Plain text (.txt)");
-            _tables = Check("Detect tables and columns");
-            _keepColors = Check("Keep text, fill and page colors");
-            _images = Check("Include pictures in exported documents");
-            _openAfter = Check("Open the document after export");
-            _autoRecognize = Check("Recognize automatically when files are added");
-            _confidence = Check("Highlight uncertain characters in the results view");
+            _language = Combo(LanguageCatalog.All.Select(l => (object)L.T(l.DisplayName)).ToArray());
+            _uiLanguage = Combo(L.Languages.Select(l => (object)l.NativeName).ToArray());
+            _layout = Combo(L.T("Automatic (columns, tables, figures)"), L.T("Single column"), L.T("Text lines only"));
+            _mode = Combo(L.T("Editable Document (Recommended)"), L.T("Exact Copy (keep positions)"), L.T("Plain Text"));
+            _format = Combo(L.T("Microsoft Word (.docx)"), L.T("Microsoft Excel (.xlsx)"), L.T("HTML (.html)"), L.T("Plain text (.txt)"));
+            _tables = Check(L.T("Detect tables and columns"));
+            _keepColors = Check(L.T("Keep text, fill and page colors"));
+            _images = Check(L.T("Include pictures in exported documents"));
+            _openAfter = Check(L.T("Open the document after export"));
+            _autoRecognize = Check(L.T("Recognize automatically when files are added"));
+            _confidence = Check(L.T("Highlight uncertain characters in the results view"));
             _output = new TextBox { Width = S(400) };
             _advanced = new OcrOptionsEditor();
             _models = new Label { AutoSize = true, ForeColor = Theme.SubText, MaximumSize = new Size(S(660), 0) };
@@ -477,28 +479,30 @@ namespace FalconOcr.App.Pages
                 row++;
             }
 
-            Section("Recognition");
-            Row("Default language:", _language);
-            Row("Layout analysis:", _layout);
+            Section(L.T("General"));
+            Row(L.T("Interface language:"), _uiLanguage);
+            Section(L.T("Recognition"));
+            Row(L.T("Default language:"), _language);
+            Row(L.T("Layout analysis:"), _layout);
             Row("", _tables);
             Row("", _autoRecognize);
             Row("", _confidence);
-            Section("Export");
-            Row("Default output format:", _format);
-            Row("Document type:", _mode);
-            Row("Output folder:", _output);
+            Section(L.T("Export"));
+            Row(L.T("Default output format:"), _format);
+            Row(L.T("Document type:"), _mode);
+            Row(L.T("Output folder:"), _output);
             Row("", _keepColors);
             Row("", _images);
             Row("", _openAfter);
-            Section("Advanced recognition");
+            Section(L.T("Advanced recognition"));
             Span(_advanced);
-            Section("OCR models (offline)");
+            Section(L.T("OCR models (offline)"));
             Span(_models);
             Section("License");
             _license = new Label { AutoSize = true, MaximumSize = new Size(S(660), 0), ForeColor = Theme.Text };
             var licenseButtons = new FlowLayoutPanel { AutoSize = true };
-            var changeKey = FlatButton("Change license key…", 170);
-            var machineCode = FlatButton("Copy machine code", 170);
+            var changeKey = FlatButton(L.T("Change license key…"), 170);
+            var machineCode = FlatButton(L.T("Copy machine code"), 170);
             licenseButtons.Controls.AddRange(new Control[] { changeKey, machineCode });
             Span(_license);
             Span(licenseButtons);
@@ -507,13 +511,13 @@ namespace FalconOcr.App.Pages
                 ((MainForm)FindForm()).ShowActivation();
                 ShowLicense();
             };
-            machineCode.Click += (s, e) => { Clipboard.SetText(Licensing.MachineIdentity.Code); Shell.SetStatus("Machine code copied: " + Licensing.MachineIdentity.Code); };
+            machineCode.Click += (s, e) => { Clipboard.SetText(Licensing.MachineIdentity.Code); Shell.SetStatus(L.T("Machine code copied: ") + Licensing.MachineIdentity.Code); };
 
             var buttons = new FlowLayoutPanel { Dock = DockStyle.Bottom, Height = S(50), FlowDirection = FlowDirection.LeftToRight, Padding = new Padding(0, S(8), 0, 0) };
-            var save = new Button { Text = "Save", Width = S(120), Height = S(36), FlatStyle = FlatStyle.Flat, BackColor = Theme.Accent, ForeColor = Color.White, Font = Theme.Bold };
+            var save = new Button { Text = L.T("Save"), Width = S(120), Height = S(36), FlatStyle = FlatStyle.Flat, BackColor = Theme.Accent, ForeColor = Color.White, Font = Theme.Bold };
             save.FlatAppearance.BorderSize = 0;
-            var reset = FlatButton("Restore defaults", 150);
-            var dataFolder = FlatButton("Open data folder", 150);
+            var reset = FlatButton(L.T("Restore defaults"), 150);
+            var dataFolder = FlatButton(L.T("Open data folder"), 150);
             buttons.Controls.AddRange(new Control[] { save, reset, dataFolder });
 
             scroll.Controls.Add(grid);
@@ -523,7 +527,7 @@ namespace FalconOcr.App.Pages
             save.Click += (s, e) => Save();
             reset.Click += (s, e) =>
             {
-                if (MessageBox.Show(this, "Restore all settings to their defaults?", "Settings", MessageBoxButtons.OKCancel, MessageBoxIcon.Question) != DialogResult.OK) return;
+                if (MessageBox.Show(this, L.T("Restore all settings to their defaults?"), L.T("Settings"), MessageBoxButtons.OKCancel, MessageBoxIcon.Question) != DialogResult.OK) return;
                 var d = new AppSettings { OutputFolder = AppPaths.DefaultOutput };
                 LoadFrom(d);
             };
@@ -549,13 +553,13 @@ namespace FalconOcr.App.Pages
         {
             LoadFrom(Shell.Settings);
             var dir = LanguageCatalog.DefaultModelDirectory;
-            var lines = new List<string> { "Location: " + dir };
+            var lines = new List<string> { L.T("Location: ") + dir };
             foreach (var f in new[] { LanguageCatalog.DetModel, LanguageCatalog.ClsModel }.Concat(LanguageCatalog.All.Select(l => l.RecModel)).Distinct())
             {
                 var p = Path.Combine(dir, f);
-                lines.Add((File.Exists(p) ? "✓ " : "✗ missing  ") + f + (File.Exists(p) ? $"  ({new FileInfo(p).Length / 1048576.0:0.0} MB)" : ""));
+                lines.Add((File.Exists(p) ? "✓ " : L.T("✗ missing  ")) + f + (File.Exists(p) ? $"  ({new FileInfo(p).Length / 1048576.0:0.0} MB)" : ""));
             }
-            lines.Add("Languages: " + string.Join(", ", LanguageCatalog.All.Select(l => l.DisplayName)));
+            lines.Add(L.T("Languages: ") + string.Join(", ", LanguageCatalog.All.Select(l => L.T(l.DisplayName))));
             _models.Text = string.Join(Environment.NewLine, lines);
             ShowLicense();
         }
@@ -563,6 +567,7 @@ namespace FalconOcr.App.Pages
         private void LoadFrom(AppSettings s)
         {
             _language.SelectedIndex = Math.Max(0, LanguageCatalog.All.ToList().FindIndex(l => l.Language == s.Ocr.Language));
+            _uiLanguage.SelectedIndex = Math.Max(0, L.Languages.ToList().FindIndex(l => l.Code == (s.UiLanguage ?? L.Current)));
             _layout.SelectedIndex = (int)s.Ocr.Layout;
             _tables.Checked = s.Ocr.DetectTables;
             _autoRecognize.Checked = s.AutoRecognize;
@@ -593,7 +598,17 @@ namespace FalconOcr.App.Pages
             _advanced.SaveTo(s.Ocr);
             s.Save();
             Shell.Workspace.LoadSettingsIntoControls();
-            Shell.SetStatus("Settings saved.");
+            Shell.SetStatus(L.T("Settings saved."));
+            var ui = L.Languages[Math.Max(0, _uiLanguage.SelectedIndex)].Code;
+            if (ui != L.Current)
+            {
+                s.UiLanguage = ui;
+                s.Save();
+                // Texts are created with the windows: switching languages needs a restart.
+                if (MessageBox.Show(this, L.T("The interface language is changed after a restart. Restart Falcon OCR now?"), L.T("Interface language"),
+                        MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                    Application.Restart();
+            }
         }
     }
 }

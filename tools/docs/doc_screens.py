@@ -38,10 +38,11 @@ def build():
         ("Canvas", "#E2E6EA", "Viewer background around the page"),
         ("Low confidence", "#FFD600 (35 % alpha)", "Uncertain characters in the results"),
         ("Trial badge", "#FFC107", "Title bar trial badge"),
+        ("Trial notification", "#FFF4D6 / text #664700", "Banner below the toolbar while running as a trial"),
         ("Danger", "#C82828", "Errors, Stop button"),
     ], [28, 32, 40], "Color palette")
     d.h2("2.2 Typography and icons")
-    d.ul(["Segoe UI 9.75 pt for controls; Segoe UI Semibold 10 pt (bold), 12 pt (card titles), 15 pt (page titles), 17 pt (product name); navigation 11 pt.",
+    d.ul(["Segoe UI 9.75 pt for controls; Segoe UI Semibold 10 pt (bold), 12 pt (card titles), 15 pt (page titles), 17 pt (product name); navigation 11 pt. Chinese interface: Microsoft YaHei UI; Japanese interface: Yu Gothic UI (same sizes, bold instead of semibold).",
           "Icons are vector glyphs drawn with GDI+ on a 24 × 24 grid (no bitmaps), so they are sharp at every DPI: Home, OCR, Batch, History, Settings, Help, Add, Scanner, Clipboard, Rotate, Crop, Trash, Play/Stop, Export, zoom, fit, hand, chevrons, file types (PDF, image, images, Word, Excel, HTML).",
           "All sizes are scaled with the monitor DPI (system DPI aware)."])
     d.h2("2.3 Interaction conventions")
@@ -54,7 +55,7 @@ def build():
     d.img("main-loaded.png", "Main window with a document loaded (trial mode)", 640)
     d.table(["Region", "Content and behavior"], [
         ("Title bar (52 px, green)", "Logo, 'Falcon OCR', tagline 'Convert Scans and Images into Editable Documents'. Drag to move, double-click to maximise/restore. Trial badge 'TRIAL · n days left — Activate now' (only while unlicensed; click opens SCR-08). Minimise, maximise/restore, close (red hover)."),
-        ("Navigation bar (184 px)", "Home, OCR, Batch Process, History, Settings. The current page is highlighted with a rounded light-green background."),
+        ("Navigation bar (184 px / 64 px collapsed)", "Home, OCR, Batch Process, History, Settings. The current page is highlighted with a rounded light-green background. At the bottom: « Collapse / » button — collapsed, only the icons are shown (names as tooltips); the state is remembered."),
         ("Content", "The selected page (SCR-02 … SCR-07)."),
         ("Status bar (36 px)", "Left: status message ('Ready', progress text) and progress bar during recognition/batch. Right: 'Total Files: n | Selected: n | Output: DOCX'."),
         ("Window", "Borderless, resizable at the 6 px edge, maximises to the monitor work area (taskbar stays visible), remembers size/position and maximised state."),
@@ -65,10 +66,11 @@ def build():
     d.h2("4.1 Layout")
     d.table(["Region", "Width", "Content"], [
         ("Toolbar", "full, 92 px", "Add Files, Scan, From Clipboard | Rotate, Crop, Delete | Recognize | Export; right: Settings, Help."),
+        ("Trial notification", "full, 40 px", "Only while running as a trial: clock icon, 'You are using the trial version of Falcon OCR — n of 7 days left…', Activate now, ✕ (hide until the next start)."),
         ("Files panel", "214 px", "Tabs Files / Thumbnails; document list (icon, name, 'n pages', 'recognized' or 'k/n done'); thumbnails of the pages of the selected document."),
         ("Source Page", "½ of centre", "Caption tab, viewer toolbar, ImageViewer, footer 'name · w × h px · dpi · rotated/cropped'."),
         ("Results", "½ of centre", "Tabs Recognized Text / Original Image, formatting toolbar, LayoutView, status 'Text recognition completed — n lines, n blocks, confidence (time)' and page 'i / n'."),
-        ("Settings column", "340 px", "Card 'OCR Settings', card 'Output Format', Export button."),
+        ("Settings column", "340 px (280–640, draggable)", "Card 'OCR Settings', card 'Output Format', Export button. Its left edge is a splitter with grip dots: drag to resize; the width is remembered."),
     ], [20, 18, 62], "SCR-02 regions")
     d.p("Source Page and Results have identical header (tab strip + toolbar) and footer heights, so both canvases have the same geometry: at equal zoom every page pixel appears at the same vertical position on both sides (FR-20).")
     d.h2("4.2 Toolbar")
@@ -103,6 +105,8 @@ def build():
         ("Recognized Text tab", "LayoutView: the page redrawn from the recognition result — lines with estimated font/size/weight/color fitted to their source width, table grids and fills, pictures, bullets. Hover outlines a line (I-beam); click selects (also in the source view); double-click / F2 / Enter edits in place (Enter commit, Esc cancel); edited lines are underlined with a dashed blue line; uncertain characters are highlighted yellow."),
         ("Original Image tab", "SCR-03."),
         ("Style box", "Normal, Heading 1, Heading 2, Heading 3, List item — applied to the paragraph of the selected line."),
+        ("Font box", "Editable combo with the installed fonts (common document fonts first). Shows the font of the selected line; choosing a font or typing a name + Enter applies it to the paragraph."),
+        ("Size box", "Editable combo 8 … 72 pt (any value 4–200 can be typed + Enter). Shows and sets the size of the selected paragraph."),
         ("B / I / U", "Toggle bold / italic / underline for the paragraph; state reflects the selected line."),
         ("Bulleted / numbered list", "Turn the paragraph into a list item (numbered items count up from preceding numbered items)."),
         ("⋯ menu", "Highlight uncertain characters (toggle), Copy page text, Copy document text, Recognize this page again."),
@@ -120,6 +124,11 @@ def build():
         ("Export", "green button, same as toolbar Export", "—"),
     ], [26, 54, 20], "SCR-02 settings column")
     d.p("Both cards can be collapsed with the chevron in their header. Changes are saved immediately.")
+
+    d.h2("4.7 Layout extensions")
+    d.img("trial-banner.png", "Trial notification below the toolbar", 620)
+    d.img("format-toolbar.png", "Results toolbar with style, font and size boxes", 460)
+    d.img_grid([("sidebar-collapsed.png", "Collapsed navigation bar (icons only, » expands)"), ("right-panel-splitter.png", "Splitter with grip dots at the left edge of the settings column")], width=290)
 
     d.h1("5. SCR-03 Original Image (analysis overlay)")
     d.img("main-overlay.png", "Original Image tab: detected lines (green), table (blue), picture (orange, dashed), blocks (dotted)", 640)
@@ -154,6 +163,7 @@ def build():
     d.h1("9. SCR-07 Settings")
     d.img("settings.png", "Settings page", 600)
     d.table(["Section", "Fields"], [
+        ("General", "Interface language: English / 简体中文 (Chinese) / 日本語 (Japanese). Changing it offers to restart the application."),
         ("Recognition", "Default language, Layout analysis, Detect tables and columns, Recognize automatically when files are added, Highlight uncertain characters."),
         ("Export", "Default output format (incl. Plain text), Document type, Output folder (double-click to browse), Keep text/fill/page colors, Include pictures, Open the document after export."),
         ("Advanced recognition", "Same fields as SCR-09."),
@@ -161,6 +171,11 @@ def build():
         ("License", "State (✓ licensed to …, ⏳ trial n of 7 days, ✗ invalid) and machine code; Change license key… (SCR-08), Copy machine code."),
         ("Buttons", "Save (applies to the workspace immediately), Restore defaults, Open data folder."),
     ], [25, 75], "SCR-07 sections")
+
+    d.h2("9.1 Interface languages")
+    d.p("All screens, dialogs and messages are available in English, Simplified Chinese and Japanese (gettext PO catalogs in the lang folder). Layouts are identical; texts are measured at run time.")
+    d.img("ui-japanese.png", "Workspace with the Japanese interface", 620)
+    d.img("ui-chinese-settings.png", "Settings with the Chinese interface (General → Interface language)", 620)
 
     d.h1("10. SCR-08 Activation window")
     d.img("activation-trial.png", "Activation window while the trial is running", 420)

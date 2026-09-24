@@ -178,7 +178,27 @@ def build():
           "Every issued key is appended to issued.csv with licensee, serial, machine code, expiry and note."])
     d.note("Signatures prevent forged keys; they do not prevent modification of the executable itself. Use an obfuscator if protection against patching is required.")
 
-    d.h1("7. Error handling and logging")
+    d.h1("7. User interface localization")
+    d.p("The interface is translated with gettext PO catalogs (FR-38). Source strings in the code are English; the translation happens at run time.")
+    d.table(["Element", "Design"], [
+        ("FalconOcr.Localization.L", "L.T(\"English text\") returns the translation of the active catalog or the English text; L.F(\"… {0} …\", args) translates a composite format string and formats it. Languages: en, zh_CN (简体中文), ja (日本語)."),
+        ("PoFile", "Minimal PO reader in Core: msgid/msgstr, multi-line strings, C escapes (\\n, \\t, \\\", \\\\); comments, flags and msgctxt are ignored."),
+        ("Catalogs", "lang\\zh_CN.po and lang\\ja.po (UTF-8) are copied next to the executable by FalconOcr.Core.csproj; lang\\falcon-ocr.pot is the template. They can be edited with Poedit or a text editor without rebuilding."),
+        ("Language selection", "Settings → General → Interface language (AppSettings.UiLanguage). Program.Main loads the catalog before any window is created; without a setting the Windows display language is used. Changing the language offers an immediate restart (texts are created with the windows)."),
+        ("Fonts", "Theme picks the UI font per language: Segoe UI (English), Microsoft YaHei UI (Chinese), Yu Gothic UI (Japanese) — Segoe UI has no CJK glyphs."),
+        ("Core messages", "License and trial messages (LicenseCheck.Message, LicenseInfo.ToString, TrialStatus.Message) use L.T/L.F, so they appear translated in the activation window and in Settings."),
+        ("Data vs. text", "Persisted values stay language-neutral (e.g. history format 'Recognition' is translated only for display); zoom modes are compared with the translated item text."),
+        ("Tooling", "tools\\i18n\\po_tool.py extract scans L.T/L.F calls (joining concatenated literals) and updates the .pot and .po files keeping existing translations; po_tool.py check reports untranslated entries and placeholder mismatches ({0}, {1:P0} …). tools\\i18n\\translations.py holds the initial translations (286 messages, 100 % translated)."),
+    ], [22, 78], "Localization design")
+    d.h2("7.1 Workspace layout extensions")
+    d.table(["Feature", "Design"], [
+        ("Font combos (FR-37)", "Two editable combo boxes on the results toolbar: installed font families (common document fonts first, then alphabetical) and sizes 8–72 pt (any value 4–200 can be typed). Selection or Enter applies the value to every line of the selected paragraph and to the block style, so DOCX runs, HTML CSS and XLSX fonts use it."),
+        ("Collapsible sidebar (FR-39)", "SidebarToggle docked at the bottom of the navigation bar; collapsed width 64 px (icons only, names as tooltips), expanded 184 px; AppSettings.SidebarCollapsed."),
+        ("Resizable settings panel (FR-40)", "A WinForms Splitter (GripSplitter, with hover highlight and grip dots) docked between the centre area and the settings column; MinSize 280 px, the centre keeps at least 560 px; AppSettings.RightPanelWidth stores the width in 96-dpi pixels."),
+        ("Trial notification (FR-41)", "Amber panel docked below the toolbar only while Program.IsTrial: clock icon, remaining days, 'Activate now' (opens the activation window) and ✕ (hide until the next start). MainForm.ShowActivation removes the banner and the title-bar badge after a successful activation."),
+    ], [25, 75], "Workspace layout extensions")
+
+    d.h1("8. Error handling and logging")
     d.table(["Situation", "Handling"], [
         ("Missing model files", "Warning at start-up listing the files; recognition is refused with a message."),
         ("Unsupported / unreadable file", "Collected and shown in one message after adding files; other files are still added."),
@@ -190,8 +210,8 @@ def build():
         ("No scanner", "'No scanner was found…' from WIA error 0x80210015."),
     ], [30, 70], "Error handling")
 
-    d.h1("8. Build and deployment")
-    d.h2("8.1 Repository layout")
+    d.h1("9. Build and deployment")
+    d.h2("9.1 Repository layout")
     d.code(["src/FalconOcr.Core      engine, layout, exporters, licensing",
             "src/FalconOcr.App       desktop application",
             "src/FalconOcr.Cli       command line",
@@ -200,22 +220,24 @@ def build():
             "lib/native/x64/         onnxruntime.dll, pdfium.dll, VC++ runtime (19.6 MB)",
             "packages/               vendored NuGet feed (33.2 MB)",
             "tools/                  fetch-dependencies.ps1, sample and document generators",
+            "lang/                   interface translations (zh_CN.po, ja.po, falcon-ocr.pot)",
             "docs/                   project documents", "samples/                test documents"])
-    d.h2("8.2 Offline build")
+    d.h2("9.2 Offline build")
     d.ul(["nuget.config clears all sources and uses packages\\ only; Directory.Build.props sets net47, C# 7.3, x64 and binding redirects.",
           "build.ps1 checks the vendored dependencies, builds the solution in Release/x64 and copies the application and CLI to dist\\ (KeyGen excluded).",
           "tools\\fetch-dependencies.ps1 (online, once) downloads models (ModelScope RapidAI/RapidOCR), ONNX Runtime and PDFium binaries and re-populates the NuGet feed.",
           "Verified: clean copy of the repository, empty NuGet cache and blocked network → restore and build succeed with 0 warnings, 0 errors."])
-    d.h2("8.3 Deployment")
+    d.h2("9.3 Deployment")
     d.p("The dist folder (≈ 78 MB, 115 files) is copied to the target computer — no installer, registry entries or administrator rights are needed. It contains FalconOcr.exe, falcon-ocr.exe, FalconOcr.Core.dll, managed dependencies and .NET Standard facades, native DLLs and the models folder. A license.key file may be placed in the folder or in %ProgramData%\\FalconOCR for site deployment.")
-    d.h2("8.4 Extending the product")
+    d.h2("9.4 Extending the product")
     d.table(["Extension", "How"], [
         ("New recognition language", "Add the PP-OCRv5 rec model and dictionary to models\\rec, add an entry to LanguageCatalog.All (model, dictionary, default font, culture) and to the OcrLanguage enum; the UI lists it automatically."),
+        ("New interface language", "Copy lang\\falcon-ocr.pot to lang\\<code>.po, translate it, and add the code to L.Languages (and a UI font in Theme if the script needs one)."),
         ("New export format", "Implement a writer over List<OcrPage>, add a value to ExportFormat and a case in Exporter.Export."),
         ("GPU inference", "Replace the ONNX Runtime package/DLL with a GPU build and append the execution provider in PaddleOcrEngine.GetSessionOptions."),
     ], [25, 75], "Extension points")
 
-    d.h1("9. Requirements traceability")
+    d.h1("10. Requirements traceability")
     from doc_srs import FR
     comp = {
         "Input": "Input.OcrDocument / DocumentPage; App.WorkspacePage; Services.Scanner",
@@ -226,6 +248,7 @@ def build():
         "Export": "Export.Exporter, DocxExporter, XlsxExporter, HtmlExporter",
         "Tools": "QuickOcrPage, BatchPage, HistoryPage, SettingsPage, AppSettings, FalconOcr.Cli",
         "Licensing": "Licensing.*; ActivationForm; MainForm (badge); FalconOcr.KeyGen",
+        "User interface": "Localization.L / PoFile, lang\\*.po, Theme; WorkspacePage (font combos, GripSplitter, trial banner); MainForm (SidebarToggle); AppSettings",
     }
     d.table(["Requirement", "Title", "Design elements"], [(r[0], r[2], comp[r[1]]) for r in FR], [12, 30, 58], "Requirement to design traceability")
     return d

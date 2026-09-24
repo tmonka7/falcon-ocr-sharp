@@ -1,4 +1,5 @@
 using System;
+using FalconOcr.Localization;
 using System.Collections.Generic;
 using System.Drawing;
 using System.IO;
@@ -71,6 +72,11 @@ namespace FalconOcr.App.Services
         [DataMember] public bool Maximized { get; set; } = true;
         [DataMember] public Rectangle Bounds { get; set; }
         [DataMember] public List<string> RecentFiles { get; set; } = new List<string>();
+        /// <summary>Interface language code ("en", "zh_CN", "ja"); null = follow Windows on first start.</summary>
+        [DataMember] public string UiLanguage { get; set; }
+        [DataMember] public bool SidebarCollapsed { get; set; }
+        /// <summary>Width of the right settings column in 96-dpi pixels (0 = default).</summary>
+        [DataMember] public int RightPanelWidth { get; set; }
 
         [OnDeserializing]
         private void OnDeserializing(StreamingContext context)
@@ -167,7 +173,7 @@ namespace FalconOcr.App.Services
         public static string Acquire()
         {
             var type = Type.GetTypeFromProgID("WIA.CommonDialog");
-            if (type == null) throw new InvalidOperationException("Windows Image Acquisition (WIA) is not available on this computer.");
+            if (type == null) throw new InvalidOperationException(L.T("Windows Image Acquisition (WIA) is not available on this computer."));
             dynamic dialog = Activator.CreateInstance(type);
             dynamic image;
             try
@@ -177,7 +183,7 @@ namespace FalconOcr.App.Services
             }
             catch (System.Runtime.InteropServices.COMException ex) when ((uint)ex.ErrorCode == 0x80210015)
             {
-                throw new InvalidOperationException("No scanner was found. Connect a WIA-compatible scanner and try again.");
+                throw new InvalidOperationException(L.T("No scanner was found. Connect a WIA-compatible scanner and try again."));
             }
             if (image == null) return null;
             var dir = Path.Combine(AppPaths.DataDir, "scans");

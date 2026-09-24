@@ -1,0 +1,1279 @@
+# Falcon OCR user interface — template
+# Edit msgstr values (Poedit or any UTF-8 text editor). {0}, {1} … are placeholders and must be kept.
+msgid ""
+msgstr ""
+"Project-Id-Version: Falcon OCR 1.0\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Language-Name: \n"
+
+#: src/FalconOcr.App/MainForm.cs:100
+#: src/FalconOcr.App/Pages/OtherPages.cs:438
+#: src/FalconOcr.App/Pages/OtherPages.cs:530
+msgid "Settings"
+msgstr ""
+
+#: src/FalconOcr.App/MainForm.cs:119
+#: src/FalconOcr.App/Pages/WorkspacePage.cs:551
+msgid "Ready"
+msgstr ""
+
+#: src/FalconOcr.App/MainForm.cs:167
+#, csharp-format
+msgid ""
+"Some OCR model files are missing from the installation:\n"
+"\n"
+"{0}\n"
+"\n"
+"Run tools\\fetch-dependencies.ps1 on a connected machine and rebuild."
+msgstr ""
+
+#: src/FalconOcr.App/MainForm.cs:228
+msgid "Expand sidebar"
+msgstr ""
+
+#: src/FalconOcr.App/MainForm.cs:228
+msgid "Collapse sidebar"
+msgstr ""
+
+#: src/FalconOcr.App/MainForm.cs:274
+msgid "Collapse"
+msgstr ""
+
+#: src/FalconOcr.App/MainForm.cs:289
+msgid "Activated — "
+msgstr ""
+
+#: src/FalconOcr.App/MainForm.cs:303
+msgid "TRIAL · 1 day left — Activate now"
+msgstr ""
+
+#: src/FalconOcr.App/MainForm.cs:303
+#, csharp-format
+msgid "TRIAL · {0} days left — Activate now"
+msgstr ""
+
+#: src/FalconOcr.App/MainForm.cs:335
+#, csharp-format
+msgid "Total Files: {0}     |     Selected: {1}     |     Output: {2}"
+msgstr ""
+
+#: src/FalconOcr.App/MainForm.cs:379
+msgid "Convert Scans and Images into Editable Documents"
+msgstr ""
+
+#: src/FalconOcr.App/MainForm.cs:96
+msgid "Home"
+msgstr ""
+
+#: src/FalconOcr.App/MainForm.cs:97
+msgid "OCR"
+msgstr ""
+
+#: src/FalconOcr.App/MainForm.cs:98
+#: src/FalconOcr.App/Pages/OtherPages.cs:176
+#: src/FalconOcr.App/Pages/OtherPages.cs:284
+msgid "Batch Process"
+msgstr ""
+
+#: src/FalconOcr.App/MainForm.cs:99
+#: src/FalconOcr.App/Pages/OtherPages.cs:363
+#: src/FalconOcr.App/Pages/OtherPages.cs:389
+msgid "History"
+msgstr ""
+
+#: src/FalconOcr.App/Pages/ActivationForm.cs:102
+msgid ""
+"Thank you — Falcon OCR is activated.\n"
+"\n"
+msgstr ""
+
+#: src/FalconOcr.App/Pages/ActivationForm.cs:102
+msgid "Activated"
+msgstr ""
+
+#: src/FalconOcr.App/Pages/ActivationForm.cs:24
+#: src/FalconOcr.App/Pages/ActivationForm.cs:41
+msgid "Activate Falcon OCR"
+msgstr ""
+
+#: src/FalconOcr.App/Pages/ActivationForm.cs:33
+msgid "Enter your license key."
+msgstr ""
+
+#: src/FalconOcr.App/Pages/ActivationForm.cs:34
+#, csharp-format
+msgid "You are using the trial version — {0} of {1} days left."
+msgstr ""
+
+#: src/FalconOcr.App/Pages/ActivationForm.cs:35
+msgid "Your trial period has ended. A license key is required to continue."
+msgstr ""
+
+#: src/FalconOcr.App/Pages/ActivationForm.cs:53
+msgid "All features are available during the trial."
+msgstr ""
+
+#: src/FalconOcr.App/Pages/ActivationForm.cs:59
+msgid "1. Send this machine code to your vendor (only needed for computer-bound licenses):"
+msgstr ""
+
+#: src/FalconOcr.App/Pages/ActivationForm.cs:61
+msgid "Copy"
+msgstr ""
+
+#: src/FalconOcr.App/Pages/ActivationForm.cs:62
+msgid "Machine code copied to the clipboard."
+msgstr ""
+
+#: src/FalconOcr.App/Pages/ActivationForm.cs:64
+msgid "2. Enter or paste the license key:"
+msgstr ""
+
+#: src/FalconOcr.App/Pages/ActivationForm.cs:72
+msgid "Load license file…"
+msgstr ""
+
+#: src/FalconOcr.App/Pages/ActivationForm.cs:74
+msgid "Activate"
+msgstr ""
+
+#: src/FalconOcr.App/Pages/ActivationForm.cs:76
+msgid "Exit"
+msgstr ""
+
+#: src/FalconOcr.App/Pages/ActivationForm.cs:76
+#: src/FalconOcr.App/Pages/Dialogs.cs:107
+#: src/FalconOcr.App/Pages/Dialogs.cs:139
+msgid "Cancel"
+msgstr ""
+
+#: src/FalconOcr.App/Pages/ActivationForm.cs:77
+msgid "Continue Trial"
+msgstr ""
+
+#: src/FalconOcr.App/Pages/ActivationForm.cs:81
+msgid "License file|*.lic;*.key;*.txt|All files|*.*"
+msgstr ""
+
+#: src/FalconOcr.App/Pages/Dialogs.cs:108
+msgid "Defaults"
+msgstr ""
+
+#: src/FalconOcr.App/Pages/Dialogs.cs:14
+msgid "Use the PDF text layer when present (fast, exact)"
+msgstr ""
+
+#: src/FalconOcr.App/Pages/Dialogs.cs:14
+msgid "Always run OCR (ignore embedded text)"
+msgstr ""
+
+#: src/FalconOcr.App/Pages/Dialogs.cs:22
+msgid "Correct upside-down text lines (orientation classifier)"
+msgstr ""
+
+#: src/FalconOcr.App/Pages/Dialogs.cs:23
+msgid "Keep pictures and graphics as images"
+msgstr ""
+
+#: src/FalconOcr.App/Pages/Dialogs.cs:35
+msgid "PDF input:"
+msgstr ""
+
+#: src/FalconOcr.App/Pages/Dialogs.cs:36
+msgid "PDF rendering resolution (dpi):"
+msgstr ""
+
+#: src/FalconOcr.App/Pages/Dialogs.cs:37
+msgid "Detector max. image side (px):"
+msgstr ""
+
+#: src/FalconOcr.App/Pages/Dialogs.cs:38
+msgid "Text pixel threshold:"
+msgstr ""
+
+#: src/FalconOcr.App/Pages/Dialogs.cs:39
+msgid "Text box threshold:"
+msgstr ""
+
+#: src/FalconOcr.App/Pages/Dialogs.cs:40
+msgid "Box expansion (unclip ratio):"
+msgstr ""
+
+#: src/FalconOcr.App/Pages/Dialogs.cs:41
+msgid "Minimum line confidence:"
+msgstr ""
+
+#: src/FalconOcr.App/Pages/Dialogs.cs:42
+msgid "CPU threads (0 = automatic):"
+msgstr ""
+
+#: src/FalconOcr.App/Pages/Dialogs.cs:92
+msgid "Advanced OCR Settings"
+msgstr ""
+
+#: src/FalconOcr.App/Pages/OtherPages.cs:144
+#: src/FalconOcr.App/Pages/OtherPages.cs:311
+msgid "Recognizing…"
+msgstr ""
+
+#: src/FalconOcr.App/Pages/OtherPages.cs:153
+#, csharp-format
+msgid "{0} lines · {1:P0} confidence · {2:0.0}s · {3}"
+msgstr ""
+
+#: src/FalconOcr.App/Pages/OtherPages.cs:157
+msgid "Recognition failed: "
+msgstr ""
+
+#: src/FalconOcr.App/Pages/OtherPages.cs:176
+msgid "Recognize and export many documents at once. Folders can be treated as one multi-page document."
+msgstr ""
+
+#: src/FalconOcr.App/Pages/OtherPages.cs:179
+msgid "Add files…"
+msgstr ""
+
+#: src/FalconOcr.App/Pages/OtherPages.cs:180
+msgid "Add folder…"
+msgstr ""
+
+#: src/FalconOcr.App/Pages/OtherPages.cs:181
+msgid "Clear list"
+msgstr ""
+
+#: src/FalconOcr.App/Pages/OtherPages.cs:185
+msgid "Input"
+msgstr ""
+
+#: src/FalconOcr.App/Pages/OtherPages.cs:186
+msgid "Type"
+msgstr ""
+
+#: src/FalconOcr.App/Pages/OtherPages.cs:187
+msgid "Status"
+msgstr ""
+
+#: src/FalconOcr.App/Pages/OtherPages.cs:188
+msgid "Treat each folder as one document (image sequence)"
+msgstr ""
+
+#: src/FalconOcr.App/Pages/OtherPages.cs:192
+#: src/FalconOcr.App/Pages/OtherPages.cs:449
+#: src/FalconOcr.App/Pages/WorkspacePage.cs:1248
+msgid "Microsoft Word (.docx)"
+msgstr ""
+
+#: src/FalconOcr.App/Pages/OtherPages.cs:192
+#: src/FalconOcr.App/Pages/OtherPages.cs:449
+#: src/FalconOcr.App/Pages/WorkspacePage.cs:1249
+msgid "Microsoft Excel (.xlsx)"
+msgstr ""
+
+#: src/FalconOcr.App/Pages/OtherPages.cs:192
+#: src/FalconOcr.App/Pages/OtherPages.cs:449
+#: src/FalconOcr.App/Pages/WorkspacePage.cs:1250
+msgid "HTML (.html)"
+msgstr ""
+
+#: src/FalconOcr.App/Pages/OtherPages.cs:192
+#: src/FalconOcr.App/Pages/OtherPages.cs:449
+msgid "Plain text (.txt)"
+msgstr ""
+
+#: src/FalconOcr.App/Pages/OtherPages.cs:193
+msgid "Editable Document"
+msgstr ""
+
+#: src/FalconOcr.App/Pages/OtherPages.cs:193
+msgid "Exact Copy"
+msgstr ""
+
+#: src/FalconOcr.App/Pages/OtherPages.cs:193
+#: src/FalconOcr.App/Pages/OtherPages.cs:448
+#: src/FalconOcr.App/Pages/WorkspacePage.cs:1238
+msgid "Plain Text"
+msgstr ""
+
+#: src/FalconOcr.App/Pages/OtherPages.cs:196
+msgid "Output format"
+msgstr ""
+
+#: src/FalconOcr.App/Pages/OtherPages.cs:197
+msgid "Document type"
+msgstr ""
+
+#: src/FalconOcr.App/Pages/OtherPages.cs:198
+#: src/FalconOcr.App/Pages/OtherPages.cs:372
+msgid "Language"
+msgstr ""
+
+#: src/FalconOcr.App/Pages/OtherPages.cs:199
+msgid "Output folder (double-click to browse)"
+msgstr ""
+
+#: src/FalconOcr.App/Pages/OtherPages.cs:203
+#: src/FalconOcr.App/Pages/OtherPages.cs:348
+msgid "▶  Start"
+msgstr ""
+
+#: src/FalconOcr.App/Pages/OtherPages.cs:210
+msgid "1. Inputs"
+msgstr ""
+
+#: src/FalconOcr.App/Pages/OtherPages.cs:210
+msgid "2. Options"
+msgstr ""
+
+#: src/FalconOcr.App/Pages/OtherPages.cs:210
+msgid "3. Run"
+msgstr ""
+
+#: src/FalconOcr.App/Pages/OtherPages.cs:214
+msgid "PDF and images|*.pdf;*.png;*.jpg;*.jpeg;*.bmp;*.gif;*.tif;*.tiff"
+msgstr ""
+
+#: src/FalconOcr.App/Pages/OtherPages.cs:259
+msgid "Image sequence"
+msgstr ""
+
+#: src/FalconOcr.App/Pages/OtherPages.cs:259
+#: src/FalconOcr.App/Pages/OtherPages.cs:261
+#: src/FalconOcr.App/Pages/OtherPages.cs:264
+msgid "Waiting"
+msgstr ""
+
+#: src/FalconOcr.App/Pages/OtherPages.cs:281
+#: src/FalconOcr.App/Pages/OtherPages.cs:322
+msgid "Done"
+msgstr ""
+
+#: src/FalconOcr.App/Pages/OtherPages.cs:284
+msgid "Add files or folders first."
+msgstr ""
+
+#: src/FalconOcr.App/Pages/OtherPages.cs:295
+msgid "Output folder"
+msgstr ""
+
+#: src/FalconOcr.App/Pages/OtherPages.cs:298
+msgid "■  Stop"
+msgstr ""
+
+#: src/FalconOcr.App/Pages/OtherPages.cs:303
+#, csharp-format
+msgid "Started: {0} document(s) → {1} in {2}"
+msgstr ""
+
+#: src/FalconOcr.App/Pages/OtherPages.cs:318
+#, csharp-format
+msgid "Page {0}/{1}"
+msgstr ""
+
+#: src/FalconOcr.App/Pages/OtherPages.cs:328
+msgid "Stopped"
+msgstr ""
+
+#: src/FalconOcr.App/Pages/OtherPages.cs:331
+msgid "Failed"
+msgstr ""
+
+#: src/FalconOcr.App/Pages/OtherPages.cs:336
+#, csharp-format
+msgid "Batch: {0}/{1} documents"
+msgstr ""
+
+#: src/FalconOcr.App/Pages/OtherPages.cs:338
+#, csharp-format
+msgid "Finished: {0} succeeded, {1} failed, {2:0}s."
+msgstr ""
+
+#: src/FalconOcr.App/Pages/OtherPages.cs:342
+msgid "Stopped by user."
+msgstr ""
+
+#: src/FalconOcr.App/Pages/OtherPages.cs:350
+#, csharp-format
+msgid "Batch finished: {0} succeeded, {1} failed."
+msgstr ""
+
+#: src/FalconOcr.App/Pages/OtherPages.cs:352
+#, csharp-format
+msgid "{0} document(s) exported. Open the output folder?"
+msgstr ""
+
+#: src/FalconOcr.App/Pages/OtherPages.cs:363
+msgid "Recent recognitions and exports."
+msgstr ""
+
+#: src/FalconOcr.App/Pages/OtherPages.cs:366
+msgid "Open output"
+msgstr ""
+
+#: src/FalconOcr.App/Pages/OtherPages.cs:367
+msgid "Show in folder"
+msgstr ""
+
+#: src/FalconOcr.App/Pages/OtherPages.cs:368
+msgid "Open source in workspace"
+msgstr ""
+
+#: src/FalconOcr.App/Pages/OtherPages.cs:369
+msgid "Clear history"
+msgstr ""
+
+#: src/FalconOcr.App/Pages/OtherPages.cs:372
+msgid "Time"
+msgstr ""
+
+#: src/FalconOcr.App/Pages/OtherPages.cs:372
+msgid "Source"
+msgstr ""
+
+#: src/FalconOcr.App/Pages/OtherPages.cs:372
+msgid "Output"
+msgstr ""
+
+#: src/FalconOcr.App/Pages/OtherPages.cs:372
+msgid "Format"
+msgstr ""
+
+#: src/FalconOcr.App/Pages/OtherPages.cs:372
+msgid "Pages"
+msgstr ""
+
+#: src/FalconOcr.App/Pages/OtherPages.cs:372
+msgid "Duration"
+msgstr ""
+
+#: src/FalconOcr.App/Pages/OtherPages.cs:389
+msgid "Clear the whole history?"
+msgstr ""
+
+#: src/FalconOcr.App/Pages/OtherPages.cs:409
+#: src/FalconOcr.App/Pages/OtherPages.cs:484
+msgid "Recognition"
+msgstr ""
+
+#: src/FalconOcr.App/Pages/OtherPages.cs:435
+msgid "Machine code: "
+msgstr ""
+
+#: src/FalconOcr.App/Pages/OtherPages.cs:438
+msgid "Defaults for recognition and export. Everything runs offline with the bundled PaddleOCR models."
+msgstr ""
+
+#: src/FalconOcr.App/Pages/OtherPages.cs:447
+msgid "Automatic (columns, tables, figures)"
+msgstr ""
+
+#: src/FalconOcr.App/Pages/OtherPages.cs:447
+#: src/FalconOcr.App/Pages/WorkspacePage.cs:1240
+msgid "Single column"
+msgstr ""
+
+#: src/FalconOcr.App/Pages/OtherPages.cs:447
+#: src/FalconOcr.App/Pages/WorkspacePage.cs:1240
+msgid "Text lines only"
+msgstr ""
+
+#: src/FalconOcr.App/Pages/OtherPages.cs:448
+#: src/FalconOcr.App/Pages/WorkspacePage.cs:1238
+msgid "Editable Document (Recommended)"
+msgstr ""
+
+#: src/FalconOcr.App/Pages/OtherPages.cs:448
+#: src/FalconOcr.App/Pages/WorkspacePage.cs:1238
+msgid "Exact Copy (keep positions)"
+msgstr ""
+
+#: src/FalconOcr.App/Pages/OtherPages.cs:450
+#: src/FalconOcr.App/Pages/WorkspacePage.cs:1241
+msgid "Detect tables and columns"
+msgstr ""
+
+#: src/FalconOcr.App/Pages/OtherPages.cs:451
+msgid "Keep text, fill and page colors"
+msgstr ""
+
+#: src/FalconOcr.App/Pages/OtherPages.cs:452
+msgid "Include pictures in exported documents"
+msgstr ""
+
+#: src/FalconOcr.App/Pages/OtherPages.cs:453
+msgid "Open the document after export"
+msgstr ""
+
+#: src/FalconOcr.App/Pages/OtherPages.cs:454
+msgid "Recognize automatically when files are added"
+msgstr ""
+
+#: src/FalconOcr.App/Pages/OtherPages.cs:455
+msgid "Highlight uncertain characters in the results view"
+msgstr ""
+
+#: src/FalconOcr.App/Pages/OtherPages.cs:482
+msgid "General"
+msgstr ""
+
+#: src/FalconOcr.App/Pages/OtherPages.cs:483
+msgid "Interface language:"
+msgstr ""
+
+#: src/FalconOcr.App/Pages/OtherPages.cs:485
+msgid "Default language:"
+msgstr ""
+
+#: src/FalconOcr.App/Pages/OtherPages.cs:486
+msgid "Layout analysis:"
+msgstr ""
+
+#: src/FalconOcr.App/Pages/OtherPages.cs:490
+#: src/FalconOcr.App/Pages/WorkspacePage.cs:84
+#: src/FalconOcr.App/Pages/WorkspacePage.cs:751
+msgid "Export"
+msgstr ""
+
+#: src/FalconOcr.App/Pages/OtherPages.cs:491
+msgid "Default output format:"
+msgstr ""
+
+#: src/FalconOcr.App/Pages/OtherPages.cs:492
+msgid "Document type:"
+msgstr ""
+
+#: src/FalconOcr.App/Pages/OtherPages.cs:493
+msgid "Output folder:"
+msgstr ""
+
+#: src/FalconOcr.App/Pages/OtherPages.cs:497
+msgid "Advanced recognition"
+msgstr ""
+
+#: src/FalconOcr.App/Pages/OtherPages.cs:499
+msgid "OCR models (offline)"
+msgstr ""
+
+#: src/FalconOcr.App/Pages/OtherPages.cs:504
+msgid "Change license key…"
+msgstr ""
+
+#: src/FalconOcr.App/Pages/OtherPages.cs:505
+msgid "Copy machine code"
+msgstr ""
+
+#: src/FalconOcr.App/Pages/OtherPages.cs:514
+msgid "Machine code copied: "
+msgstr ""
+
+#: src/FalconOcr.App/Pages/OtherPages.cs:517
+msgid "Save"
+msgstr ""
+
+#: src/FalconOcr.App/Pages/OtherPages.cs:519
+msgid "Restore defaults"
+msgstr ""
+
+#: src/FalconOcr.App/Pages/OtherPages.cs:520
+msgid "Open data folder"
+msgstr ""
+
+#: src/FalconOcr.App/Pages/OtherPages.cs:530
+msgid "Restore all settings to their defaults?"
+msgstr ""
+
+#: src/FalconOcr.App/Pages/OtherPages.cs:556
+msgid "Location: "
+msgstr ""
+
+#: src/FalconOcr.App/Pages/OtherPages.cs:560
+msgid "✗ missing  "
+msgstr ""
+
+#: src/FalconOcr.App/Pages/OtherPages.cs:562
+msgid "Languages: "
+msgstr ""
+
+#: src/FalconOcr.App/Pages/OtherPages.cs:601
+msgid "Settings saved."
+msgstr ""
+
+#: src/FalconOcr.App/Pages/OtherPages.cs:608
+msgid "The interface language is changed after a restart. Restart Falcon OCR now?"
+msgstr ""
+
+#: src/FalconOcr.App/Pages/OtherPages.cs:608
+msgid "Interface language"
+msgstr ""
+
+#: src/FalconOcr.App/Pages/OtherPages.cs:69
+msgid "Quick OCR"
+msgstr ""
+
+#: src/FalconOcr.App/Pages/OtherPages.cs:69
+msgid "Paste (Ctrl+V), drop or open an image to get its text instantly — nothing is saved."
+msgstr ""
+
+#: src/FalconOcr.App/Pages/OtherPages.cs:72
+msgid "Drop an image here or press Ctrl+V"
+msgstr ""
+
+#: src/FalconOcr.App/Pages/OtherPages.cs:75
+msgid "Open image…"
+msgstr ""
+
+#: src/FalconOcr.App/Pages/OtherPages.cs:76
+msgid "Paste image"
+msgstr ""
+
+#: src/FalconOcr.App/Pages/OtherPages.cs:77
+msgid "Copy text"
+msgstr ""
+
+#: src/FalconOcr.App/Pages/OtherPages.cs:78
+msgid "Open in workspace"
+msgstr ""
+
+#: src/FalconOcr.App/Pages/OtherPages.cs:89
+msgid "Images and PDF|*.png;*.jpg;*.jpeg;*.bmp;*.gif;*.tif;*.tiff;*.pdf"
+msgstr ""
+
+#: src/FalconOcr.App/Pages/WorkspacePage.cs:1023
+#, csharp-format
+msgid "Font size set to {0} pt."
+msgstr ""
+
+#: src/FalconOcr.App/Pages/WorkspacePage.cs:1023
+#, csharp-format
+msgid "Font set to {0}."
+msgstr ""
+
+#: src/FalconOcr.App/Pages/WorkspacePage.cs:1062
+msgid "Nothing to copy — recognize the document first."
+msgstr ""
+
+#: src/FalconOcr.App/Pages/WorkspacePage.cs:1066
+msgid "Text copied to the clipboard."
+msgstr ""
+
+#: src/FalconOcr.App/Pages/WorkspacePage.cs:1087
+#, csharp-format
+msgid "\"{0}\" is already recognized. Recognize it again with the current settings?"
+msgstr ""
+
+#: src/FalconOcr.App/Pages/WorkspacePage.cs:112
+msgid "Files"
+msgstr ""
+
+#: src/FalconOcr.App/Pages/WorkspacePage.cs:112
+msgid "Thumbnails"
+msgstr ""
+
+#: src/FalconOcr.App/Pages/WorkspacePage.cs:1125
+msgid "OCR models are missing:\n"
+msgstr ""
+
+#: src/FalconOcr.App/Pages/WorkspacePage.cs:1129
+msgid "Stop"
+msgstr ""
+
+#: src/FalconOcr.App/Pages/WorkspacePage.cs:1137
+#, csharp-format
+msgid "Text recognition completed — {0} page(s) in {1:0.0}s."
+msgstr ""
+
+#: src/FalconOcr.App/Pages/WorkspacePage.cs:1144
+msgid "Recognition stopped."
+msgstr ""
+
+#: src/FalconOcr.App/Pages/WorkspacePage.cs:1149
+msgid "Recognition failed."
+msgstr ""
+
+#: src/FalconOcr.App/Pages/WorkspacePage.cs:1179
+msgid "Add and recognize a document first."
+msgstr ""
+
+#: src/FalconOcr.App/Pages/WorkspacePage.cs:1186
+#, csharp-format
+msgid "\"{0}\" has not been recognized yet. Recognize it now?"
+msgstr ""
+
+#: src/FalconOcr.App/Pages/WorkspacePage.cs:1187
+#, csharp-format
+msgid ""
+"{0} of {1} pages are not recognized.\n"
+"\n"
+"Yes = recognize them first\n"
+"No = export only the recognized pages"
+msgstr ""
+
+#: src/FalconOcr.App/Pages/WorkspacePage.cs:1205
+msgid "Cannot create the output folder: "
+msgstr ""
+
+#: src/FalconOcr.App/Pages/WorkspacePage.cs:1209
+#, csharp-format
+msgid "Exporting {0}…"
+msgstr ""
+
+#: src/FalconOcr.App/Pages/WorkspacePage.cs:1218
+msgid "Export failed."
+msgstr ""
+
+#: src/FalconOcr.App/Pages/WorkspacePage.cs:1223
+#, csharp-format
+msgid "Exported to {0}"
+msgstr ""
+
+#: src/FalconOcr.App/Pages/WorkspacePage.cs:1237
+msgid "OCR Settings"
+msgstr ""
+
+#: src/FalconOcr.App/Pages/WorkspacePage.cs:1240
+msgid "Automatic"
+msgstr ""
+
+#: src/FalconOcr.App/Pages/WorkspacePage.cs:1242
+msgid "⚙  Advanced Settings…"
+msgstr ""
+
+#: src/FalconOcr.App/Pages/WorkspacePage.cs:1245
+msgid "Document Type:"
+msgstr ""
+
+#: src/FalconOcr.App/Pages/WorkspacePage.cs:1245
+msgid "Language:"
+msgstr ""
+
+#: src/FalconOcr.App/Pages/WorkspacePage.cs:1245
+msgid "Layout Analysis:"
+msgstr ""
+
+#: src/FalconOcr.App/Pages/WorkspacePage.cs:1247
+msgid "Output Format"
+msgstr ""
+
+#: src/FalconOcr.App/Pages/WorkspacePage.cs:1263
+msgid "Output Folder:"
+msgstr ""
+
+#: src/FalconOcr.App/Pages/WorkspacePage.cs:1299
+msgid "Output folder for exported documents"
+msgstr ""
+
+#: src/FalconOcr.App/Pages/WorkspacePage.cs:1361
+msgid ""
+"Falcon OCR — offline OCR with PaddleOCR (PP-OCRv5)\n"
+"\n"
+"1. Add PDFs, images, image sequences, paste or scan a page.\n"
+"2. Choose the language and document type on the right.\n"
+"3. Recognize (F5). The recognized page is rebuilt next to the original;\n"
+"    click a line to find it in the image, double-click (or F2) to correct it.\n"
+"4. Export to Word, Excel or HTML (Ctrl+E).\n"
+"\n"
+"Shortcuts: Ctrl+O add files · Ctrl+V paste image · Ctrl+R rotate · Del remove\n"
+"PgUp/PgDn pages · Ctrl+wheel zoom · middle mouse pans"
+msgstr ""
+
+#: src/FalconOcr.App/Pages/WorkspacePage.cs:1369
+msgid "Unlicensed"
+msgstr ""
+
+#: src/FalconOcr.App/Pages/WorkspacePage.cs:1376
+msgid "Recognition is still running. Stop it and exit?"
+msgstr ""
+
+#: src/FalconOcr.App/Pages/WorkspacePage.cs:170
+msgid "Zoom out"
+msgstr ""
+
+#: src/FalconOcr.App/Pages/WorkspacePage.cs:171
+msgid "Zoom in"
+msgstr ""
+
+#: src/FalconOcr.App/Pages/WorkspacePage.cs:173
+#: src/FalconOcr.App/Pages/WorkspacePage.cs:174
+#: src/FalconOcr.App/Pages/WorkspacePage.cs:341
+msgid "Fit width"
+msgstr ""
+
+#: src/FalconOcr.App/Pages/WorkspacePage.cs:173
+#: src/FalconOcr.App/Pages/WorkspacePage.cs:175
+#: src/FalconOcr.App/Pages/WorkspacePage.cs:610
+msgid "Fit page"
+msgstr ""
+
+#: src/FalconOcr.App/Pages/WorkspacePage.cs:176
+msgid "Rotate page 90°"
+msgstr ""
+
+#: src/FalconOcr.App/Pages/WorkspacePage.cs:177
+msgid "Pan (hand tool)"
+msgstr ""
+
+#: src/FalconOcr.App/Pages/WorkspacePage.cs:178
+msgid "Previous page (PgUp)"
+msgstr ""
+
+#: src/FalconOcr.App/Pages/WorkspacePage.cs:179
+msgid "Next page (PgDn)"
+msgstr ""
+
+#: src/FalconOcr.App/Pages/WorkspacePage.cs:186
+msgid "Source Page"
+msgstr ""
+
+#: src/FalconOcr.App/Pages/WorkspacePage.cs:214
+msgid "Recognized Text"
+msgstr ""
+
+#: src/FalconOcr.App/Pages/WorkspacePage.cs:214
+msgid "Original Image"
+msgstr ""
+
+#: src/FalconOcr.App/Pages/WorkspacePage.cs:216
+msgid "Normal"
+msgstr ""
+
+#: src/FalconOcr.App/Pages/WorkspacePage.cs:216
+msgid "Heading 1"
+msgstr ""
+
+#: src/FalconOcr.App/Pages/WorkspacePage.cs:216
+msgid "Heading 2"
+msgstr ""
+
+#: src/FalconOcr.App/Pages/WorkspacePage.cs:216
+msgid "Heading 3"
+msgstr ""
+
+#: src/FalconOcr.App/Pages/WorkspacePage.cs:216
+msgid "List item"
+msgstr ""
+
+#: src/FalconOcr.App/Pages/WorkspacePage.cs:224
+msgid "Font"
+msgstr ""
+
+#: src/FalconOcr.App/Pages/WorkspacePage.cs:225
+msgid "Font size"
+msgstr ""
+
+#: src/FalconOcr.App/Pages/WorkspacePage.cs:226
+msgid "Bold"
+msgstr ""
+
+#: src/FalconOcr.App/Pages/WorkspacePage.cs:227
+msgid "Italic"
+msgstr ""
+
+#: src/FalconOcr.App/Pages/WorkspacePage.cs:228
+msgid "Underline"
+msgstr ""
+
+#: src/FalconOcr.App/Pages/WorkspacePage.cs:229
+msgid "Bulleted list"
+msgstr ""
+
+#: src/FalconOcr.App/Pages/WorkspacePage.cs:230
+#: src/FalconOcr.App/Pages/WorkspacePage.cs:890
+msgid "Numbered list"
+msgstr ""
+
+#: src/FalconOcr.App/Pages/WorkspacePage.cs:231
+msgid "More"
+msgstr ""
+
+#: src/FalconOcr.App/Pages/WorkspacePage.cs:282
+msgid "Highlight uncertain characters"
+msgstr ""
+
+#: src/FalconOcr.App/Pages/WorkspacePage.cs:286
+msgid "Copy page text"
+msgstr ""
+
+#: src/FalconOcr.App/Pages/WorkspacePage.cs:287
+msgid "Copy document text"
+msgstr ""
+
+#: src/FalconOcr.App/Pages/WorkspacePage.cs:289
+msgid "Recognize this page again"
+msgstr ""
+
+#: src/FalconOcr.App/Pages/WorkspacePage.cs:302
+msgid "Edited: "
+msgstr ""
+
+#: src/FalconOcr.App/Pages/WorkspacePage.cs:397
+msgid "unsupported file type"
+msgstr ""
+
+#: src/FalconOcr.App/Pages/WorkspacePage.cs:409
+msgid ""
+"Some files could not be opened:\n"
+"\n"
+msgstr ""
+
+#: src/FalconOcr.App/Pages/WorkspacePage.cs:431
+msgid "Images|*.png;*.jpg;*.jpeg;*.jpe;*.bmp;*.gif;*.tif;*.tiff"
+msgstr ""
+
+#: src/FalconOcr.App/Pages/WorkspacePage.cs:431
+msgid "Select the images of one document"
+msgstr ""
+
+#: src/FalconOcr.App/Pages/WorkspacePage.cs:436
+#, csharp-format
+msgid "{0} ({1} images)"
+msgstr ""
+
+#: src/FalconOcr.App/Pages/WorkspacePage.cs:439
+msgid "Add image sequence"
+msgstr ""
+
+#: src/FalconOcr.App/Pages/WorkspacePage.cs:445
+msgid "Select a folder of page images (sorted by file name)"
+msgstr ""
+
+#: src/FalconOcr.App/Pages/WorkspacePage.cs:460
+msgid "The clipboard does not contain an image."
+msgstr ""
+
+#: src/FalconOcr.App/Pages/WorkspacePage.cs:531
+#, csharp-format
+msgid "Loading {0}…"
+msgstr ""
+
+#: src/FalconOcr.App/Pages/WorkspacePage.cs:542
+msgid "Cannot display page: "
+msgstr ""
+
+#: src/FalconOcr.App/Pages/WorkspacePage.cs:574
+#, csharp-format
+msgid "{0}  ·  {1} × {2} px  ·  {3:0} dpi"
+msgstr ""
+
+#: src/FalconOcr.App/Pages/WorkspacePage.cs:574
+#, csharp-format
+msgid "  ·  rotated {0}°"
+msgstr ""
+
+#: src/FalconOcr.App/Pages/WorkspacePage.cs:574
+msgid "cropped"
+msgstr ""
+
+#: src/FalconOcr.App/Pages/WorkspacePage.cs:646
+#, csharp-format
+msgid "Text layer read from PDF — {0} lines, {1} blocks."
+msgstr ""
+
+#: src/FalconOcr.App/Pages/WorkspacePage.cs:647
+#, csharp-format
+msgid "Text recognition completed — {0} lines, {1} blocks, {2:P0} confidence ({3:0.0}s)."
+msgstr ""
+
+#: src/FalconOcr.App/Pages/WorkspacePage.cs:652
+msgid "No document selected."
+msgstr ""
+
+#: src/FalconOcr.App/Pages/WorkspacePage.cs:652
+msgid "This page has not been recognized yet."
+msgstr ""
+
+#: src/FalconOcr.App/Pages/WorkspacePage.cs:741
+msgid "1 page"
+msgstr ""
+
+#: src/FalconOcr.App/Pages/WorkspacePage.cs:741
+#, csharp-format
+msgid "{0} images"
+msgstr ""
+
+#: src/FalconOcr.App/Pages/WorkspacePage.cs:741
+#, csharp-format
+msgid "{0} pages"
+msgstr ""
+
+#: src/FalconOcr.App/Pages/WorkspacePage.cs:742
+msgid "recognized"
+msgstr ""
+
+#: src/FalconOcr.App/Pages/WorkspacePage.cs:742
+#, csharp-format
+msgid "{0}/{1} done"
+msgstr ""
+
+#: src/FalconOcr.App/Pages/WorkspacePage.cs:750
+msgid "Recognize all documents"
+msgstr ""
+
+#: src/FalconOcr.App/Pages/WorkspacePage.cs:752
+msgid "Export as…"
+msgstr ""
+
+#: src/FalconOcr.App/Pages/WorkspacePage.cs:754
+msgid "Rename…"
+msgstr ""
+
+#: src/FalconOcr.App/Pages/WorkspacePage.cs:755
+msgid "Open containing folder"
+msgstr ""
+
+#: src/FalconOcr.App/Pages/WorkspacePage.cs:763
+msgid "Remove"
+msgstr ""
+
+#: src/FalconOcr.App/Pages/WorkspacePage.cs:764
+#: src/FalconOcr.App/Pages/WorkspacePage.cs:846
+msgid "Remove all"
+msgstr ""
+
+#: src/FalconOcr.App/Pages/WorkspacePage.cs:77
+#: src/FalconOcr.App/Pages/WorkspacePage.cs:409
+#: src/FalconOcr.App/Pages/WorkspacePage.cs:425
+msgid "Add Files"
+msgstr ""
+
+#: src/FalconOcr.App/Pages/WorkspacePage.cs:772
+msgid "Rename document"
+msgstr ""
+
+#: src/FalconOcr.App/Pages/WorkspacePage.cs:772
+msgid "Name:"
+msgstr ""
+
+#: src/FalconOcr.App/Pages/WorkspacePage.cs:78
+#: src/FalconOcr.App/Pages/WorkspacePage.cs:480
+msgid "Scan"
+msgstr ""
+
+#: src/FalconOcr.App/Pages/WorkspacePage.cs:785
+#, csharp-format
+msgid "{0} rotated to {1}° — recognize again to update the text."
+msgstr ""
+
+#: src/FalconOcr.App/Pages/WorkspacePage.cs:79
+#: src/FalconOcr.App/Pages/WorkspacePage.cs:460
+#: src/FalconOcr.App/Pages/WorkspacePage.cs:470
+msgid "From Clipboard"
+msgstr ""
+
+#: src/FalconOcr.App/Pages/WorkspacePage.cs:796
+msgid ""
+"This page is already cropped.\n"
+"\n"
+"Yes = crop further, No = restore the full page."
+msgstr ""
+
+#: src/FalconOcr.App/Pages/WorkspacePage.cs:80
+msgid "Rotate"
+msgstr ""
+
+#: src/FalconOcr.App/Pages/WorkspacePage.cs:81
+#: src/FalconOcr.App/Pages/WorkspacePage.cs:796
+msgid "Crop"
+msgstr ""
+
+#: src/FalconOcr.App/Pages/WorkspacePage.cs:816
+#, csharp-format
+msgid "{0} cropped — recognize again to update the text."
+msgstr ""
+
+#: src/FalconOcr.App/Pages/WorkspacePage.cs:82
+#: src/FalconOcr.App/Pages/WorkspacePage.cs:827
+#: src/FalconOcr.App/Pages/WorkspacePage.cs:833
+msgid "Delete"
+msgstr ""
+
+#: src/FalconOcr.App/Pages/WorkspacePage.cs:827
+#, csharp-format
+msgid "Remove {0} from \"{1}\"?"
+msgstr ""
+
+#: src/FalconOcr.App/Pages/WorkspacePage.cs:83
+#: src/FalconOcr.App/Pages/WorkspacePage.cs:749
+#: src/FalconOcr.App/Pages/WorkspacePage.cs:1087
+msgid "Recognize"
+msgstr ""
+
+#: src/FalconOcr.App/Pages/WorkspacePage.cs:833
+#, csharp-format
+msgid "Remove \"{0}\" and its recognition results?"
+msgstr ""
+
+#: src/FalconOcr.App/Pages/WorkspacePage.cs:846
+msgid "Remove all documents from the workspace?"
+msgstr ""
+
+#: src/FalconOcr.App/Pages/WorkspacePage.cs:88
+#: src/FalconOcr.App/Pages/WorkspacePage.cs:1370
+msgid "Help"
+msgstr ""
+
+#: src/FalconOcr.App/Pages/WorkspacePage.cs:890
+#, csharp-format
+msgid "Paragraph style changed to {0}."
+msgstr ""
+
+#: src/FalconOcr.App/Pages/WorkspacePage.cs:940
+#, csharp-format
+msgid "You are using the trial version of Falcon OCR — {0} of {1} days left. All features are available during the trial."
+msgstr ""
+
+#: src/FalconOcr.App/Pages/WorkspacePage.cs:942
+msgid "Activate now"
+msgstr ""
+
+#: src/FalconOcr.App/Pages/WorkspacePage.cs:947
+msgid "Hide until the next start"
+msgstr ""
+
+#: src/FalconOcr.App/Pages/WorkspacePage.cs:96
+msgid "Add files (PDF, images)…\tCtrl+O"
+msgstr ""
+
+#: src/FalconOcr.App/Pages/WorkspacePage.cs:97
+msgid "Add images as one document (image sequence)…"
+msgstr ""
+
+#: src/FalconOcr.App/Pages/WorkspacePage.cs:98
+msgid "Add folder as image sequence…"
+msgstr ""
+
+#: src/FalconOcr.App/Program.cs:29
+msgid "Falcon OCR must run as a 64-bit process."
+msgstr ""
+
+#: src/FalconOcr.App/Program.cs:73
+#, csharp-format
+msgid ""
+"An unexpected error occurred:\n"
+"\n"
+"{0}\n"
+"\n"
+"Details were written to:\n"
+"{1}"
+msgstr ""
+
+#: src/FalconOcr.App/Services/AppServices.cs:176
+msgid "Windows Image Acquisition (WIA) is not available on this computer."
+msgstr ""
+
+#: src/FalconOcr.App/Services/AppServices.cs:186
+msgid "No scanner was found. Connect a WIA-compatible scanner and try again."
+msgstr ""
+
+#: src/FalconOcr.App/Services/OcrService.cs:53
+#, csharp-format
+msgid "Recognizing {0} — {1} ({2}/{3})"
+msgstr ""
+
+#: src/FalconOcr.App/Services/OcrService.cs:59
+msgid "Text recognition completed."
+msgstr ""
+
+#: src/FalconOcr.App/UI/ImageViewer.cs:125
+msgid "Drag to select the area to keep — Esc to cancel"
+msgstr ""
+
+#: src/FalconOcr.App/UI/ImageViewer.cs:45
+msgid "Add files to get started"
+msgstr ""
+
+#: src/FalconOcr.App/UI/LayoutView.cs:42
+msgid "Click Recognize to convert this page"
+msgstr ""
+
+#: src/FalconOcr.Core/Engine/OcrOptions.cs (LanguageCatalog.DisplayName)
+msgid "English"
+msgstr ""
+
+#: src/FalconOcr.Core/Engine/OcrOptions.cs (LanguageCatalog.DisplayName)
+msgid "Chinese (中文)"
+msgstr ""
+
+#: src/FalconOcr.Core/Engine/OcrOptions.cs (LanguageCatalog.DisplayName)
+msgid "Japanese (日本語)"
+msgstr ""
+
+#: src/FalconOcr.Core/Engine/OcrOptions.cs (LanguageCatalog.DisplayName)
+msgid "Korean (한국어)"
+msgstr ""
+
+#: src/FalconOcr.Core/Engine/OcrOptions.cs (LanguageCatalog.DisplayName)
+msgid "Russian (Русский)"
+msgstr ""
+
+#: src/FalconOcr.Core/Licensing/License.cs:30
+#, csharp-format
+msgid "Licensed to {0}"
+msgstr ""
+
+#: src/FalconOcr.Core/Licensing/License.cs:30
+msgid "(unnamed)"
+msgstr ""
+
+#: src/FalconOcr.Core/Licensing/License.cs:31
+#, csharp-format
+msgid "serial {0}"
+msgstr ""
+
+#: src/FalconOcr.Core/Licensing/License.cs:32
+#, csharp-format
+msgid "valid until {0}"
+msgstr ""
+
+#: src/FalconOcr.Core/Licensing/License.cs:32
+msgid "perpetual"
+msgstr ""
+
+#: src/FalconOcr.Core/Licensing/License.cs:33
+msgid "any computer"
+msgstr ""
+
+#: src/FalconOcr.Core/Licensing/License.cs:33
+msgid "this computer only"
+msgstr ""
+
+#: src/FalconOcr.Core/Licensing/License.cs:63
+msgid "No license key has been entered."
+msgstr ""
+
+#: src/FalconOcr.Core/Licensing/License.cs:64
+msgid "The license key is not in a valid format. Check that it was copied completely."
+msgstr ""
+
+#: src/FalconOcr.Core/Licensing/License.cs:65
+msgid "The license key is not genuine."
+msgstr ""
+
+#: src/FalconOcr.Core/Licensing/License.cs:66
+msgid "This license key was issued for a different computer."
+msgstr ""
+
+#: src/FalconOcr.Core/Licensing/License.cs:67
+#, csharp-format
+msgid "The license expired on {0}."
+msgstr ""
+
+#: src/FalconOcr.Core/Licensing/License.cs:68
+msgid "The system clock is set earlier than the last use of the application."
+msgstr ""
+
+#: src/FalconOcr.Core/Licensing/TrialManager.cs:24
+msgid "The trial information on this computer is invalid (modified data or system clock set back)."
+msgstr ""
+
+#: src/FalconOcr.Core/Licensing/TrialManager.cs:25
+#, csharp-format
+msgid "The {0}-day trial ended on {1}."
+msgstr ""
+
+#: src/FalconOcr.Core/Licensing/TrialManager.cs:26
+#, csharp-format
+msgid "Trial version — {0} of {1} days remaining (ends {2})."
+msgstr ""
+

@@ -52,8 +52,9 @@ def build():
     d.img("activation-trial.png", "Activation window during the trial", 400)
     d.ul(["At every start the activation window shows how many days are left.",
           "Click **Continue Trial** to use Falcon OCR, **Activate** to enter a license key, or **Exit**.",
-          "While you are using the trial, the title bar shows an amber badge **TRIAL · n days left — Activate now**. Click it at any time to activate."])
+          "While you are using the trial, the title bar shows an amber badge **TRIAL · n days left — Activate now**, and a notification below the toolbar shows the remaining days. Click the badge or **Activate now** at any time to activate; ✕ hides the notification until the next start."])
     d.img("trial-badge.png", "Trial badge in the title bar", 560)
+    d.img("trial-banner.png", "Trial notification below the toolbar", 620)
     d.p("When the 7 days are over, Falcon OCR cannot be used until you enter a license key:")
     d.img("activation-expired.png", "Activation window after the trial", 400)
     d.note("Changing the computer's date or deleting program data does not extend the trial — it ends the trial immediately.")
@@ -81,14 +82,23 @@ def build():
     d.img("main-recognized.png", "Main window after recognition", 640)
     d.table(["Area", "Purpose"], [
         ("Title bar", "Product name, trial badge, minimise / maximise / close. Drag it to move the window; double-click to maximise."),
-        ("Navigation bar (left)", "Home (workspace), OCR (quick text), Batch Process, History, Settings."),
+        ("Trial notification", "Only in the trial: remaining days, Activate now, ✕ to hide."),
+        ("Navigation bar (left)", "Home (workspace), OCR (quick text), Batch Process, History, Settings; « Collapse at the bottom."),
         ("Toolbar", "Add Files, Scan, From Clipboard, Rotate, Crop, Delete, Recognize, Export; Settings and Help on the right."),
         ("Files / Thumbnails", "Your documents; the pages of the selected document."),
         ("Source Page", "The original page with zoom and page controls."),
         ("Recognized Text / Original Image", "The recognized page rebuilt next to the original / the original with the detected areas."),
-        ("OCR Settings / Output Format", "Language, document type, layout options, output format and folder; Export button."),
+        ("OCR Settings / Output Format", "Language, document type, layout options, output format and folder; Export button. Drag its left edge to change the width."),
         ("Status bar", "Progress and messages; number of files, selection and output format."),
     ], [30, 70], "Main window areas")
+
+    d.h2("4.1 Customizing the window")
+    d.ul(["**Interface language** — English, 简体中文 (Chinese) or 日本語 (Japanese): *Settings → General → Interface language*, then **Save** and confirm the restart. On first start Falcon OCR uses the language of Windows.",
+          "**Collapse the sidebar** — click **« Collapse** at the bottom of the navigation bar to show only the icons (point at an icon to see its name). Click **»** to expand it again.",
+          "**Resize the settings panel** — drag the dotted grip at the left edge of the right-hand panel with the mouse (280–640 pixels).",
+          "Falcon OCR remembers these choices, the window size and position."])
+    d.img_grid([("sidebar-collapsed.png", "Collapsed sidebar"), ("right-panel-splitter.png", "Grip for resizing the settings panel")], width=290)
+    d.img("ui-japanese.png", "The workspace with the Japanese interface", 600)
 
     # ------------------------------------------------------------------ 5
     d.h1("5. Adding documents")
@@ -167,7 +177,9 @@ def build():
           "Characters the recognizer was unsure about are highlighted in **yellow**.",
           "Double-click the line (or press F2 / Enter) and correct the text. Press **Enter** to keep the change or **Esc** to cancel. Corrected lines are underlined with a dashed blue line and exported as corrected."])
     d.h2("9.3 Changing formatting")
+    d.img("format-toolbar.png", "Formatting toolbar: style, font and size boxes, B / I / U, lists", 460)
     d.ul(["With a line selected, use the **style box** to make its paragraph Normal, Heading 1–3 or a list item.",
+          "The **font box** and the **size box** show the font of the selected line. Choose another font or size from the list, or type a font name or a size (e.g. 10.5) and press Enter — the whole paragraph changes and the export uses the new font.",
           "**B**, **I**, **U** switch bold, italic and underline for the paragraph.",
           "The list buttons turn the paragraph into a bulleted or numbered list item.",
           "**⋯** menu: switch the yellow highlighting on or off, copy the text of the page or of the whole document."])
@@ -215,6 +227,7 @@ def build():
     d.h1("14. Settings")
     d.img("settings.png", "Settings", 560)
     d.table(["Section", "What you can set"], [
+        ("General", "Interface language (English, 简体中文, 日本語) — takes effect after a restart."),
         ("Recognition", "Default language and layout analysis, table detection, recognize automatically when files are added, highlight uncertain characters."),
         ("Export", "Default output format (also Plain text), document type, output folder, keep colors, include pictures, open the document after export."),
         ("Advanced recognition", "The options of chapter 7.3."),

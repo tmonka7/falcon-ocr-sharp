@@ -6,7 +6,8 @@ import re
 IMAGE_DIR = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "..", "docs", "images"))
 
 PRODUCT = "Falcon OCR"
-VERSION = "1.0"
+VERSION = "1.0"          # product version
+DOC_VERSION = "1.1"      # document revision
 DATE = "2026-09-24"
 ORG = "Falcon OCR Development Team"
 
@@ -113,7 +114,7 @@ class Doc:
 
     # -------------------------------------------------------------- output
     def render(self, history):
-        meta = [("Product", f"{PRODUCT} {VERSION}"), ("Document ID", self.doc_id), ("Version", VERSION), ("Date", DATE),
+        meta = [("Product", f"{PRODUCT} {VERSION}"), ("Document ID", self.doc_id), ("Version", DOC_VERSION), ("Date", DATE),
                 ("Status", "Released for review"), ("Prepared by", ORG)]
         cover = (f"<p class='cover-title'>{inline(self.title)}</p><p class='cover-sub'>{inline(self.subtitle)}</p>"
                  + "<table style='width:70%'>" + "".join(f"<tr><td style='width:30%;background:#f4f6f8'><b>{k}</b></td><td>{inline(v)}</td></tr>" for k, v in meta) + "</table>"
@@ -131,4 +132,5 @@ class Doc:
 DEFAULT_HISTORY = [
     ("0.9", "2026-09-20", ORG, "Draft for internal review."),
     ("1.0", DATE, ORG, "Released with Falcon OCR 1.0: OCR engine, layout reconstruction, exports, trial and licensing."),
+    ("1.1", DATE, ORG, "UI extensions: font and size combo boxes, English/Chinese/Japanese interface (gettext PO), collapsible sidebar, resizable settings panel, trial notification below the toolbar."),
 ]

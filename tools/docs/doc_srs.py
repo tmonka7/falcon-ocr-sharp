@@ -39,6 +39,11 @@ FR = [
     ("FR-34", "Licensing", "License activation", "The application shall run licensed only with a key signed by the vendor; keys may be bound to one computer (machine code) and may expire.", "Must"),
     ("FR-35", "Licensing", "7-day trial", "Without a license the application shall run as a trial for 7 days from the first start, request a license at every start, show the remaining days, and refuse to start after the trial until a valid key is entered.", "Must"),
     ("FR-36", "Licensing", "Key generator", "A separate vendor tool shall create and protect the signing key, generate and verify license keys, and log every issued key.", "Must"),
+    ("FR-37", "User interface", "Font selection", "The results toolbar shall provide a font family combo box and a font size combo box that show and change the font of the selected paragraph; the change shall be exported.", "Must"),
+    ("FR-38", "User interface", "Interface languages", "The user interface shall be available in English, Simplified Chinese and Japanese. Translations shall be stored as gettext PO files that can be edited without rebuilding; the language is chosen in Settings (default: Windows display language).", "Must"),
+    ("FR-39", "User interface", "Collapsible sidebar", "A button at the bottom of the navigation bar shall collapse it to icons only and expand it again; the state shall be remembered.", "Must"),
+    ("FR-40", "User interface", "Resizable settings panel", "The width of the right-hand settings panel shall be adjustable by dragging its left edge with the mouse (280–640 px); the width shall be remembered.", "Must"),
+    ("FR-41", "User interface", "Trial notification", "While running as a trial, a notification with the remaining days and an 'Activate now' button shall be displayed below the toolbar; it can be hidden until the next start and disappears after activation.", "Must"),
 ]
 
 NFR = [
@@ -129,7 +134,7 @@ def build():
     d.h2(f"3.{len(areas) + 2} Licensing rules")
     d.table(["Rule", "Specification"], [
         ("Trial length", "7 days counted from the first start of the application on the computer. Day 1 shows '7 of 7 days remaining'; the trial ends when 7 × 24 hours have passed."),
-        ("Prompt", "While no valid license is installed, the activation window is shown at every start with Activate, Continue Trial and Exit."),
+        ("Prompt", "While no valid license is installed, the activation window is shown at every start with Activate, Continue Trial and Exit. In the main window a title-bar badge and a notification below the toolbar show the remaining days."),
         ("Trial over", "After the trial the activation window cannot be skipped: only Activate and Exit remain."),
         ("Tamper protection", "Trial state is stored in the registry and in a file; edited data or a system clock set back more than 24 hours before the last use ends the trial."),
         ("Key content", "Licensee name, serial number, issue date, optional expiry date, optional machine binding."),
@@ -141,6 +146,7 @@ def build():
     d.h1("4. External interface requirements")
     d.h2("4.1 User interface")
     d.p("The main window shall contain: a green title bar with product name, trial badge and window buttons; a left navigation bar (Home, OCR, Batch Process, History, Settings); a ribbon-style toolbar (Add Files, Scan, From Clipboard, Rotate, Crop, Delete, Recognize, Export, Settings, Help); a Files/Thumbnails panel; the Source Page viewer; the Recognized Text / Original Image panel; the OCR Settings and Output Format panel with the Export button; and a status bar. Details: Screen Design Document FOCR-SCR-001.")
+    d.p("The interface is available in English, Simplified Chinese (简体中文) and Japanese (日本語). The navigation bar can be collapsed to icons, and the settings column can be resized with the mouse.")
     d.h2("4.2 Software interfaces")
     d.table(["Interface", "Use"], [
         ("ONNX Runtime 1.22 (onnxruntime.dll)", "Inference of detection, orientation and recognition models on the CPU."),
@@ -154,6 +160,7 @@ def build():
         ("Input", "PDF; PNG, JPG/JPEG/JPE, BMP/DIB, GIF, TIF/TIFF (multi-page), ICO, EMF, WMF"),
         ("Output", "DOCX (Word 2007+), XLSX (Excel 2007+), HTML5 (self-contained), TXT (UTF-8)"),
         ("License", "Key text (FOCR-…) or .lic file containing the key"),
+        ("Translations", "gettext PO (UTF-8): lang\\zh_CN.po, lang\\ja.po; template lang\\falcon-ocr.pot"),
     ], [20, 80], "File formats")
 
     d.h1("5. Non-functional requirements")

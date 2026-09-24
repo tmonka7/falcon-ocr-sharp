@@ -1,4 +1,5 @@
 using System;
+using FalconOcr.Localization;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Drawing;
@@ -45,6 +46,9 @@ namespace FalconOcr.App.Pages
         private readonly Panel _resultStatusIcon;
         private readonly ToolButton _recognizeButton;
         private readonly ComboBox _styleCombo;
+        private readonly ComboBox _fontCombo, _sizeCombo;
+        private Panel _trialBanner;
+        private Control _rightColumn;
         private readonly IconButton _boldButton, _italicButton, _underlineButton, _bulletButton, _numberButton;
 
         private ComboBox _docType, _language, _layoutMode;
@@ -70,28 +74,28 @@ namespace FalconOcr.App.Pages
             // ---------------------------------------------------------------- toolbar
             var toolbar = new BorderPanel { Dock = DockStyle.Top, Height = S(92), BorderTop = false, BorderLeft = false, BorderRight = false };
             var tools = new FlowLayoutPanel { Dock = DockStyle.Fill, Padding = new Padding(S(16), S(8), 0, 0), WrapContents = false, BackColor = Color.Transparent };
-            var addButton = new ToolButton("Add Files", IconKind.AddCircle, Theme.Accent);
-            var scanButton = new ToolButton("Scan", IconKind.Scanner);
-            var clipButton = new ToolButton("From Clipboard", IconKind.Clipboard) { Width = S(116) };
-            var rotateButton = new ToolButton("Rotate", IconKind.Rotate);
-            var cropButton = new ToolButton("Crop", IconKind.Crop);
-            var deleteButton = new ToolButton("Delete", IconKind.Trash);
-            _recognizeButton = new ToolButton("Recognize", IconKind.Play, Theme.Accent) { Width = S(96) };
-            var exportButton = new ToolButton("Export", IconKind.Export, Theme.Accent);
+            var addButton = new ToolButton(L.T("Add Files"), IconKind.AddCircle, Theme.Accent);
+            var scanButton = new ToolButton(L.T("Scan"), IconKind.Scanner);
+            var clipButton = new ToolButton(L.T("From Clipboard"), IconKind.Clipboard) { Width = S(116) };
+            var rotateButton = new ToolButton(L.T("Rotate"), IconKind.Rotate);
+            var cropButton = new ToolButton(L.T("Crop"), IconKind.Crop);
+            var deleteButton = new ToolButton(L.T("Delete"), IconKind.Trash);
+            _recognizeButton = new ToolButton(L.T("Recognize"), IconKind.Play, Theme.Accent) { Width = S(96) };
+            var exportButton = new ToolButton(L.T("Export"), IconKind.Export, Theme.Accent);
             tools.Controls.AddRange(new Control[] { addButton, scanButton, clipButton, Separator(), rotateButton, cropButton, deleteButton, Separator(), _recognizeButton, Separator(), exportButton });
 
             var topRight = new FlowLayoutPanel { Dock = DockStyle.Right, Width = S(250), FlowDirection = FlowDirection.RightToLeft, Padding = new Padding(0, S(18), S(16), 0), BackColor = Color.Transparent };
-            var helpLink = LinkButton("Help", IconKind.Help);
-            var settingsLink = LinkButton("Settings", IconKind.Settings);
+            var helpLink = LinkButton(L.T("Help"), IconKind.Help);
+            var settingsLink = LinkButton(L.T("Settings"), IconKind.Settings);
             topRight.Controls.Add(helpLink);
             topRight.Controls.Add(settingsLink);
             toolbar.Controls.Add(tools);
             toolbar.Controls.Add(topRight);
 
             var addMenu = new ContextMenuStrip();
-            addMenu.Items.Add("Add files (PDF, images)…\tCtrl+O", null, (s, e) => AddFilesDialog());
-            addMenu.Items.Add("Add images as one document (image sequence)…", null, (s, e) => AddSequenceDialog());
-            addMenu.Items.Add("Add folder as image sequence…", null, (s, e) => AddFolderDialog());
+            addMenu.Items.Add(L.T("Add files (PDF, images)…\tCtrl+O"), null, (s, e) => AddFilesDialog());
+            addMenu.Items.Add(L.T("Add images as one document (image sequence)…"), null, (s, e) => AddSequenceDialog());
+            addMenu.Items.Add(L.T("Add folder as image sequence…"), null, (s, e) => AddFolderDialog());
             addButton.Click += (s, e) => addMenu.Show(addButton, new Point(0, addButton.Height));
             scanButton.Click += (s, e) => Scan();
             clipButton.Click += (s, e) => PasteFromClipboard();
@@ -105,7 +109,7 @@ namespace FalconOcr.App.Pages
 
             // ---------------------------------------------------------------- left: files / thumbnails
             var left = new BorderPanel { Dock = DockStyle.Left, Width = S(214), BorderTop = false, BorderLeft = false };
-            _leftTabs = new TabStrip("Files", "Thumbnails") { Dock = DockStyle.Top };
+            _leftTabs = new TabStrip(L.T("Files"), L.T("Thumbnails")) { Dock = DockStyle.Top };
             _fileList = new ListBox
             {
                 Dock = DockStyle.Fill,
@@ -163,23 +167,23 @@ namespace FalconOcr.App.Pages
             var viewerHost = new BorderPanel { Dock = DockStyle.Fill };
             var viewerBar = new Panel { Dock = DockStyle.Top, Height = S(46), Padding = new Padding(S(6), S(7), S(6), S(7)) };
             _viewer = new ImageViewer { Dock = DockStyle.Fill, AllowDrop = true };
-            var zoomOut = new IconButton(IconKind.ZoomOut, "Zoom out");
-            var zoomIn = new IconButton(IconKind.ZoomIn, "Zoom in");
+            var zoomOut = new IconButton(IconKind.ZoomOut, L.T("Zoom out"));
+            var zoomIn = new IconButton(IconKind.ZoomIn, L.T("Zoom in"));
             _zoomCombo = new ComboBox { Width = S(78), DropDownStyle = ComboBoxStyle.DropDown, Font = Theme.Base };
-            _zoomCombo.Items.AddRange(new object[] { "Fit width", "Fit page", "50%", "75%", "100%", "125%", "150%", "200%", "300%" });
-            var fitWidth = new IconButton(IconKind.FitWidth, "Fit width");
-            var fitPage = new IconButton(IconKind.FitPage, "Fit page");
-            var rotateSmall = new IconButton(IconKind.Rotate, "Rotate page 90°");
-            _handButton = new IconButton(IconKind.Hand, "Pan (hand tool)") { Toggle = true };
-            var prev = new IconButton(IconKind.ChevronLeft, "Previous page (PgUp)");
-            var next = new IconButton(IconKind.ChevronRight, "Next page (PgDn)");
+            _zoomCombo.Items.AddRange(new object[] { L.T("Fit width"), L.T("Fit page"), "50%", "75%", "100%", "125%", "150%", "200%", "300%" });
+            var fitWidth = new IconButton(IconKind.FitWidth, L.T("Fit width"));
+            var fitPage = new IconButton(IconKind.FitPage, L.T("Fit page"));
+            var rotateSmall = new IconButton(IconKind.Rotate, L.T("Rotate page 90°"));
+            _handButton = new IconButton(IconKind.Hand, L.T("Pan (hand tool)")) { Toggle = true };
+            var prev = new IconButton(IconKind.ChevronLeft, L.T("Previous page (PgUp)"));
+            var next = new IconButton(IconKind.ChevronRight, L.T("Next page (PgDn)"));
             _pageLabel = new Label { AutoSize = false, Width = S(70), Height = S(30), TextAlign = ContentAlignment.MiddleCenter, Text = "0 / 0", BorderStyle = BorderStyle.FixedSingle, BackColor = Color.White };
             var viewerFlow = new FlowLayoutPanel { Dock = DockStyle.Fill, WrapContents = false };
             viewerFlow.Controls.AddRange(new Control[] { zoomOut, zoomIn, Pad(_zoomCombo, 2), fitWidth, fitPage, Separator(30), rotateSmall, _handButton, Separator(30), prev, Pad(_pageLabel, 0), next });
             viewerBar.Controls.Add(viewerFlow);
             // Caption + footer mirror the results panel (tabs / status) so both canvases get identical
             // geometry and every page pixel appears at the same screen position on both sides.
-            var viewerCaption = new TabStrip("Source Page") { Dock = DockStyle.Top };
+            var viewerCaption = new TabStrip(L.T("Source Page")) { Dock = DockStyle.Top };
             var viewerFooter = new BorderPanel { Dock = DockStyle.Bottom, Height = S(40), BorderLeft = false, BorderRight = false, BorderBottom = false };
             _imageInfo = new Label { Dock = DockStyle.Fill, TextAlign = ContentAlignment.MiddleLeft, ForeColor = Theme.SubText, Padding = new Padding(S(12), 0, 0, 0) };
             viewerFooter.Controls.Add(_imageInfo);
@@ -207,19 +211,26 @@ namespace FalconOcr.App.Pages
 
             // results
             var resultHost = new BorderPanel { Dock = DockStyle.Fill };
-            _resultTabs = new TabStrip("Recognized Text", "Original Image") { Dock = DockStyle.Top, ReservedRight = S(20) };
+            _resultTabs = new TabStrip(L.T("Recognized Text"), L.T("Original Image")) { Dock = DockStyle.Top, ReservedRight = S(20) };
             var formatBar = new Panel { Dock = DockStyle.Top, Height = S(46), Padding = new Padding(S(8), S(7), S(6), S(7)) };
-            _styleCombo = Field.Combo("Normal", "Heading 1", "Heading 2", "Heading 3", "List item");
+            _styleCombo = Field.Combo(L.T("Normal"), L.T("Heading 1"), L.T("Heading 2"), L.T("Heading 3"), L.T("List item"));
             _styleCombo.Dock = DockStyle.None;
-            _styleCombo.Width = S(110);
-            _boldButton = new IconButton(IconKind.None, "Bold", "B", FontStyle.Bold);
-            _italicButton = new IconButton(IconKind.None, "Italic", "I", FontStyle.Italic);
-            _underlineButton = new IconButton(IconKind.None, "Underline", "U", FontStyle.Underline);
-            _bulletButton = new IconButton(IconKind.List, "Bulleted list");
-            _numberButton = new IconButton(IconKind.NumberedList, "Numbered list");
-            var more = new IconButton(IconKind.More, "More");
+            _styleCombo.Width = S(100);
+            // Font family / size of the selected paragraph (typed or picked; applied on selection or Enter).
+            _fontCombo = new ComboBox { Width = S(136), DropDownStyle = ComboBoxStyle.DropDown, Font = Theme.Base, AutoCompleteMode = AutoCompleteMode.SuggestAppend, AutoCompleteSource = AutoCompleteSource.ListItems, MaxDropDownItems = 20 };
+            _fontCombo.Items.AddRange(FontFamilies());
+            _sizeCombo = new ComboBox { Width = S(54), DropDownStyle = ComboBoxStyle.DropDown, Font = Theme.Base, MaxDropDownItems = 16 };
+            _sizeCombo.Items.AddRange(new object[] { "8", "9", "10", "10.5", "11", "12", "14", "16", "18", "20", "22", "24", "28", "32", "36", "48", "72" });
+            tips.SetToolTip(_fontCombo, L.T("Font"));
+            tips.SetToolTip(_sizeCombo, L.T("Font size"));
+            _boldButton = new IconButton(IconKind.None, L.T("Bold"), "B", FontStyle.Bold);
+            _italicButton = new IconButton(IconKind.None, L.T("Italic"), "I", FontStyle.Italic);
+            _underlineButton = new IconButton(IconKind.None, L.T("Underline"), "U", FontStyle.Underline);
+            _bulletButton = new IconButton(IconKind.List, L.T("Bulleted list"));
+            _numberButton = new IconButton(IconKind.NumberedList, L.T("Numbered list"));
+            var more = new IconButton(IconKind.More, L.T("More"));
             var formatFlow = new FlowLayoutPanel { Dock = DockStyle.Fill, WrapContents = false };
-            formatFlow.Controls.AddRange(new Control[] { Pad(_styleCombo, 2), Separator(30), _boldButton, _italicButton, _underlineButton, Separator(30), _bulletButton, _numberButton, Separator(30), more });
+            formatFlow.Controls.AddRange(new Control[] { Pad(_styleCombo, 2), Pad(_fontCombo, 2), Pad(_sizeCombo, 2), Separator(30), _boldButton, _italicButton, _underlineButton, Separator(30), _bulletButton, _numberButton, Separator(30), more });
             formatBar.Controls.Add(formatFlow);
             foreach (var b in new[] { _boldButton, _italicButton, _underlineButton, _bulletButton, _numberButton, more }) tips.SetToolTip(b, b.TooltipText);
 
@@ -261,17 +272,21 @@ namespace FalconOcr.App.Pages
             _boldButton.Click += (s, e) => ToggleLineStyle(st => st.Bold = !st.Bold);
             _italicButton.Click += (s, e) => ToggleLineStyle(st => st.Italic = !st.Italic);
             _underlineButton.Click += (s, e) => ToggleLineStyle(st => st.Underline = !st.Underline);
+            _fontCombo.SelectionChangeCommitted += (s, e) => ApplyFont(_fontCombo.SelectedItem as string, null);
+            _fontCombo.KeyDown += (s, e) => { if (e.KeyCode == Keys.Enter) { e.SuppressKeyPress = true; ApplyFont(_fontCombo.Text.Trim(), null); } };
+            _sizeCombo.SelectionChangeCommitted += (s, e) => ApplyFontSize(_sizeCombo.SelectedItem as string);
+            _sizeCombo.KeyDown += (s, e) => { if (e.KeyCode == Keys.Enter) { e.SuppressKeyPress = true; ApplyFontSize(_sizeCombo.Text); } };
             _bulletButton.Click += (s, e) => ApplyBlockStyle(4);
             _numberButton.Click += (s, e) => ApplyBlockStyle(5);
             var moreMenu = new ContextMenuStrip();
-            var confItem = new ToolStripMenuItem("Highlight uncertain characters") { Checked = _layout.ShowConfidence, CheckOnClick = true };
+            var confItem = new ToolStripMenuItem(L.T("Highlight uncertain characters")) { Checked = _layout.ShowConfidence, CheckOnClick = true };
             confItem.CheckedChanged += (s, e) => { _layout.ShowConfidence = confItem.Checked; _shell.Settings.ShowConfidence = confItem.Checked; _layout.Invalidate(); };
             moreMenu.Items.Add(confItem);
             moreMenu.Items.Add(new ToolStripSeparator());
-            moreMenu.Items.Add("Copy page text", null, (s, e) => CopyText(false));
-            moreMenu.Items.Add("Copy document text", null, (s, e) => CopyText(true));
+            moreMenu.Items.Add(L.T("Copy page text"), null, (s, e) => CopyText(false));
+            moreMenu.Items.Add(L.T("Copy document text"), null, (s, e) => CopyText(true));
             moreMenu.Items.Add(new ToolStripSeparator());
-            moreMenu.Items.Add("Recognize this page again", null, async (s, e) => { if (CurrentPage != null) await RecognizePagesAsync(new[] { CurrentPage }); });
+            moreMenu.Items.Add(L.T("Recognize this page again"), null, async (s, e) => { if (CurrentPage != null) await RecognizePagesAsync(new[] { CurrentPage }); });
             more.Click += (s, e) => moreMenu.Show(more, new Point(0, more.Height));
 
             // sync + selection
@@ -284,15 +299,33 @@ namespace FalconOcr.App.Pages
             _layout.LineSelected += (s, line) => SelectLine(line, _layout);
             _viewer.LineClicked += (s, line) => SelectLine(line, _viewer);
             _overlay.LineClicked += (s, line) => SelectLine(line, _overlay);
-            _layout.LineEdited += (s, line) => { _shell.SetStatus("Edited: " + line.Text); SelectLine(line, _layout); };
+            _layout.LineEdited += (s, line) => { _shell.SetStatus(L.T("Edited: ") + line.Text); SelectLine(line, _layout); };
             _viewer.CropSelected += (s, r) => ApplyCrop(r);
 
             // ---------------------------------------------------------------- compose
             var center = new Panel { Dock = DockStyle.Fill, Padding = new Padding(S(8), S(8), S(8), S(8)) };
             center.Controls.Add(split);
+
+            // The right settings column can be resized by dragging its left edge; the width is remembered.
+            _rightColumn = right;
+            if (Settings.RightPanelWidth > 0) right.Width = Math.Max(S(280), Math.Min(S(640), S(Settings.RightPanelWidth)));
+            var rightSplitter = new GripSplitter { Dock = DockStyle.Right, Width = S(6), MinSize = S(280), MinExtra = S(560) };
+            rightSplitter.SplitterMoved += (s, e) =>
+            {
+                Settings.RightPanelWidth = (int)Math.Round(right.Width * 96f / DeviceDpi);
+                Settings.Save();
+            };
+
+            // Docking order: the last added control is docked first (outermost).
             Controls.Add(center);
+            Controls.Add(rightSplitter);
             Controls.Add(right);
             Controls.Add(left);
+            if (Program.IsTrial)
+            {
+                _trialBanner = BuildTrialBanner();
+                Controls.Add(_trialBanner);
+            }
             Controls.Add(toolbar);
 
             foreach (Control c in new Control[] { this, _fileList, _viewer, _layout, _thumbs })
@@ -305,7 +338,7 @@ namespace FalconOcr.App.Pages
             Load += (s, e) =>
             {
                 split.SplitterDistance = Math.Max(S(200), (split.Width - split.SplitterWidth) / 2);
-                _zoomCombo.Text = "Fit width";
+                _zoomCombo.Text = L.T("Fit width");
             };
             UpdateResultStatus();
         }
@@ -361,7 +394,7 @@ namespace FalconOcr.App.Pages
             {
                 if (!OcrDocument.IsSupported(f))
                 {
-                    errors.Add(Path.GetFileName(f) + ": unsupported file type");
+                    errors.Add(Path.GetFileName(f) + ": " + L.T("unsupported file type"));
                     continue;
                 }
                 try
@@ -373,7 +406,7 @@ namespace FalconOcr.App.Pages
             }
             if (last != null) _fileList.SelectedItem = last;
             if (errors.Count > 0)
-                MessageBox.Show(this, "Some files could not be opened:\n\n" + string.Join("\n", errors), "Add Files", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show(this, L.T("Some files could not be opened:\n\n") + string.Join("\n", errors), L.T("Add Files"), MessageBoxButtons.OK, MessageBoxIcon.Warning);
             if (last != null && Settings.AutoRecognize) BeginInvoke(new Action(async () => await RecognizeCurrentDocumentAsync()));
         }
 
@@ -389,27 +422,27 @@ namespace FalconOcr.App.Pages
 
         private void AddFilesDialog()
         {
-            using (var dlg = new OpenFileDialog { Multiselect = true, Filter = OpenFilter, Title = "Add Files" })
+            using (var dlg = new OpenFileDialog { Multiselect = true, Filter = OpenFilter, Title = L.T("Add Files") })
                 if (dlg.ShowDialog(this) == DialogResult.OK) AddPaths(dlg.FileNames);
         }
 
         private void AddSequenceDialog()
         {
-            using (var dlg = new OpenFileDialog { Multiselect = true, Filter = "Images|*.png;*.jpg;*.jpeg;*.jpe;*.bmp;*.gif;*.tif;*.tiff", Title = "Select the images of one document" })
+            using (var dlg = new OpenFileDialog { Multiselect = true, Filter = L.T("Images|*.png;*.jpg;*.jpeg;*.jpe;*.bmp;*.gif;*.tif;*.tiff"), Title = L.T("Select the images of one document") })
             {
                 if (dlg.ShowDialog(this) != DialogResult.OK) return;
                 try
                 {
-                    var name = Path.GetFileName(Path.GetDirectoryName(dlg.FileNames[0])) + " (" + dlg.FileNames.Length + " images)";
+                    var name = L.F("{0} ({1} images)", Path.GetFileName(Path.GetDirectoryName(dlg.FileNames[0])), dlg.FileNames.Length);
                     _fileList.SelectedItem = Add(OcrDocument.OpenImageSequence(dlg.FileNames, name));
                 }
-                catch (Exception ex) { Error("Add image sequence", ex); }
+                catch (Exception ex) { Error(L.T("Add image sequence"), ex); }
             }
         }
 
         private void AddFolderDialog()
         {
-            using (var dlg = new FolderBrowserDialog { Description = "Select a folder of page images (sorted by file name)" })
+            using (var dlg = new FolderBrowserDialog { Description = L.T("Select a folder of page images (sorted by file name)") })
                 if (dlg.ShowDialog(this) == DialogResult.OK) AddPaths(new[] { dlg.SelectedPath });
         }
 
@@ -424,7 +457,7 @@ namespace FalconOcr.App.Pages
                 }
                 if (!Clipboard.ContainsImage())
                 {
-                    MessageBox.Show(this, "The clipboard does not contain an image.", "From Clipboard", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MessageBox.Show(this, L.T("The clipboard does not contain an image."), L.T("From Clipboard"), MessageBoxButtons.OK, MessageBoxIcon.Information);
                     return;
                 }
                 using (var img = Clipboard.GetImage())
@@ -434,7 +467,7 @@ namespace FalconOcr.App.Pages
                     _fileList.SelectedItem = Add(OcrDocument.FromBitmap(bmp, "Clipboard_" + n.ToString("00")));
                 }
             }
-            catch (Exception ex) { Error("From Clipboard", ex); }
+            catch (Exception ex) { Error(L.T("From Clipboard"), ex); }
         }
 
         private void Scan()
@@ -444,7 +477,7 @@ namespace FalconOcr.App.Pages
                 var path = Scanner.Acquire();
                 if (path != null) AddPaths(new[] { path });
             }
-            catch (Exception ex) { Error("Scan", ex); }
+            catch (Exception ex) { Error(L.T("Scan"), ex); }
         }
 
         private void OnDragEnter(object sender, DragEventArgs e)
@@ -495,7 +528,7 @@ namespace FalconOcr.App.Pages
                 UpdateResultStatus();
                 return;
             }
-            _shell.SetStatus("Loading " + page.Label + "…");
+            _shell.SetStatus(L.F("Loading {0}…", page.Label));
             Bitmap bmp;
             float dpi;
             try
@@ -506,7 +539,7 @@ namespace FalconOcr.App.Pages
             }
             catch (Exception ex)
             {
-                if (token == _loadToken) _shell.SetStatus("Cannot display page: " + ex.Message);
+                if (token == _loadToken) _shell.SetStatus(L.T("Cannot display page: ") + ex.Message);
                 return;
             }
             if (token != _loadToken)
@@ -515,7 +548,7 @@ namespace FalconOcr.App.Pages
                 return;
             }
             SetImage(bmp, page.Result, dpi);
-            _shell.SetStatus("Ready");
+            _shell.SetStatus(L.T("Ready"));
             UpdateResultStatus();
         }
 
@@ -538,7 +571,7 @@ namespace FalconOcr.App.Pages
             if (old != null && old != bmp) old.Dispose();
             var page = CurrentPage;
             _imageInfo.Text = bmp == null || page == null ? "" :
-                $"{page.Label}  ·  {bmp.Width} × {bmp.Height} px  ·  {dpi:0} dpi" + (page.Rotation != 0 ? $"  ·  rotated {page.Rotation}°" : "") + (page.Crop.HasValue ? "  ·  cropped" : "");
+                L.F("{0}  ·  {1} × {2} px  ·  {3:0} dpi", page.Label, bmp.Width, bmp.Height, dpi) + (page.Rotation != 0 ? L.F("  ·  rotated {0}°", page.Rotation) : "") + (page.Crop.HasValue ? "  ·  " + L.T("cropped") : "");
             SyncFrom(_viewer);
         }
 
@@ -574,7 +607,7 @@ namespace FalconOcr.App.Pages
                     c.ScrollFraction = source.ScrollFraction;
                 }
                 if (!_zoomCombo.Focused)
-                    _zoomCombo.Text = source.ZoomMode == ZoomMode.FitWidth ? "Fit width" : source.ZoomMode == ZoomMode.FitPage ? "Fit page" : Math.Round(source.Zoom * 100) + "%";
+                    _zoomCombo.Text = source.ZoomMode == ZoomMode.FitWidth ? L.T("Fit width") : source.ZoomMode == ZoomMode.FitPage ? L.T("Fit page") : Math.Round(source.Zoom * 100) + "%";
             }
             finally { _syncing = false; }
         }
@@ -582,8 +615,8 @@ namespace FalconOcr.App.Pages
         private void ApplyZoomText(string text)
         {
             if (string.IsNullOrWhiteSpace(text)) return;
-            if (text.StartsWith("Fit w", StringComparison.OrdinalIgnoreCase)) _viewer.ZoomMode = ZoomMode.FitWidth;
-            else if (text.StartsWith("Fit p", StringComparison.OrdinalIgnoreCase)) _viewer.ZoomMode = ZoomMode.FitPage;
+            if (text == L.T("Fit width") || text.StartsWith("Fit w", StringComparison.OrdinalIgnoreCase)) _viewer.ZoomMode = ZoomMode.FitWidth;
+            else if (text == L.T("Fit page") || text.StartsWith("Fit p", StringComparison.OrdinalIgnoreCase)) _viewer.ZoomMode = ZoomMode.FitPage;
             else if (float.TryParse(text.Trim().TrimEnd('%'), out float pct) && pct > 0) _viewer.Zoom = pct / 100f;
             SyncFrom(_viewer);
         }
@@ -610,13 +643,13 @@ namespace FalconOcr.App.Pages
                 var r = p.Result;
                 _resultStatusIcon.Visible = true;
                 _resultStatus.Text = r.FromTextLayer
-                    ? $"Text layer read from PDF — {r.Lines.Count} lines, {r.Blocks.Count} blocks."
-                    : $"Text recognition completed — {r.Lines.Count} lines, {r.Blocks.Count} blocks, {r.MeanConfidence:P0} confidence ({r.Elapsed.TotalSeconds:0.0}s).";
+                    ? L.F("Text layer read from PDF — {0} lines, {1} blocks.", r.Lines.Count, r.Blocks.Count)
+                    : L.F("Text recognition completed — {0} lines, {1} blocks, {2:P0} confidence ({3:0.0}s).", r.Lines.Count, r.Blocks.Count, r.MeanConfidence, r.Elapsed.TotalSeconds);
             }
             else
             {
                 _resultStatusIcon.Visible = false;
-                _resultStatus.Text = p == null ? "No document selected." : "This page has not been recognized yet.";
+                _resultStatus.Text = p == null ? L.T("No document selected.") : L.T("This page has not been recognized yet.");
             }
             UpdateFormatState();
         }
@@ -704,22 +737,22 @@ namespace FalconOcr.App.Pages
             Icons.Draw(g, icon, new RectangleF(e.Bounds.X + S(10), e.Bounds.Y + (e.Bounds.Height - s) / 2f, s, s), Theme.Text);
             var nameRect = new Rectangle(e.Bounds.X + S(50), e.Bounds.Y + S(12), e.Bounds.Width - S(56), S(22));
             TextRenderer.DrawText(g, doc.Name, Theme.Base, nameRect, Theme.Text, TextFormatFlags.EndEllipsis | TextFormatFlags.Left);
-            string unit = doc.Kind == SourceKind.ImageSequence ? "images" : "pages";
-            string sub = doc.Pages.Count == 1 ? "1 page" : doc.Pages.Count + " " + unit;
-            if (doc.RecognizedCount > 0) sub += doc.IsRecognized ? "  •  recognized" : $"  •  {doc.RecognizedCount}/{doc.Pages.Count} done";
+            
+            string sub = doc.Pages.Count == 1 ? L.T("1 page") : doc.Kind == SourceKind.ImageSequence ? L.F("{0} images", doc.Pages.Count) : L.F("{0} pages", doc.Pages.Count);
+            if (doc.RecognizedCount > 0) sub += "  •  " + (doc.IsRecognized ? L.T("recognized") : L.F("{0}/{1} done", doc.RecognizedCount, doc.Pages.Count));
             TextRenderer.DrawText(g, sub, Theme.Small, new Rectangle(nameRect.X, nameRect.Bottom + S(2), nameRect.Width, S(18)), doc.IsRecognized ? Theme.Accent : Theme.SubText, TextFormatFlags.EndEllipsis | TextFormatFlags.Left);
         }
 
         private ContextMenuStrip FileMenu()
         {
             var m = new ContextMenuStrip();
-            m.Items.Add("Recognize", null, async (s, e) => await RecognizeCurrentDocumentAsync());
-            m.Items.Add("Recognize all documents", null, async (s, e) => await RecognizeAllAsync());
-            m.Items.Add("Export", null, async (s, e) => await ExportCurrentAsync());
-            m.Items.Add("Export as…", null, async (s, e) => await ExportCurrentAsync(true));
+            m.Items.Add(L.T("Recognize"), null, async (s, e) => await RecognizeCurrentDocumentAsync());
+            m.Items.Add(L.T("Recognize all documents"), null, async (s, e) => await RecognizeAllAsync());
+            m.Items.Add(L.T("Export"), null, async (s, e) => await ExportCurrentAsync());
+            m.Items.Add(L.T("Export as…"), null, async (s, e) => await ExportCurrentAsync(true));
             m.Items.Add(new ToolStripSeparator());
-            m.Items.Add("Rename…", null, (s, e) => RenameCurrent());
-            m.Items.Add("Open containing folder", null, (s, e) =>
+            m.Items.Add(L.T("Rename…"), null, (s, e) => RenameCurrent());
+            m.Items.Add(L.T("Open containing folder"), null, (s, e) =>
             {
                 var p = CurrentDoc?.SourcePath;
                 if (p == null) return;
@@ -727,8 +760,8 @@ namespace FalconOcr.App.Pages
                 else if (Directory.Exists(p)) Process.Start("explorer.exe", "\"" + p + "\"");
             });
             m.Items.Add(new ToolStripSeparator());
-            m.Items.Add("Remove", null, (s, e) => DeleteCurrent());
-            m.Items.Add("Remove all", null, (s, e) => RemoveAll());
+            m.Items.Add(L.T("Remove"), null, (s, e) => DeleteCurrent());
+            m.Items.Add(L.T("Remove all"), null, (s, e) => RemoveAll());
             return m;
         }
 
@@ -736,7 +769,7 @@ namespace FalconOcr.App.Pages
         {
             var d = CurrentDoc;
             if (d == null) return;
-            var name = Prompt.Show(this, "Rename document", "Name:", d.Name);
+            var name = Prompt.Show(this, L.T("Rename document"), L.T("Name:"), d.Name);
             if (string.IsNullOrWhiteSpace(name)) return;
             d.Name = name.Trim();
             _fileList.Invalidate();
@@ -749,7 +782,7 @@ namespace FalconOcr.App.Pages
             var p = CurrentPage;
             if (p == null) return;
             p.Rotation += 90;
-            _shell.SetStatus($"{p.Label} rotated to {p.Rotation}° — recognize again to update the text.");
+            _shell.SetStatus(L.F("{0} rotated to {1}° — recognize again to update the text.", p.Label, p.Rotation));
             ShowPage();
             _fileList.Invalidate();
             if (_thumbs.Visible) BuildThumbnails();
@@ -760,7 +793,7 @@ namespace FalconOcr.App.Pages
             if (CurrentPage == null) return;
             if (CurrentPage.Crop.HasValue && !_viewer.CropMode)
             {
-                var r = MessageBox.Show(this, "This page is already cropped.\n\nYes = crop further, No = restore the full page.", "Crop", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question);
+                var r = MessageBox.Show(this, L.T("This page is already cropped.\n\nYes = crop further, No = restore the full page."), L.T("Crop"), MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question);
                 if (r == DialogResult.Cancel) return;
                 if (r == DialogResult.No)
                 {
@@ -780,7 +813,7 @@ namespace FalconOcr.App.Pages
             if (p == null || _viewer.Image == null) return;
             p.ApplyCrop(r, _viewer.Image.Size);
             _viewer.CropMode = false;
-            _shell.SetStatus($"{p.Label} cropped — recognize again to update the text.");
+            _shell.SetStatus(L.F("{0} cropped — recognize again to update the text.", p.Label));
             ShowPage();
             if (_thumbs.Visible) BuildThumbnails();
         }
@@ -791,13 +824,13 @@ namespace FalconOcr.App.Pages
             if (d == null) return;
             if (_thumbs.Visible && d.Pages.Count > 1 && CurrentPage != null)
             {
-                if (MessageBox.Show(this, $"Remove {CurrentPage.Label} from \"{d.Name}\"?", "Delete", MessageBoxButtons.OKCancel, MessageBoxIcon.Question) != DialogResult.OK) return;
+                if (MessageBox.Show(this, L.F("Remove {0} from \"{1}\"?", CurrentPage.Label, d.Name), L.T("Delete"), MessageBoxButtons.OKCancel, MessageBoxIcon.Question) != DialogResult.OK) return;
                 d.RemovePage(CurrentPage);
                 _pageIndex = Math.Min(_pageIndex, d.Pages.Count - 1);
                 ShowCurrent();
                 return;
             }
-            if (d.RecognizedCount > 0 && MessageBox.Show(this, $"Remove \"{d.Name}\" and its recognition results?", "Delete", MessageBoxButtons.OKCancel, MessageBoxIcon.Question) != DialogResult.OK) return;
+            if (d.RecognizedCount > 0 && MessageBox.Show(this, L.F("Remove \"{0}\" and its recognition results?", d.Name), L.T("Delete"), MessageBoxButtons.OKCancel, MessageBoxIcon.Question) != DialogResult.OK) return;
             int idx = _fileList.SelectedIndex;
             _fileList.Items.Remove(d);
             _docs.Remove(d);
@@ -810,7 +843,7 @@ namespace FalconOcr.App.Pages
         private void RemoveAll()
         {
             if (_docs.Count == 0) return;
-            if (MessageBox.Show(this, "Remove all documents from the workspace?", "Remove all", MessageBoxButtons.OKCancel, MessageBoxIcon.Question) != DialogResult.OK) return;
+            if (MessageBox.Show(this, L.T("Remove all documents from the workspace?"), L.T("Remove all"), MessageBoxButtons.OKCancel, MessageBoxIcon.Question) != DialogResult.OK) return;
             _fileList.Items.Clear();
             DisposeDocuments();
             ShowCurrent();
@@ -854,7 +887,7 @@ namespace FalconOcr.App.Pages
             }
             _layout.Invalidate();
             UpdateFormatState();
-            _shell.SetStatus("Paragraph style changed to " + (styleIndex <= 4 ? _styleCombo.Items[Math.Min(styleIndex, 4)] : "Numbered list") + ".");
+            _shell.SetStatus(L.F("Paragraph style changed to {0}.", styleIndex <= 4 ? _styleCombo.Items[Math.Min(styleIndex, 4)] : L.T("Numbered list")));
         }
 
         private void ToggleLineStyle(Action<TextStyle> change)
@@ -882,12 +915,131 @@ namespace FalconOcr.App.Pages
             UpdateFormatState();
         }
 
+        // ================================================================ trial banner
+
+        /// <summary>Amber notice under the toolbar while the application runs as a trial.</summary>
+        private Panel BuildTrialBanner()
+        {
+            var trial = Program.Trial;
+            var banner = new Panel { Dock = DockStyle.Top, Height = S(40), BackColor = Color.FromArgb(255, 244, 214), Padding = new Padding(S(12), S(6), S(10), S(6)) };
+            banner.Paint += (s, e) =>
+            {
+                e.Graphics.SmoothingMode = SmoothingMode.AntiAlias;
+                using (var p = new Pen(Color.FromArgb(242, 210, 122))) e.Graphics.DrawLine(p, 0, banner.Height - 1, banner.Width, banner.Height - 1);
+                // Clock icon.
+                int d = S(20), y = (banner.Height - d) / 2;
+                using (var b = new SolidBrush(Color.FromArgb(255, 179, 0))) e.Graphics.FillEllipse(b, S(14), y, d, d);
+                using (var p = new Pen(Color.White, S(2))) { e.Graphics.DrawLine(p, S(14) + d / 2, y + S(5), S(14) + d / 2, y + d / 2); e.Graphics.DrawLine(p, S(14) + d / 2, y + d / 2, S(14) + d / 2 + S(4), y + d / 2 + S(3)); }
+            };
+            var text = new Label
+            {
+                Dock = DockStyle.Fill,
+                TextAlign = ContentAlignment.MiddleLeft,
+                ForeColor = Color.FromArgb(102, 71, 0),
+                Padding = new Padding(S(30), 0, 0, 0),
+                Text = L.F("You are using the trial version of Falcon OCR — {0} of {1} days left. All features are available during the trial.", trial.DaysLeft, trial.TotalDays)
+            };
+            var activate = new Button { Text = L.T("Activate now"), Dock = DockStyle.Right, Width = S(130), FlatStyle = FlatStyle.Flat, BackColor = Theme.Accent, ForeColor = Color.White, Font = Theme.Bold, Cursor = Cursors.Hand };
+            activate.FlatAppearance.BorderSize = 0;
+            activate.Click += (s, e) => (FindForm() as MainForm)?.ShowActivation();
+            var close = new Button { Text = "✕", Dock = DockStyle.Right, Width = S(34), FlatStyle = FlatStyle.Flat, BackColor = banner.BackColor, ForeColor = Color.FromArgb(102, 71, 0), Cursor = Cursors.Hand };
+            close.FlatAppearance.BorderSize = 0;
+            new ToolTip().SetToolTip(close, L.T("Hide until the next start"));
+            close.Click += (s, e) => HideTrialBanner();
+            banner.Controls.Add(text);
+            banner.Controls.Add(new Panel { Dock = DockStyle.Right, Width = S(8), BackColor = banner.BackColor });
+            banner.Controls.Add(activate);
+            banner.Controls.Add(close);
+            return banner;
+        }
+
+        /// <summary>Removes the trial notice (after activation, or when the user closes it).</summary>
+        public void HideTrialBanner()
+        {
+            if (_trialBanner == null) return;
+            Controls.Remove(_trialBanner);
+            _trialBanner.Dispose();
+            _trialBanner = null;
+        }
+
+        /// <summary>Splitter with a centred grip, highlighted on hover.</summary>
+        private sealed class GripSplitter : Splitter
+        {
+            private bool _hover;
+
+            public GripSplitter()
+            {
+                SetStyle(ControlStyles.UserPaint | ControlStyles.AllPaintingInWmPaint | ControlStyles.OptimizedDoubleBuffer | ControlStyles.ResizeRedraw, true);
+                BackColor = Theme.Window;
+            }
+
+            protected override void OnMouseEnter(EventArgs e) { _hover = true; Invalidate(); base.OnMouseEnter(e); }
+            protected override void OnMouseLeave(EventArgs e) { _hover = false; Invalidate(); base.OnMouseLeave(e); }
+
+            protected override void OnPaint(PaintEventArgs e)
+            {
+                e.Graphics.Clear(_hover ? Theme.AccentLight : BackColor);
+                int cx = Width / 2, cy = Height / 2;
+                using (var b = new SolidBrush(_hover ? Theme.Accent : Color.FromArgb(170, 178, 186)))
+                    for (int i = -2; i <= 2; i++) e.Graphics.FillEllipse(b, cx - 1.5f, cy + i * 7 - 1.5f, 3, 3);
+            }
+        }
+
+        /// <summary>Installed font families, the fonts the OCR uses by default first.</summary>
+        private static object[] FontFamilies()
+        {
+            var preferred = new[] { "Calibri", "Arial", "Times New Roman", "Segoe UI", "Cambria", "Georgia", "Verdana", "Courier New", "Microsoft YaHei", "SimSun", "Yu Gothic", "MS Mincho", "Malgun Gothic" };
+            var installed = new List<string>();
+            using (var fc = new System.Drawing.Text.InstalledFontCollection())
+                installed.AddRange(fc.Families.Select(f => f.Name).Where(n => !n.StartsWith("@")));
+            return preferred.Where(p => installed.Contains(p)).Concat(installed.Where(n => !preferred.Contains(n)).OrderBy(n => n)).Cast<object>().ToArray();
+        }
+
+        /// <summary>Lines of the paragraph containing the selected line (or the line alone inside tables).</summary>
+        private List<TextLine> ParagraphLines(out LayoutBlock block)
+        {
+            var line = _layout.SelectedLine;
+            block = _layout.BlockOf(line);
+            if (line == null) return new List<TextLine>();
+            return block != null && block.Kind != BlockKind.Table ? block.AllTextLines().ToList() : new List<TextLine> { line };
+        }
+
+        private void ApplyFont(string family, float? size)
+        {
+            var targets = ParagraphLines(out var block);
+            if (targets.Count == 0 || (string.IsNullOrWhiteSpace(family) && size == null)) return;
+            foreach (var t in targets)
+            {
+                if (!string.IsNullOrWhiteSpace(family)) t.Style.FontFamily = family;
+                if (size.HasValue) t.Style.FontSizePt = size.Value;
+            }
+            if (block != null && block.Kind != BlockKind.Table)
+            {
+                if (!string.IsNullOrWhiteSpace(family)) block.Style.FontFamily = family;
+                if (size.HasValue) block.Style.FontSizePt = size.Value;
+            }
+            _layout.Invalidate();
+            UpdateFormatState();
+            _shell.SetStatus(size.HasValue ? L.F("Font size set to {0} pt.", size.Value) : L.F("Font set to {0}.", family));
+        }
+
+        private void ApplyFontSize(string text)
+        {
+            if (float.TryParse((text ?? "").Trim(), System.Globalization.NumberStyles.Float, System.Globalization.CultureInfo.InvariantCulture, out float pt) && pt >= 4 && pt <= 200)
+                ApplyFont(null, pt);
+            else UpdateFormatState();
+        }
+
         private void UpdateFormatState()
         {
             var line = _layout.SelectedLine;
             var block = _layout.BlockOf(line);
             bool on = line != null;
             foreach (var b in new[] { _boldButton, _italicButton, _underlineButton, _bulletButton, _numberButton }) b.Enabled = on;
+            _fontCombo.Enabled = _sizeCombo.Enabled = on;
+            if (on && !_fontCombo.Focused) _fontCombo.Text = line.Style.FontFamily ?? LanguageCatalog.Get(Settings.Ocr.Language).DefaultFont;
+            if (on && !_sizeCombo.Focused) _sizeCombo.Text = line.Style.FontSizePt.ToString("0.#", System.Globalization.CultureInfo.InvariantCulture);
+            if (!on) { _fontCombo.Text = ""; _sizeCombo.Text = ""; }
             _styleCombo.Enabled = block != null && block.Kind != BlockKind.Table && block.Kind != BlockKind.Figure;
             _boldButton.Checked = on && line.Style.Bold;
             _italicButton.Checked = on && line.Style.Italic;
@@ -907,11 +1059,11 @@ namespace FalconOcr.App.Pages
             foreach (var p in pages.Where(p => p?.Result != null)) sb.AppendLine(p.Result.GetPlainText());
             if (sb.Length == 0)
             {
-                _shell.SetStatus("Nothing to copy — recognize the document first.");
+                _shell.SetStatus(L.T("Nothing to copy — recognize the document first."));
                 return;
             }
             Clipboard.SetText(sb.ToString());
-            _shell.SetStatus("Text copied to the clipboard.");
+            _shell.SetStatus(L.T("Text copied to the clipboard."));
         }
 
         // ================================================================ recognition
@@ -932,7 +1084,7 @@ namespace FalconOcr.App.Pages
             var pages = d.Pages.Where(p => p.Result == null).ToList();
             if (pages.Count == 0)
             {
-                if (MessageBox.Show(this, $"\"{d.Name}\" is already recognized. Recognize it again with the current settings?", "Recognize", MessageBoxButtons.OKCancel, MessageBoxIcon.Question) != DialogResult.OK) return;
+                if (MessageBox.Show(this, L.F("\"{0}\" is already recognized. Recognize it again with the current settings?", d.Name), L.T("Recognize"), MessageBoxButtons.OKCancel, MessageBoxIcon.Question) != DialogResult.OK) return;
                 pages = d.Pages.ToList();
             }
             // Current page first so the user sees a result as early as possible.
@@ -970,11 +1122,11 @@ namespace FalconOcr.App.Pages
             var missing = OcrService.MissingModels(Settings.Ocr.Language);
             if (missing.Count > 0)
             {
-                MessageBox.Show(this, "OCR models are missing:\n" + string.Join("\n", missing), "Recognize", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(this, L.T("OCR models are missing:\n") + string.Join("\n", missing), L.T("Recognize"), MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return false;
             }
             _cts = new CancellationTokenSource();
-            _recognizeButton.Text = "Stop";
+            _recognizeButton.Text = L.T("Stop");
             _recognizeButton.Icon = IconKind.Stop;
             _recognizeButton.IconColor = Theme.Danger;
             var sw = Stopwatch.StartNew();
@@ -982,27 +1134,27 @@ namespace FalconOcr.App.Pages
             try
             {
                 await _shell.Ocr.RecognizeAsync(pages, Settings.Ocr, progress, page => BeginInvoke(new Action(() => OnPageRecognized(page))), _cts.Token);
-                _shell.SetStatus($"Text recognition completed — {pages.Count} page(s) in {sw.Elapsed.TotalSeconds:0.0}s.");
+                _shell.SetStatus(L.F("Text recognition completed — {0} page(s) in {1:0.0}s.", pages.Count, sw.Elapsed.TotalSeconds));
                 foreach (var doc in pages.Select(p => p.Document).Distinct())
                     _shell.History.Add(new HistoryEntry { Time = DateTime.Now, Source = doc.SourcePath ?? doc.Name, Format = "Recognition", Pages = pages.Count(p => p.Document == doc), Language = Settings.Ocr.Language.ToString(), Seconds = sw.Elapsed.TotalSeconds });
                 return true;
             }
             catch (OperationCanceledException)
             {
-                _shell.SetStatus("Recognition stopped.");
+                _shell.SetStatus(L.T("Recognition stopped."));
                 return false;
             }
             catch (Exception ex)
             {
-                _shell.SetStatus("Recognition failed.");
-                Error("Recognize", ex);
+                _shell.SetStatus(L.T("Recognition failed."));
+                Error(L.T("Recognize"), ex);
                 return false;
             }
             finally
             {
                 _cts.Dispose();
                 _cts = null;
-                _recognizeButton.Text = "Recognize";
+                _recognizeButton.Text = L.T("Recognize");
                 _recognizeButton.Icon = IconKind.Play;
                 _recognizeButton.IconColor = Theme.Accent;
                 _fileList.Invalidate();
@@ -1024,15 +1176,15 @@ namespace FalconOcr.App.Pages
             var d = CurrentDoc;
             if (d == null)
             {
-                MessageBox.Show(this, "Add and recognize a document first.", "Export", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show(this, L.T("Add and recognize a document first."), L.T("Export"), MessageBoxButtons.OK, MessageBoxIcon.Information);
                 return;
             }
             var missing = d.Pages.Where(p => p.Result == null).ToList();
             if (missing.Count > 0)
             {
                 var answer = missing.Count == d.Pages.Count
-                    ? (MessageBox.Show(this, $"\"{d.Name}\" has not been recognized yet. Recognize it now?", "Export", MessageBoxButtons.OKCancel, MessageBoxIcon.Question) == DialogResult.OK ? DialogResult.Yes : DialogResult.Cancel)
-                    : MessageBox.Show(this, $"{missing.Count} of {d.Pages.Count} pages are not recognized.\n\nYes = recognize them first\nNo = export only the recognized pages", "Export", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question);
+                    ? (MessageBox.Show(this, L.F("\"{0}\" has not been recognized yet. Recognize it now?", d.Name), L.T("Export"), MessageBoxButtons.OKCancel, MessageBoxIcon.Question) == DialogResult.OK ? DialogResult.Yes : DialogResult.Cancel)
+                    : MessageBox.Show(this, L.F("{0} of {1} pages are not recognized.\n\nYes = recognize them first\nNo = export only the recognized pages", missing.Count, d.Pages.Count), L.T("Export"), MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question);
                 if (answer == DialogResult.Cancel) return;
                 if (answer == DialogResult.Yes && !await RecognizePagesAsync(missing)) return;
             }
@@ -1050,11 +1202,11 @@ namespace FalconOcr.App.Pages
             else
             {
                 try { Directory.CreateDirectory(Settings.OutputFolder); }
-                catch (Exception ex) { Error("Export", new IOException("Cannot create the output folder: " + ex.Message)); return; }
+                catch (Exception ex) { Error(L.T("Export"), new IOException(L.T("Cannot create the output folder: ") + ex.Message)); return; }
                 path = Exporter.UniquePath(Settings.OutputFolder, Path.GetFileNameWithoutExtension(d.Name), Exporter.Extension(format));
             }
 
-            _shell.SetStatus("Exporting " + Path.GetFileName(path) + "…");
+            _shell.SetStatus(L.F("Exporting {0}…", Path.GetFileName(path)));
             var opts = Settings.ExportOptions();
             var sw = Stopwatch.StartNew();
             try
@@ -1063,12 +1215,12 @@ namespace FalconOcr.App.Pages
             }
             catch (Exception ex)
             {
-                _shell.SetStatus("Export failed.");
-                Error("Export", ex);
+                _shell.SetStatus(L.T("Export failed."));
+                Error(L.T("Export"), ex);
                 return;
             }
             _shell.History.Add(new HistoryEntry { Time = DateTime.Now, Source = d.SourcePath ?? d.Name, Output = path, Format = format.ToString().ToUpperInvariant(), Pages = d.RecognizedCount, Language = Settings.Ocr.Language.ToString(), Seconds = sw.Elapsed.TotalSeconds });
-            _shell.SetStatus("Exported to " + path);
+            _shell.SetStatus(L.F("Exported to {0}", path));
             if (Settings.OpenAfterExport)
             {
                 try { Process.Start(new ProcessStartInfo(path) { UseShellExecute = true }); }
@@ -1082,20 +1234,20 @@ namespace FalconOcr.App.Pages
         {
             var col = new Panel { Dock = DockStyle.Right, Width = S(340), Padding = new Padding(0, S(8), S(10), S(8)), BackColor = Theme.Window };
 
-            var ocrCard = new CardPanel("OCR Settings", IconKind.Settings) { Dock = DockStyle.Top, Height = S(390) };
-            _docType = Field.Combo("Editable Document (Recommended)", "Exact Copy (keep positions)", "Plain Text");
-            _language = Field.Combo(LanguageCatalog.All.Select(l => (object)l.DisplayName).ToArray());
-            _layoutMode = Field.Combo("Automatic", "Single column", "Text lines only");
-            _detectTables = new CheckBox { Text = "Detect tables and columns", Dock = DockStyle.Top, Height = S(40), FlatStyle = FlatStyle.System };
-            var advanced = new Button { Text = "⚙  Advanced Settings…", Dock = DockStyle.Top, Height = S(38), FlatStyle = FlatStyle.Flat, BackColor = Color.White, ForeColor = Theme.Text };
+            var ocrCard = new CardPanel(L.T("OCR Settings"), IconKind.Settings) { Dock = DockStyle.Top, Height = S(390) };
+            _docType = Field.Combo(L.T("Editable Document (Recommended)"), L.T("Exact Copy (keep positions)"), L.T("Plain Text"));
+            _language = Field.Combo(LanguageCatalog.All.Select(l => (object)L.T(l.DisplayName)).ToArray());
+            _layoutMode = Field.Combo(L.T("Automatic"), L.T("Single column"), L.T("Text lines only"));
+            _detectTables = new CheckBox { Text = L.T("Detect tables and columns"), Dock = DockStyle.Top, Height = S(40), FlatStyle = FlatStyle.System };
+            var advanced = new Button { Text = L.T("⚙  Advanced Settings…"), Dock = DockStyle.Top, Height = S(38), FlatStyle = FlatStyle.Flat, BackColor = Color.White, ForeColor = Theme.Text };
             advanced.FlatAppearance.BorderColor = Theme.Border;
             advanced.Click += (s, e) => { using (var dlg = new AdvancedSettingsDialog(Settings)) if (dlg.ShowDialog(this) == DialogResult.OK) Settings.Save(); };
-            Stack(ocrCard, Field.Caption("Document Type:"), _docType, Field.Caption("Language:"), _language, Field.Caption("Layout Analysis:"), _layoutMode, Field.Spacer(S(6)), _detectTables, Field.Spacer(S(6)), advanced);
+            Stack(ocrCard, Field.Caption(L.T("Document Type:")), _docType, Field.Caption(L.T("Language:")), _language, Field.Caption(L.T("Layout Analysis:")), _layoutMode, Field.Spacer(S(6)), _detectTables, Field.Spacer(S(6)), advanced);
 
-            var outCard = new CardPanel("Output Format", IconKind.Export) { Dock = DockStyle.Top, Height = S(290) };
-            var word = new IconRadio("Microsoft Word (.docx)", IconKind.Word);
-            var excel = new IconRadio("Microsoft Excel (.xlsx)", IconKind.Excel);
-            var html = new IconRadio("HTML (.html)", IconKind.Html);
+            var outCard = new CardPanel(L.T("Output Format"), IconKind.Export) { Dock = DockStyle.Top, Height = S(290) };
+            var word = new IconRadio(L.T("Microsoft Word (.docx)"), IconKind.Word);
+            var excel = new IconRadio(L.T("Microsoft Excel (.xlsx)"), IconKind.Excel);
+            var html = new IconRadio(L.T("HTML (.html)"), IconKind.Html);
             _formatRadios[ExportFormat.Docx] = word;
             _formatRadios[ExportFormat.Xlsx] = excel;
             _formatRadios[ExportFormat.Html] = html;
@@ -1108,9 +1260,9 @@ namespace FalconOcr.App.Pages
             var folderRow = new Panel { Dock = DockStyle.Top, Height = S(30) };
             folderRow.Controls.Add(_outputFolder);
             folderRow.Controls.Add(browse);
-            Stack(outCard, radios, Field.Caption("Output Folder:"), folderRow);
+            Stack(outCard, radios, Field.Caption(L.T("Output Folder:")), folderRow);
 
-            var export = new AccentButton("Export", IconKind.Export) { Dock = DockStyle.Top, Height = S(52) };
+            var export = new AccentButton(L.T("Export"), IconKind.Export) { Dock = DockStyle.Top, Height = S(52) };
             export.Click += async (s, e) => await ExportCurrentAsync();
 
             col.Controls.Add(export);
@@ -1144,7 +1296,7 @@ namespace FalconOcr.App.Pages
             _outputFolder.Leave += (s, e) => { Settings.OutputFolder = _outputFolder.Text.Trim(); Settings.Save(); };
             browse.Click += (s, e) =>
             {
-                using (var dlg = new FolderBrowserDialog { SelectedPath = Settings.OutputFolder, Description = "Output folder for exported documents" })
+                using (var dlg = new FolderBrowserDialog { SelectedPath = Settings.OutputFolder, Description = L.T("Output folder for exported documents") })
                 {
                     if (dlg.ShowDialog(this) != DialogResult.OK) return;
                     _outputFolder.Text = dlg.SelectedPath;
@@ -1206,22 +1358,22 @@ namespace FalconOcr.App.Pages
         private void ShowHelp()
         {
             MessageBox.Show(this,
-                "Falcon OCR — offline OCR with PaddleOCR (PP-OCRv5)\n\n" +
-                "1. Add PDFs, images, image sequences, paste or scan a page.\n" +
-                "2. Choose the language and document type on the right.\n" +
-                "3. Recognize (F5). The recognized page is rebuilt next to the original;\n" +
-                "    click a line to find it in the image, double-click (or F2) to correct it.\n" +
-                "4. Export to Word, Excel or HTML (Ctrl+E).\n\n" +
-                "Shortcuts: Ctrl+O add files · Ctrl+V paste image · Ctrl+R rotate · Del remove\n" +
-                "PgUp/PgDn pages · Ctrl+wheel zoom · middle mouse pans\n\n" +
-                (Program.IsTrial ? Program.Trial.Message : Program.License?.IsValid == true ? Program.License.Message : "Unlicensed"),
-                "Help", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                L.T("Falcon OCR — offline OCR with PaddleOCR (PP-OCRv5)\n\n" +
+                    "1. Add PDFs, images, image sequences, paste or scan a page.\n" +
+                    "2. Choose the language and document type on the right.\n" +
+                    "3. Recognize (F5). The recognized page is rebuilt next to the original;\n" +
+                    "    click a line to find it in the image, double-click (or F2) to correct it.\n" +
+                    "4. Export to Word, Excel or HTML (Ctrl+E).\n\n" +
+                    "Shortcuts: Ctrl+O add files · Ctrl+V paste image · Ctrl+R rotate · Del remove\n" +
+                    "PgUp/PgDn pages · Ctrl+wheel zoom · middle mouse pans") + "\n\n" +
+                (Program.IsTrial ? Program.Trial.Message : Program.License?.IsValid == true ? Program.License.Message : L.T("Unlicensed")),
+                L.T("Help"), MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
         public bool ConfirmClose()
         {
             if (_cts == null) return true;
-            if (MessageBox.Show(this, "Recognition is still running. Stop it and exit?", "Falcon OCR", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning) != DialogResult.OK) return false;
+            if (MessageBox.Show(this, L.T("Recognition is still running. Stop it and exit?"), "Falcon OCR", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning) != DialogResult.OK) return false;
             _cts.Cancel();
             return true;
         }

@@ -1,4 +1,5 @@
 using System;
+using FalconOcr.Localization;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Drawing.Drawing2D;
@@ -42,6 +43,9 @@ namespace FalconOcr.App
         private readonly IconButton _maxButton;
         private readonly Dictionary<string, NavButton> _nav = new Dictionary<string, NavButton>();
         private readonly Dictionary<string, Control> _pages = new Dictionary<string, Control>();
+        private readonly SidebarToggle _sidebarToggle;
+        private readonly ToolTip _navTips = new ToolTip();
+        private bool _sidebarCollapsed;
 
         public AppSettings Settings { get; }
         public HistoryStore History { get; }
@@ -89,11 +93,11 @@ namespace FalconOcr.App
             _sidebar.Paint += PaintSidebar;
             var items = new[]
             {
-                ("home", "Home", IconKind.Home),
-                ("ocr", "OCR", IconKind.Ocr),
-                ("batch", "Batch Process", IconKind.Batch),
-                ("history", "History", IconKind.History),
-                ("settings", "Settings", IconKind.Settings)
+                ("home", L.T("Home"), IconKind.Home),
+                ("ocr", L.T("OCR"), IconKind.Ocr),
+                ("batch", L.T("Batch Process"), IconKind.Batch),
+                ("history", L.T("History"), IconKind.History),
+                ("settings", L.T("Settings"), IconKind.Settings)
             };
             foreach (var it in items.Reverse())
             {
@@ -105,10 +109,14 @@ namespace FalconOcr.App
             }
             _sidebar.Controls.Add(new Panel { Dock = DockStyle.Top, Height = Scale(10), BackColor = Color.Transparent });
             _sidebar.Controls[_sidebar.Controls.Count - 1].SendToBack();
+            // Collapse / expand button at the bottom of the sidebar.
+            _sidebarToggle = new SidebarToggle { Dock = DockStyle.Bottom, Height = Scale(52) };
+            _sidebarToggle.Click += (s, e) => SetSidebarCollapsed(!_sidebarCollapsed);
+            _sidebar.Controls.Add(_sidebarToggle);
 
             // ---- status bar
             _statusBar = new BorderPanel { Dock = DockStyle.Bottom, Height = Scale(36), BorderLeft = false, BorderRight = false, BorderBottom = false, Padding = new Padding(0, 1, 0, 0) };
-            _status = new Label { Text = "Ready", Dock = DockStyle.Left, Width = Scale(520), TextAlign = ContentAlignment.MiddleLeft, Padding = new Padding(Scale(16), 0, 0, 0), ForeColor = Theme.Text };
+            _status = new Label { Text = L.T("Ready"), Dock = DockStyle.Left, Width = Scale(520), TextAlign = ContentAlignment.MiddleLeft, Padding = new Padding(Scale(16), 0, 0, 0), ForeColor = Theme.Text };
             _progress = new ProgressBar { Dock = DockStyle.Left, Width = Scale(180), Visible = false, Style = ProgressBarStyle.Continuous };
             var progressHost = new Panel { Dock = DockStyle.Left, Width = Scale(200), Padding = new Padding(Scale(8), Scale(11), Scale(12), Scale(11)) };
             progressHost.Controls.Add(_progress);
@@ -141,6 +149,7 @@ namespace FalconOcr.App
 
             Navigate("home");
             SetCounters(0, 0, Settings.Format);
+            SetSidebarCollapsed(Settings.SidebarCollapsed, save: false);
 
             if (!Settings.Bounds.IsEmpty && SystemInformation.VirtualScreen.IntersectsWith(Settings.Bounds))
             {
@@ -155,8 +164,8 @@ namespace FalconOcr.App
                 var missing = OcrService.MissingModels();
                 if (missing.Count > 0)
                 {
-                    MessageBox.Show(this, "Some OCR model files are missing from the installation:\n\n" + string.Join("\n", missing) +
-                        "\n\nRun tools\\fetch-dependencies.ps1 on a connected machine and rebuild.", "Falcon OCR", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    MessageBox.Show(this, L.F("Some OCR model files are missing from the installation:\n\n{0}\n\nRun tools\\fetch-dependencies.ps1 on a connected machine and rebuild.", string.Join("\n", missing)),
+                        "Falcon OCR", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 }
                 else Ocr.WarmupAsync(Settings.Ocr);
                 if (startupFiles != null && startupFiles.Length > 0) Workspace.AddPaths(startupFiles);
@@ -205,6 +214,67 @@ namespace FalconOcr.App
 
         private int Scale(int v) => (int)Math.Round(v * DeviceDpi / 96f);
 
+        /// <summary>Collapsed sidebar shows icons only (names as tooltips); the state is remembered.</summary>
+        private void SetSidebarCollapsed(bool collapsed, bool save = true)
+        {
+            _sidebarCollapsed = collapsed;
+            _sidebar.Width = Scale(collapsed ? 64 : 184);
+            foreach (var n in _nav.Values)
+            {
+                n.Compact = collapsed;
+                _navTips.SetToolTip(n, collapsed ? n.Text : null);
+            }
+            _sidebarToggle.Collapsed = collapsed;
+            _navTips.SetToolTip(_sidebarToggle, collapsed ? L.T("Expand sidebar") : L.T("Collapse sidebar"));
+            if (save)
+            {
+                Settings.SidebarCollapsed = collapsed;
+                Settings.Save();
+            }
+        }
+
+        /// <summary>« Collapse / » button at the bottom of the sidebar.</summary>
+        private sealed class SidebarToggle : Control
+        {
+            private bool _hover, _collapsed;
+
+            public SidebarToggle()
+            {
+                SetStyle(ControlStyles.UserPaint | ControlStyles.AllPaintingInWmPaint | ControlStyles.OptimizedDoubleBuffer | ControlStyles.SupportsTransparentBackColor | ControlStyles.ResizeRedraw, true);
+                BackColor = Color.Transparent;
+                Cursor = Cursors.Hand;
+                Font = Theme.Base;
+            }
+
+            public bool Collapsed
+            {
+                get => _collapsed;
+                set { _collapsed = value; Invalidate(); }
+            }
+
+            protected override void OnMouseEnter(EventArgs e) { _hover = true; Invalidate(); base.OnMouseEnter(e); }
+            protected override void OnMouseLeave(EventArgs e) { _hover = false; Invalidate(); base.OnMouseLeave(e); }
+
+            protected override void OnPaint(PaintEventArgs e)
+            {
+                var g = e.Graphics;
+                g.SmoothingMode = SmoothingMode.AntiAlias;
+                float k = DeviceDpi / 96f;
+                using (var p = new Pen(Color.FromArgb(60, 255, 255, 255))) g.DrawLine(p, 10 * k, 0, Width - 10 * k, 0);
+                var box = new RectangleF(10 * k, 8 * k, Width - 20 * k, Height - 16 * k);
+                if (_hover) using (var path = Icons.Rounded(box, 8 * k)) using (var b = new SolidBrush(Theme.SidebarHover)) g.FillPath(b, path);
+                float s = 20 * k;
+                var icon = _collapsed ? IconKind.ChevronRight : IconKind.ChevronLeft;
+                if (_collapsed)
+                {
+                    Icons.Draw(g, icon, new RectangleF((Width - s) / 2, (Height - s) / 2, s, s), Color.White, 2 * k);
+                    return;
+                }
+                Icons.Draw(g, icon, new RectangleF(22 * k, (Height - s) / 2, s, s), Color.White, 2 * k);
+                TextRenderer.DrawText(g, L.T("Collapse"), Font, new Rectangle((int)(62 * k), 0, Width - (int)(62 * k), Height), Color.FromArgb(225, 245, 236), TextFormatFlags.VerticalCenter | TextFormatFlags.Left);
+            }
+        }
+
         /// <summary>Opens the activation window (trial badge, Settings); removes the badge once activated.</summary>
         public void ShowActivation()
         {
@@ -215,7 +285,8 @@ namespace FalconOcr.App
                 Program.Trial = null;
             }
             foreach (var b in _titleBar.Controls.OfType<TrialBadge>().ToList()) _titleBar.Controls.Remove(b);
-            SetStatus("Activated — " + Program.License.Message);
+            Workspace.HideTrialBanner();
+            SetStatus(L.T("Activated — ") + Program.License.Message);
         }
 
         /// <summary>Amber "TRIAL · n days left" pill in the title bar; click to activate.</summary>
@@ -229,7 +300,7 @@ namespace FalconOcr.App
                 BackColor = Color.Transparent;
                 Cursor = Cursors.Hand;
                 Font = Theme.Bold;
-                Text = $"TRIAL · {trial.DaysLeft} day{(trial.DaysLeft == 1 ? "" : "s")} left — Activate now";
+                Text = trial.DaysLeft == 1 ? L.T("TRIAL · 1 day left — Activate now") : L.F("TRIAL · {0} days left — Activate now", trial.DaysLeft);
                 Width = TextRenderer.MeasureText(Text, Font).Width + (int)(40 * DeviceDpi / 96f);
             }
 
@@ -261,7 +332,7 @@ namespace FalconOcr.App
 
         public void SetCounters(int totalFiles, int selected, ExportFormat format)
         {
-            _counters.Text = $"Total Files: {totalFiles}     |     Selected: {selected}     |     Output: {format.ToString().ToUpperInvariant()}";
+            _counters.Text = L.F("Total Files: {0}     |     Selected: {1}     |     Output: {2}", totalFiles, selected, format.ToString().ToUpperInvariant());
         }
 
         public void Navigate(string page)
@@ -303,9 +374,9 @@ namespace FalconOcr.App
             g.SmoothingMode = SmoothingMode.AntiAlias;
             int logo = Scale(34);
             Icons.Draw(g, IconKind.Logo, new RectangleF(Scale(18), (_titleBar.Height - logo) / 2f, logo, logo), Color.FromArgb(58, 190, 140));
-            using (var f = new Font("Segoe UI Semibold", 17f))
+            using (var f = Theme.Semibold(17f))
                 TextRenderer.DrawText(g, "Falcon OCR", f, new Point(Scale(62), Scale(9)), Color.White);
-            TextRenderer.DrawText(g, "Convert Scans and Images into Editable Documents", Theme.Base, new Rectangle(Scale(215), 0, Scale(520), _titleBar.Height), Color.FromArgb(225, 245, 236), TextFormatFlags.VerticalCenter);
+            TextRenderer.DrawText(g, L.T("Convert Scans and Images into Editable Documents"), Theme.Base, new Rectangle(Scale(215), 0, Scale(520), _titleBar.Height), Color.FromArgb(225, 245, 236), TextFormatFlags.VerticalCenter);
         }
 
         private void PaintSidebar(object sender, PaintEventArgs e)

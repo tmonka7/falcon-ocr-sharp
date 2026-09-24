@@ -4,6 +4,7 @@ using System.IO;
 using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
+using FalconOcr.Localization;
 using Microsoft.Win32;
 
 namespace FalconOcr.Licensing
@@ -20,9 +21,9 @@ namespace FalconOcr.Licensing
         public DateTime EndsUtc => StartedUtc.AddDays(TotalDays);
 
         public string Message =>
-            Tampered ? "The trial information on this computer is invalid (modified data or system clock set back)."
-            : Expired ? $"The {TotalDays}-day trial ended on {EndsUtc.ToLocalTime():yyyy-MM-dd}."
-            : $"Trial version — {DaysLeft} of {TotalDays} days remaining (ends {EndsUtc.ToLocalTime():yyyy-MM-dd}).";
+            Tampered ? L.T("The trial information on this computer is invalid (modified data or system clock set back).")
+            : Expired ? L.F("The {0}-day trial ended on {1}.", TotalDays, EndsUtc.ToLocalTime().ToString("yyyy-MM-dd"))
+            : L.F("Trial version — {0} of {1} days remaining (ends {2}).", DaysLeft, TotalDays, EndsUtc.ToLocalTime().ToString("yyyy-MM-dd"));
     }
 
     /// <summary>

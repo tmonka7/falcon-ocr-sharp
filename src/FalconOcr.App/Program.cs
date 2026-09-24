@@ -1,4 +1,5 @@
 using System;
+using FalconOcr.Localization;
 using System.IO;
 using System.Threading;
 using System.Windows.Forms;
@@ -14,6 +15,9 @@ namespace FalconOcr.App
             // Native libraries (onnxruntime, pdfium, VC++ runtime) live next to the executable.
             Environment.CurrentDirectory = AppDomain.CurrentDomain.BaseDirectory;
 
+            // Interface language first: every window and the theme fonts depend on it.
+            L.Load(Services.AppSettings.Load().UiLanguage ?? L.FromSystem());
+
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Application.SetUnhandledExceptionMode(UnhandledExceptionMode.CatchException);
@@ -22,7 +26,7 @@ namespace FalconOcr.App
 
             if (!Environment.Is64BitProcess)
             {
-                MessageBox.Show("Falcon OCR must run as a 64-bit process.", "Falcon OCR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(L.T("Falcon OCR must run as a 64-bit process."), "Falcon OCR", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 
@@ -66,7 +70,7 @@ namespace FalconOcr.App
             {
                 var log = Path.Combine(Services.AppPaths.DataDir, "error.log");
                 File.AppendAllText(log, DateTime.Now + Environment.NewLine + ex + Environment.NewLine + Environment.NewLine);
-                MessageBox.Show("An unexpected error occurred:\n\n" + ex.Message + "\n\nDetails were written to:\n" + log, "Falcon OCR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(L.F("An unexpected error occurred:\n\n{0}\n\nDetails were written to:\n{1}", ex.Message, log), "Falcon OCR", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             catch { }
             finally { Interlocked.Exchange(ref _reporting, 0); }

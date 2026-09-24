@@ -1,4 +1,5 @@
 using System;
+using FalconOcr.Localization;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
@@ -49,13 +50,13 @@ namespace FalconOcr.App.Services
                     {
                         ct.ThrowIfCancellationRequested();
                         var p = pages[i];
-                        progress?.Report(new PageProgress { Document = p.Document, Page = p, Done = i, Total = pages.Count, Message = $"Recognizing {p.Document.Name} — {p.Label} ({i + 1}/{pages.Count})" });
+                        progress?.Report(new PageProgress { Document = p.Document, Page = p, Done = i, Total = pages.Count, Message = L.F("Recognizing {0} — {1} ({2}/{3})", p.Document.Name, p.Label, i + 1, pages.Count) });
                         int version = p.Version;
                         var result = _processor.ProcessPage(p, opts, ct);
                         if (p.Version == version) p.Result = result; // page was not rotated/cropped meanwhile
                         pageDone?.Invoke(p);
                     }
-                    progress?.Report(new PageProgress { Done = pages.Count, Total = pages.Count, Message = "Text recognition completed." });
+                    progress?.Report(new PageProgress { Done = pages.Count, Total = pages.Count, Message = L.T("Text recognition completed.") });
                 }, ct).ConfigureAwait(false);
             }
             finally

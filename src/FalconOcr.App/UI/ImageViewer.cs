@@ -1,4 +1,5 @@
 using System;
+using FalconOcr.Localization;
 using System.Drawing;
 using System.Drawing.Drawing2D;
 using System.Linq;
@@ -41,7 +42,7 @@ namespace FalconOcr.App.UI
 
         public TextLine SelectedLine { get; set; }
 
-        public string Placeholder { get; set; } = "Add files to get started";
+        public string Placeholder { get; set; } = L.T("Add files to get started");
 
         public bool CropMode
         {
@@ -121,7 +122,7 @@ namespace FalconOcr.App.UI
             {
                 var r = new Rectangle(0, 0, ClientSize.Width, (int)(30 * DeviceDpi / 96f));
                 using (var b = new SolidBrush(Color.FromArgb(220, 31, 41, 55))) g.FillRectangle(b, r);
-                TextRenderer.DrawText(g, "Drag to select the area to keep — Esc to cancel", Theme.Base, r, Color.White, TextFormatFlags.HorizontalCenter | TextFormatFlags.VerticalCenter);
+                TextRenderer.DrawText(g, L.T("Drag to select the area to keep — Esc to cancel"), Theme.Base, r, Color.White, TextFormatFlags.HorizontalCenter | TextFormatFlags.VerticalCenter);
             }
         }
 
