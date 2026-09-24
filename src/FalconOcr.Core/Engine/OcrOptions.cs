@@ -39,7 +39,7 @@ namespace FalconOcr.Engine
             // PP-OCRv5's main recognizer covers Simplified/Traditional Chinese, Japanese and English in one model.
             new LanguageModel { Language = OcrLanguage.Chinese, DisplayName = "Chinese (中文)", RecModel = @"rec\ch_PP-OCRv5_rec_mobile.onnx", Dictionary = @"rec\ppocrv5_dict.txt", DefaultFont = "Microsoft YaHei", Culture = "zh-CN" },
             new LanguageModel { Language = OcrLanguage.Japanese, DisplayName = "Japanese (日本語)", RecModel = @"rec\ch_PP-OCRv5_rec_mobile.onnx", Dictionary = @"rec\ppocrv5_dict.txt", DefaultFont = "Yu Gothic", Culture = "ja-JP" },
-            new LanguageModel { Language = OcrLanguage.Korean, DisplayName = "Korean (한국어)", RecModel = @"rec\korean_PP-OCRv5_rec_mobile.onnx", Dictionary = @"rec\ppocrv5_korean_dict.txt", DefaultFont = "Malgun Gothic", Culture = "ko-KR" },
+            //new LanguageModel { Language = OcrLanguage.Korean, DisplayName = "Korean (한국어)", RecModel = @"rec\korean_PP-OCRv5_rec_mobile.onnx", Dictionary = @"rec\ppocrv5_korean_dict.txt", DefaultFont = "Malgun Gothic", Culture = "ko-KR" },
             new LanguageModel { Language = OcrLanguage.Russian, DisplayName = "Russian (Русский)", RecModel = @"rec\eslav_PP-OCRv5_rec_mobile.onnx", Dictionary = @"rec\ppocrv5_eslav_dict.txt", DefaultFont = "Calibri", Culture = "ru-RU" },
         };
 

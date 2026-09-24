@@ -60,7 +60,7 @@ namespace FalconOcr.Export
                 _lang = LanguageCatalog.Get(opt.Language);
             }
 
-            private bool IsCjk => _opt.Language == OcrLanguage.Chinese || _opt.Language == OcrLanguage.Japanese || _opt.Language == OcrLanguage.Korean;
+            private bool IsCjk => _opt.Language == OcrLanguage.Chinese || _opt.Language == OcrLanguage.Japanese; //|| _opt.Language == OcrLanguage.Korean;
 
             // ------------------------------------------------------------ styles & numbering
 

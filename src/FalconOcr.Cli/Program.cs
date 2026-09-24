@@ -159,7 +159,7 @@ namespace FalconOcr.Cli
             {
                 case "zh": case "ch": case "chinese": return OcrLanguage.Chinese;
                 case "ja": case "jp": case "japanese": return OcrLanguage.Japanese;
-                case "ko": case "kr": case "korean": return OcrLanguage.Korean;
+                //case "ko": case "kr": case "korean": return OcrLanguage.Korean;
                 case "ru": case "russian": return OcrLanguage.Russian;
                 default: return OcrLanguage.English;
             }

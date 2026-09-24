@@ -7,9 +7,9 @@ namespace FalconOcr.Licensing
     public static class LicensePublicKey
     {
         /// <summary>ECDSA P-256 public key (CNG EccPublicBlob, Base64).</summary>
-        public const string Blob = "RUNTMSAAAAA1eqRsFOuqafVN95+5SpnKlRVhqSCJODt6LBAf6ebtQq01DETDs6Z0ffRJpv66QV/HeO95RTwoxeXh+t0FblxR";
+        public const string Blob = "RUNTMSAAAADdAroivQ+fOx+v/i+Sj9sJa8yaY6rhoM16ci2dq451ade18geauyod45ubvO0PpiOqDYdUZ1Cn1m2GmqhfhfZP";
 
         /// <summary>Short fingerprint shown by the KeyGen to confirm it signs for this build.</summary>
-        public const string Fingerprint = "1155-9149-8948-EC89";
+        public const string Fingerprint = "6CD0-2A14-9706-8C3E";
     }
 }
