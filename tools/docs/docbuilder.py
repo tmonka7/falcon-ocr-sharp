@@ -7,7 +7,7 @@ IMAGE_DIR = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "..", 
 
 PRODUCT = "Falcon OCR"
 VERSION = "1.0"          # product version
-DOC_VERSION = "1.1"      # document revision
+DOC_VERSION = "1.2"      # document revision
 DATE = "2026-09-24"
 ORG = "Falcon OCR Development Team"
 
@@ -133,4 +133,5 @@ DEFAULT_HISTORY = [
     ("0.9", "2026-09-20", ORG, "Draft for internal review."),
     ("1.0", DATE, ORG, "Released with Falcon OCR 1.0: OCR engine, layout reconstruction, exports, trial and licensing."),
     ("1.1", DATE, ORG, "UI extensions: font and size combo boxes, English/Chinese/Japanese interface (gettext PO), collapsible sidebar, resizable settings panel, trial notification below the toolbar."),
+    ("1.2", DATE, ORG, "New application icon; OCR model information removed from Settings; default font setting; collapsible Files / Thumbnails panel."),
 ]

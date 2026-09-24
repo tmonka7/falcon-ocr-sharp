@@ -35,6 +35,8 @@ namespace FalconOcr.Export
         public DocumentMode Mode { get; set; } = DocumentMode.Editable;
         public OcrLanguage Language { get; set; } = OcrLanguage.English;
         public bool IncludeImages { get; set; } = true;
+        /// <summary>Document default font (Word Normal style, HTML body, Excel); null = the language default.</summary>
+        public string DefaultFont { get; set; }
         /// <summary>Keep the original page background/fill colors.</summary>
         public bool KeepColors { get; set; } = true;
         /// <summary>Only these pages (null = all recognized pages).</summary>

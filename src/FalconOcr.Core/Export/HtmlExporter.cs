@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.IO;
@@ -23,7 +23,7 @@ namespace FalconOcr.Export
             sb.Append("<!DOCTYPE html>\n<html lang=\"").Append(lang.Culture.Substring(0, 2)).Append("\">\n<head>\n<meta charset=\"utf-8\">\n");
             sb.Append("<meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n");
             sb.Append("<meta name=\"generator\" content=\"Falcon OCR\">\n<title>").Append(Enc(title)).Append("</title>\n<style>\n");
-            sb.Append(Css(lang));
+            sb.Append(Css(string.IsNullOrWhiteSpace(opt.DefaultFont) ? lang.DefaultFont : opt.DefaultFont));
             sb.Append("</style>\n</head>\n<body>\n");
             for (int i = 0; i < pages.Count; i++)
             {
@@ -38,11 +38,11 @@ namespace FalconOcr.Export
             File.WriteAllText(path, sb.ToString(), new UTF8Encoding(false));
         }
 
-        private static string Css(LanguageModel lang)
+        private static string Css(string bodyFont)
         {
             return
                 "html{background:#eceff1}\n" +
-                "body{margin:0;padding:24px 12px;font-family:'" + lang.DefaultFont + "',Calibri,'Segoe UI',Arial,sans-serif;color:#000}\n" +
+                "body{margin:0;padding:24px 12px;font-family:'" + bodyFont.Replace("'", "") + "',Calibri,'Segoe UI',Arial,sans-serif;color:#000}\n" +
                 ".page{background:#fff;margin:0 auto 24px;box-shadow:0 1px 4px rgba(0,0,0,.18);box-sizing:border-box;position:relative;max-width:100%;overflow:hidden}\n" +
                 ".page p,.page h1,.page h2,.page h3,.page ul,.page ol,.page figure{margin:0;padding:0}\n" +
                 ".page ul,.page ol{list-style-position:outside}\n" +

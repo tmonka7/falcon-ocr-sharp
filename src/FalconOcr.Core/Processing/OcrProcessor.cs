@@ -54,7 +54,7 @@ namespace FalconOcr.Processing
                 if (!fromText) lines = _engine.Recognize(img, o, ct);
                 ct.ThrowIfCancellationRequested();
 
-                var result = LayoutAnalyzer.Analyze(img, lines, dpi, o, fromText, lang.DefaultFont);
+                var result = LayoutAnalyzer.Analyze(img, lines, dpi, o, fromText, o.EffectiveFont(lang));
                 result.Elapsed = sw.Elapsed;
                 return result;
             }

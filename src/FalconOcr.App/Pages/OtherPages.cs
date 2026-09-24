@@ -420,11 +420,12 @@ namespace FalconOcr.App.Pages
 
     internal sealed class SettingsPage : PageBase, IActivatable
     {
-        private readonly ComboBox _language, _layout, _mode, _format, _uiLanguage;
+        private readonly ComboBox _language, _layout, _mode, _format, _uiLanguage, _defaultFont;
         private readonly CheckBox _tables, _keepColors, _images, _openAfter, _autoRecognize, _confidence;
         private readonly TextBox _output;
         private readonly OcrOptionsEditor _advanced;
-        private readonly Label _models;
+        // OCR model information is hidden on the Settings screen (kept for diagnostics; re-enable by uncommenting).
+        // private readonly Label _models;
         private Label _license;
 
         private void ShowLicense()
@@ -435,7 +436,7 @@ namespace FalconOcr.App.Pages
             _license.Text = state + Environment.NewLine + L.T("Machine code: ") + Licensing.MachineIdentity.Code;
         }
 
-        public SettingsPage(IShell shell) : base(shell, L.T("Settings"), L.T("Defaults for recognition and export. Everything runs offline with the bundled PaddleOCR models."))
+        public SettingsPage(IShell shell) : base(shell, L.T("Settings"), L.T("Defaults for recognition and export. Everything runs offline on this computer."))
         {
             var scroll = new Panel { Dock = DockStyle.Fill, AutoScroll = true };
             var grid = new TableLayoutPanel { ColumnCount = 2, AutoSize = true, Location = new Point(0, 0) };
@@ -444,6 +445,9 @@ namespace FalconOcr.App.Pages
 
             _language = Combo(LanguageCatalog.All.Select(l => (object)L.T(l.DisplayName)).ToArray());
             _uiLanguage = Combo(L.Languages.Select(l => (object)l.NativeName).ToArray());
+            // Default font: first entry = automatic (the font of the recognition language), then installed fonts.
+            _defaultFont = Combo(new object[] { L.T("Automatic (by recognition language)") }.Concat(WorkspacePage.FontFamilies()).ToArray());
+            _defaultFont.MaxDropDownItems = 20;
             _layout = Combo(L.T("Automatic (columns, tables, figures)"), L.T("Single column"), L.T("Text lines only"));
             _mode = Combo(L.T("Editable Document (Recommended)"), L.T("Exact Copy (keep positions)"), L.T("Plain Text"));
             _format = Combo(L.T("Microsoft Word (.docx)"), L.T("Microsoft Excel (.xlsx)"), L.T("HTML (.html)"), L.T("Plain text (.txt)"));
@@ -455,7 +459,7 @@ namespace FalconOcr.App.Pages
             _confidence = Check(L.T("Highlight uncertain characters in the results view"));
             _output = new TextBox { Width = S(400) };
             _advanced = new OcrOptionsEditor();
-            _models = new Label { AutoSize = true, ForeColor = Theme.SubText, MaximumSize = new Size(S(660), 0) };
+            // _models = new Label { AutoSize = true, ForeColor = Theme.SubText, MaximumSize = new Size(S(660), 0) };
 
             int row = 0;
             void Section(string title)
@@ -487,6 +491,8 @@ namespace FalconOcr.App.Pages
             Row("", _tables);
             Row("", _autoRecognize);
             Row("", _confidence);
+            Row(L.T("Default font:"), _defaultFont);
+            Row("", new Label { Text = L.T("Used for recognized text when the original font is unknown (scans, images). Applies to pages recognized afterwards."), AutoSize = true, MaximumSize = new Size(S(420), 0), ForeColor = Theme.SubText });
             Section(L.T("Export"));
             Row(L.T("Default output format:"), _format);
             Row(L.T("Document type:"), _mode);
@@ -496,8 +502,8 @@ namespace FalconOcr.App.Pages
             Row("", _openAfter);
             Section(L.T("Advanced recognition"));
             Span(_advanced);
-            Section(L.T("OCR models (offline)"));
-            Span(_models);
+            // Section(L.T("OCR models (offline)"));   // hidden: OCR model information
+            // Span(_models);
             Section("License");
             _license = new Label { AutoSize = true, MaximumSize = new Size(S(660), 0), ForeColor = Theme.Text };
             var licenseButtons = new FlowLayoutPanel { AutoSize = true };
@@ -552,15 +558,16 @@ namespace FalconOcr.App.Pages
         public void OnActivated()
         {
             LoadFrom(Shell.Settings);
-            var dir = LanguageCatalog.DefaultModelDirectory;
-            var lines = new List<string> { L.T("Location: ") + dir };
-            foreach (var f in new[] { LanguageCatalog.DetModel, LanguageCatalog.ClsModel }.Concat(LanguageCatalog.All.Select(l => l.RecModel)).Distinct())
-            {
-                var p = Path.Combine(dir, f);
-                lines.Add((File.Exists(p) ? "✓ " : L.T("✗ missing  ")) + f + (File.Exists(p) ? $"  ({new FileInfo(p).Length / 1048576.0:0.0} MB)" : ""));
-            }
-            lines.Add(L.T("Languages: ") + string.Join(", ", LanguageCatalog.All.Select(l => L.T(l.DisplayName))));
-            _models.Text = string.Join(Environment.NewLine, lines);
+            // OCR model information (hidden):
+            // var dir = LanguageCatalog.DefaultModelDirectory;
+            // var lines = new List<string> { L.T("Location: ") + dir };
+            // foreach (var f in new[] { LanguageCatalog.DetModel, LanguageCatalog.ClsModel }.Concat(LanguageCatalog.All.Select(l => l.RecModel)).Distinct())
+            // {
+            //     var p = Path.Combine(dir, f);
+            //     lines.Add((File.Exists(p) ? "✓ " : L.T("✗ missing  ")) + f + (File.Exists(p) ? $"  ({new FileInfo(p).Length / 1048576.0:0.0} MB)" : ""));
+            // }
+            // lines.Add(L.T("Languages: ") + string.Join(", ", LanguageCatalog.All.Select(l => L.T(l.DisplayName))));
+            // _models.Text = string.Join(Environment.NewLine, lines);
             ShowLicense();
         }
 
@@ -579,6 +586,8 @@ namespace FalconOcr.App.Pages
             _images.Checked = s.IncludeImages;
             _openAfter.Checked = s.OpenAfterExport;
             _advanced.LoadFrom(s.Ocr);
+            int fi = string.IsNullOrWhiteSpace(s.Ocr.DefaultFont) ? -1 : _defaultFont.Items.IndexOf(s.Ocr.DefaultFont);
+            _defaultFont.SelectedIndex = fi > 0 ? fi : 0;
         }
 
         private void Save()
@@ -596,6 +605,7 @@ namespace FalconOcr.App.Pages
             s.IncludeImages = _images.Checked;
             s.OpenAfterExport = _openAfter.Checked;
             _advanced.SaveTo(s.Ocr);
+            s.Ocr.DefaultFont = _defaultFont.SelectedIndex > 0 ? _defaultFont.SelectedItem as string : null;
             s.Save();
             Shell.Workspace.LoadSettingsIntoControls();
             Shell.SetStatus(L.T("Settings saved."));

@@ -46,6 +46,7 @@ namespace FalconOcr.App
         private readonly SidebarToggle _sidebarToggle;
         private readonly ToolTip _navTips = new ToolTip();
         private bool _sidebarCollapsed;
+        private Bitmap _logo;
 
         public AppSettings Settings { get; }
         public HistoryStore History { get; }
@@ -66,7 +67,7 @@ namespace FalconOcr.App
             StartPosition = FormStartPosition.CenterScreen;
             Size = new Size(Scale(1536), Scale(1000));
             DoubleBuffered = true;
-            Icon = MakeIcon();
+            Icon = Theme.AppIcon(32);
             KeyPreview = true;
             Padding = new Padding(1);
 
@@ -202,6 +203,10 @@ namespace FalconOcr.App
             await System.Threading.Tasks.Task.Delay(300);
             Snap("2c-overlay");
             Workspace.SnapshotSelect(12, 0);
+            Workspace.SnapshotFilesPanel(true);
+            await System.Threading.Tasks.Task.Delay(300);
+            Snap("2d-files-collapsed");
+            Workspace.SnapshotFilesPanel(false);
             foreach (var p in new[] { "ocr", "batch", "history", "settings" })
             {
                 Navigate(p);
@@ -373,7 +378,9 @@ namespace FalconOcr.App
             var g = e.Graphics;
             g.SmoothingMode = SmoothingMode.AntiAlias;
             int logo = Scale(34);
-            Icons.Draw(g, IconKind.Logo, new RectangleF(Scale(18), (_titleBar.Height - logo) / 2f, logo, logo), Color.FromArgb(58, 190, 140));
+            if (_logo == null) _logo = Theme.AppIconBitmap(logo);
+            g.InterpolationMode = InterpolationMode.HighQualityBicubic;
+            g.DrawImage(_logo, new Rectangle(Scale(18), (_titleBar.Height - logo) / 2, logo, logo));
             using (var f = Theme.Semibold(17f))
                 TextRenderer.DrawText(g, "Falcon OCR", f, new Point(Scale(62), Scale(9)), Color.White);
             TextRenderer.DrawText(g, L.T("Convert Scans and Images into Editable Documents"), Theme.Base, new Rectangle(Scale(215), 0, Scale(520), _titleBar.Height), Color.FromArgb(225, 245, 236), TextFormatFlags.VerticalCenter);
@@ -495,18 +502,6 @@ namespace FalconOcr.App
             base.OnFormClosed(e);
         }
 
-        private static Icon MakeIcon()
-        {
-            using (var bmp = new Bitmap(64, 64))
-            {
-                using (var g = Graphics.FromImage(bmp))
-                {
-                    g.Clear(Color.Transparent);
-                    Icons.Draw(g, IconKind.Logo, new RectangleF(0, 0, 64, 64), Theme.Accent);
-                }
-                return System.Drawing.Icon.FromHandle(bmp.GetHicon());
-            }
-        }
     }
 
     /// <summary>Pages that refresh when navigated to.</summary>

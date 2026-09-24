@@ -38,7 +38,7 @@ namespace FalconOcr.Export
                 wbPart.Workbook = new Workbook();
                 var sheets = wbPart.Workbook.AppendChild(new Sheets());
                 var sst = new SharedStrings();
-                var styles = new StyleRegistry(LanguageCatalog.Get(opt.Language).DefaultFont);
+                var styles = new StyleRegistry(string.IsNullOrWhiteSpace(opt.DefaultFont) ? LanguageCatalog.Get(opt.Language).DefaultFont : opt.DefaultFont);
 
                 for (int i = 0; i < pages.Count; i++)
                 {

@@ -25,7 +25,7 @@ namespace FalconOcr.Cli
             Console.OutputEncoding = Encoding.UTF8;
             if (args.Length == 0 || args.Contains("-h") || args.Contains("--help"))
             {
-                Console.WriteLine("usage: falcon-ocr <files...> [-l en|zh|ja|ko|ru] [-f docx|xlsx|html|txt] [-o outDir] [--exact] [--seq] [--no-tables] [--ocr-only] [--dpi N] [--dump]");
+                Console.WriteLine("usage: falcon-ocr <files...> [-l en|zh|ja|ko|ru] [-f docx|xlsx|html|txt] [-o outDir] [--exact] [--seq] [--no-tables] [--ocr-only] [--dpi N] [--font NAME] [--dump]");
                 Console.WriteLine("       falcon-ocr --license <KEY>     activate      falcon-ocr --machine-code");
                 return 1;
             }
@@ -83,6 +83,7 @@ namespace FalconOcr.Cli
                     case "--ocr-only": o.PdfText = PdfTextMode.AlwaysOcr; break;
                     case "--dpi": o.PdfDpi = int.Parse(args[++i]); break;
                     case "--cls": o.UseAngleClassifier = true; break;
+                    case "--font": o.DefaultFont = args[++i]; break;
                     case "--dump": dump = true; break;
                     default:
                         if (Directory.Exists(a)) inputs.AddRange(Directory.GetFiles(a).Where(OcrDocument.IsSupported));
@@ -116,7 +117,7 @@ namespace FalconOcr.Cli
                         var dir = outDir ?? Path.GetDirectoryName(Path.GetFullPath(doc.SourcePath ?? "."));
                         Directory.CreateDirectory(dir);
                         var path = Path.Combine(dir, Path.GetFileNameWithoutExtension(doc.Name) + Exporter.Extension(f));
-                        Exporter.Export(doc, f, path, new ExportOptions { Mode = mode, Language = o.Language });
+                        Exporter.Export(doc, f, path, new ExportOptions { Mode = mode, Language = o.Language, DefaultFont = o.DefaultFont });
                         Console.WriteLine(path);
                     }
                     doc.Dispose();

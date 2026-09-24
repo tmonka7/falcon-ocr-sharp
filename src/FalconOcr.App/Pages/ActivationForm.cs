@@ -29,6 +29,8 @@ namespace FalconOcr.App.Pages
             StartPosition = startup ? FormStartPosition.CenterScreen : FormStartPosition.CenterParent;
             ShowInTaskbar = startup;
             ClientSize = new Size(620, 530);
+            Icon = Theme.AppIcon(32);
+            var logo = Theme.AppIconBitmap(48);
 
             string subtitle = trial == null ? L.T("Enter your license key.")
                 : trialOpen ? L.F("You are using the trial version — {0} of {1} days left.", trial.DaysLeft, trial.TotalDays)
@@ -37,7 +39,8 @@ namespace FalconOcr.App.Pages
             header.Paint += (s, e) =>
             {
                 e.Graphics.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.AntiAlias;
-                Icons.Draw(e.Graphics, IconKind.Logo, new RectangleF(18, 18, 40, 40), Color.FromArgb(58, 190, 140));
+                e.Graphics.InterpolationMode = System.Drawing.Drawing2D.InterpolationMode.HighQualityBicubic;
+                e.Graphics.DrawImage(logo, new Rectangle(16, 16, 44, 44));
                 TextRenderer.DrawText(e.Graphics, L.T("Activate Falcon OCR"), Theme.Semibold(16f), new Point(70, 12), Color.White);
                 TextRenderer.DrawText(e.Graphics, subtitle, Theme.Base, new Point(72, 46), Color.FromArgb(220, 243, 233));
             };

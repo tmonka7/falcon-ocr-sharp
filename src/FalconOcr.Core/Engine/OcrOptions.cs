@@ -101,6 +101,15 @@ namespace FalconOcr.Engine
         [DataMember] public int Threads { get; set; } = 0;
         [DataMember] public int RecBatchSize { get; set; } = 8;
 
+        /// <summary>
+        /// Font given to recognized text when the original font is unknown (scans). Null/empty = automatic:
+        /// the default font of the recognition language (Calibri, Microsoft YaHei, Yu Gothic, Malgun Gothic).
+        /// </summary>
+        [DataMember] public string DefaultFont { get; set; }
+
+        /// <summary>The font used for recognized text of <paramref name="lang"/>.</summary>
+        public string EffectiveFont(LanguageModel lang) => string.IsNullOrWhiteSpace(DefaultFont) ? lang.DefaultFont : DefaultFont.Trim();
+
         public OcrOptions Clone() => (OcrOptions)MemberwiseClone();
 
         /// <summary>The serializer skips constructors: start from defaults so fields missing in old files stay sane.</summary>
@@ -122,6 +131,7 @@ namespace FalconOcr.Engine
             MinConfidence = d.MinConfidence;
             Threads = d.Threads;
             RecBatchSize = d.RecBatchSize;
+            DefaultFont = null;
         }
     }
 }

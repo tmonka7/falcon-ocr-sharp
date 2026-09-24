@@ -44,6 +44,9 @@ FR = [
     ("FR-39", "User interface", "Collapsible sidebar", "A button at the bottom of the navigation bar shall collapse it to icons only and expand it again; the state shall be remembered.", "Must"),
     ("FR-40", "User interface", "Resizable settings panel", "The width of the right-hand settings panel shall be adjustable by dragging its left edge with the mouse (280–640 px); the width shall be remembered.", "Must"),
     ("FR-41", "User interface", "Trial notification", "While running as a trial, a notification with the remaining days and an 'Activate now' button shall be displayed below the toolbar; it can be hidden until the next start and disappears after activation.", "Must"),
+    ("FR-42", "Settings", "Default font", "Settings shall offer a default font (Automatic = font of the recognition language, or any installed font) used for recognized text whose original font is unknown, in the results view and in DOCX, XLSX and HTML exports; the CLI accepts --font NAME.", "Must"),
+    ("FR-43", "User interface", "Collapsible Files / Thumbnails panel", "A button at the bottom of the Files / Thumbnails panel of the home screen shall collapse the panel to a narrow strip and expand it again; the state shall be remembered.", "Must"),
+    ("FR-44", "User interface", "Application icon", "The application, the KeyGen tool and their windows shall use the Falcon OCR icon (green tile with a scanned page); the Settings screen shall not display OCR model information.", "Should"),
 ]
 
 NFR = [
@@ -146,7 +149,7 @@ def build():
     d.h1("4. External interface requirements")
     d.h2("4.1 User interface")
     d.p("The main window shall contain: a green title bar with product name, trial badge and window buttons; a left navigation bar (Home, OCR, Batch Process, History, Settings); a ribbon-style toolbar (Add Files, Scan, From Clipboard, Rotate, Crop, Delete, Recognize, Export, Settings, Help); a Files/Thumbnails panel; the Source Page viewer; the Recognized Text / Original Image panel; the OCR Settings and Output Format panel with the Export button; and a status bar. Details: Screen Design Document FOCR-SCR-001.")
-    d.p("The interface is available in English, Simplified Chinese (简体中文) and Japanese (日本語). The navigation bar can be collapsed to icons, and the settings column can be resized with the mouse.")
+    d.p("The interface is available in English, Simplified Chinese (简体中文) and Japanese (日本語). The navigation bar and the Files / Thumbnails panel can be collapsed, and the settings column can be resized with the mouse.")
     d.h2("4.2 Software interfaces")
     d.table(["Interface", "Use"], [
         ("ONNX Runtime 1.22 (onnxruntime.dll)", "Inference of detection, orientation and recognition models on the CPU."),

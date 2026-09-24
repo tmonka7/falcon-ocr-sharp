@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -67,7 +67,8 @@ namespace FalconOcr.Export
             public void AddStyles()
             {
                 var part = _main.AddNewPart<StyleDefinitionsPart>();
-                var fonts = new RunFonts { Ascii = "Calibri", HighAnsi = "Calibri", EastAsia = _lang.DefaultFont, ComplexScript = "Calibri" };
+                string baseFont = string.IsNullOrWhiteSpace(_opt.DefaultFont) ? "Calibri" : _opt.DefaultFont;
+                var fonts = new RunFonts { Ascii = baseFont, HighAnsi = baseFont, EastAsia = string.IsNullOrWhiteSpace(_opt.DefaultFont) ? _lang.DefaultFont : _opt.DefaultFont, ComplexScript = baseFont };
                 var styles = new Styles(
                     new DocDefaults(
                         new RunPropertiesDefault(new RunPropertiesBaseStyle(fonts, new FontSize { Val = "22" }, new FontSizeComplexScript { Val = "22" },
@@ -346,7 +347,7 @@ namespace FalconOcr.Export
             private Run MakeRun(string text, TextStyle s, float sizePt, int scalePct = 100)
             {
                 var rpr = new RunProperties();
-                string font = s.FontFamily ?? _lang.DefaultFont;
+                string font = s.FontFamily ?? (string.IsNullOrWhiteSpace(_opt.DefaultFont) ? _lang.DefaultFont : _opt.DefaultFont);
                 rpr.Append(new RunFonts { Ascii = font, HighAnsi = font, ComplexScript = font, EastAsia = IsCjk ? _lang.DefaultFont : font });
                 if (s.Bold) rpr.Append(new Bold());
                 if (s.Italic) rpr.Append(new Italic());

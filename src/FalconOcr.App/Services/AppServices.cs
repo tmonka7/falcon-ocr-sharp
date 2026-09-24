@@ -75,6 +75,7 @@ namespace FalconOcr.App.Services
         /// <summary>Interface language code ("en", "zh_CN", "ja"); null = follow Windows on first start.</summary>
         [DataMember] public string UiLanguage { get; set; }
         [DataMember] public bool SidebarCollapsed { get; set; }
+        [DataMember] public bool FilesPanelCollapsed { get; set; }
         /// <summary>Width of the right settings column in 96-dpi pixels (0 = default).</summary>
         [DataMember] public int RightPanelWidth { get; set; }
 
@@ -113,7 +114,7 @@ namespace FalconOcr.App.Services
             if (RecentFiles.Count > 15) RecentFiles.RemoveRange(15, RecentFiles.Count - 15);
         }
 
-        public ExportOptions ExportOptions() => new ExportOptions { Mode = Mode, Language = Ocr.Language, KeepColors = KeepColors, IncludeImages = IncludeImages };
+        public ExportOptions ExportOptions() => new ExportOptions { Mode = Mode, Language = Ocr.Language, KeepColors = KeepColors, IncludeImages = IncludeImages, DefaultFont = Ocr.DefaultFont };
     }
 
     [DataContract]

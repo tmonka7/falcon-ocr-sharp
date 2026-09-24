@@ -49,6 +49,10 @@ namespace FalconOcr.App.Pages
         private readonly ComboBox _fontCombo, _sizeCombo;
         private Panel _trialBanner;
         private Control _rightColumn;
+        private Panel _leftPanel, _leftBody;
+        private PanelToggle _filesToggle;
+        private bool _filesCollapsed;
+        private readonly ToolTip _panelTips = new ToolTip();
         private readonly IconButton _boldButton, _italicButton, _underlineButton, _bulletButton, _numberButton;
 
         private ComboBox _docType, _language, _layoutMode;
@@ -156,6 +160,12 @@ namespace FalconOcr.App.Pages
             leftBody.Controls.Add(_thumbs);
             left.Controls.Add(leftBody);
             left.Controls.Add(_leftTabs);
+            // Collapse / expand button at the bottom of the Files / Thumbnails panel.
+            _leftPanel = left;
+            _leftBody = leftBody;
+            _filesToggle = new PanelToggle { Dock = DockStyle.Bottom, Height = S(40) };
+            _filesToggle.Click += (s, e) => SetFilesPanelCollapsed(!_filesCollapsed);
+            left.Controls.Add(_filesToggle);
 
             // ---------------------------------------------------------------- right: settings
             var right = BuildSettingsColumn();
@@ -327,6 +337,7 @@ namespace FalconOcr.App.Pages
                 Controls.Add(_trialBanner);
             }
             Controls.Add(toolbar);
+            SetFilesPanelCollapsed(Settings.FilesPanelCollapsed, save: false);
 
             foreach (Control c in new Control[] { this, _fileList, _viewer, _layout, _thumbs })
             {
@@ -915,6 +926,80 @@ namespace FalconOcr.App.Pages
             UpdateFormatState();
         }
 
+        // ================================================================ files panel
+
+        /// <summary>Collapses the Files / Thumbnails panel to a narrow strip (or expands it); the state is remembered.</summary>
+        private void SetFilesPanelCollapsed(bool collapsed, bool save = true)
+        {
+            _filesCollapsed = collapsed;
+            _leftTabs.Visible = _leftBody.Visible = !collapsed;
+            _leftPanel.Width = S(collapsed ? 40 : 214);
+            _filesToggle.Collapsed = collapsed;
+            _filesToggle.Dock = collapsed ? DockStyle.Fill : DockStyle.Bottom;
+            _panelTips.SetToolTip(_filesToggle, collapsed ? L.T("Show files and thumbnails") : L.T("Hide files and thumbnails"));
+            if (save)
+            {
+                Settings.FilesPanelCollapsed = collapsed;
+                Settings.Save();
+            }
+        }
+
+        /// <summary>Snapshot tour: shows the files panel collapsed / expanded without remembering it.</summary>
+        internal void SnapshotFilesPanel(bool collapsed) => SetFilesPanelCollapsed(collapsed, save: false);
+
+        /// <summary>
+        /// « Hide panel button at the bottom of the files panel; when collapsed it fills the narrow strip,
+        /// shows the panel name vertically and » at the bottom.
+        /// </summary>
+        private sealed class PanelToggle : Control
+        {
+            private bool _hover, _collapsed;
+
+            public PanelToggle()
+            {
+                SetStyle(ControlStyles.UserPaint | ControlStyles.AllPaintingInWmPaint | ControlStyles.OptimizedDoubleBuffer | ControlStyles.ResizeRedraw, true);
+                BackColor = Theme.Panel;
+                Cursor = Cursors.Hand;
+                Font = Theme.Base;
+            }
+
+            public bool Collapsed
+            {
+                get => _collapsed;
+                set { _collapsed = value; Invalidate(); }
+            }
+
+            protected override void OnMouseEnter(EventArgs e) { _hover = true; Invalidate(); base.OnMouseEnter(e); }
+            protected override void OnMouseLeave(EventArgs e) { _hover = false; Invalidate(); base.OnMouseLeave(e); }
+
+            protected override void OnPaint(PaintEventArgs e)
+            {
+                var g = e.Graphics;
+                g.SmoothingMode = SmoothingMode.AntiAlias;
+                float k = DeviceDpi / 96f;
+                g.Clear(_hover ? Theme.AccentHover : Theme.Panel);
+                float s = 18 * k;
+                if (_collapsed)
+                {
+                    // Vertical caption, read bottom-to-top like a tab.
+                    var state = g.Save();
+                    g.TranslateTransform(Width / 2f, 16 * k);
+                    g.RotateTransform(90);
+                    // TextRenderer ignores transforms, so the rotated caption is drawn with GDI+.
+                    g.TextRenderingHint = System.Drawing.Text.TextRenderingHint.AntiAliasGridFit;
+                    using (var br = new SolidBrush(Theme.Text))
+                    using (var sf = new StringFormat { LineAlignment = StringAlignment.Center })
+                        g.DrawString(L.T("Files") + "  /  " + L.T("Thumbnails"), Font, br, 0, 0, sf);
+                    g.Restore(state);
+                    Icons.Draw(g, IconKind.ChevronRight, new RectangleF((Width - s) / 2, Height - s - 12 * k, s, s), Theme.Accent, 2 * k);
+                    return;
+                }
+                using (var p = new Pen(Theme.Border)) g.DrawLine(p, 0, 0, Width, 0);
+                Icons.Draw(g, IconKind.ChevronLeft, new RectangleF(12 * k, (Height - s) / 2, s, s), Theme.Accent, 2 * k);
+                TextRenderer.DrawText(g, L.T("Hide panel"), Font, new Rectangle((int)(38 * k), 0, Width - (int)(38 * k), Height), Theme.SubText, TextFormatFlags.VerticalCenter | TextFormatFlags.Left | TextFormatFlags.EndEllipsis);
+            }
+        }
+
         // ================================================================ trial banner
 
         /// <summary>Amber notice under the toolbar while the application runs as a trial.</summary>
@@ -986,7 +1071,7 @@ namespace FalconOcr.App.Pages
         }
 
         /// <summary>Installed font families, the fonts the OCR uses by default first.</summary>
-        private static object[] FontFamilies()
+        internal static object[] FontFamilies()
         {
             var preferred = new[] { "Calibri", "Arial", "Times New Roman", "Segoe UI", "Cambria", "Georgia", "Verdana", "Courier New", "Microsoft YaHei", "SimSun", "Yu Gothic", "MS Mincho", "Malgun Gothic" };
             var installed = new List<string>();
@@ -1037,7 +1122,7 @@ namespace FalconOcr.App.Pages
             bool on = line != null;
             foreach (var b in new[] { _boldButton, _italicButton, _underlineButton, _bulletButton, _numberButton }) b.Enabled = on;
             _fontCombo.Enabled = _sizeCombo.Enabled = on;
-            if (on && !_fontCombo.Focused) _fontCombo.Text = line.Style.FontFamily ?? LanguageCatalog.Get(Settings.Ocr.Language).DefaultFont;
+            if (on && !_fontCombo.Focused) _fontCombo.Text = line.Style.FontFamily ?? Settings.Ocr.EffectiveFont(LanguageCatalog.Get(Settings.Ocr.Language));
             if (on && !_sizeCombo.Focused) _sizeCombo.Text = line.Style.FontSizePt.ToString("0.#", System.Globalization.CultureInfo.InvariantCulture);
             if (!on) { _fontCombo.Text = ""; _sizeCombo.Text = ""; }
             _styleCombo.Enabled = block != null && block.Kind != BlockKind.Table && block.Kind != BlockKind.Figure;

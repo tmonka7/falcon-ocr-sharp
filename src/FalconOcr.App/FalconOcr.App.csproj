@@ -1,11 +1,17 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <OutputType>WinExe</OutputType>
     <RootNamespace>FalconOcr.App</RootNamespace>
     <AssemblyName>FalconOcr</AssemblyName>
     <ApplicationManifest>app.manifest</ApplicationManifest>
+    <ApplicationIcon>app.ico</ApplicationIcon>
   </PropertyGroup>
+
+  <ItemGroup>
+    <!-- Also embedded as a resource so windows can load the icon at any size (Theme.AppIcon). -->
+    <EmbeddedResource Include="app.ico" LogicalName="FalconOcr.App.app.ico" />
+  </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\FalconOcr.Core\FalconOcr.Core.csproj" />

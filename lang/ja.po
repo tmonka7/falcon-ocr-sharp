@@ -10,17 +10,23 @@ msgstr ""
 "X-Language-Name: Japanese\n"
 
 #: src/FalconOcr.App/MainForm.cs:100
-#: src/FalconOcr.App/Pages/OtherPages.cs:438
-#: src/FalconOcr.App/Pages/OtherPages.cs:530
+#: src/FalconOcr.App/Pages/OtherPages.cs:363
+#: src/FalconOcr.App/Pages/OtherPages.cs:389
+msgid "History"
+msgstr "履歴"
+
+#: src/FalconOcr.App/MainForm.cs:101
+#: src/FalconOcr.App/Pages/OtherPages.cs:439
+#: src/FalconOcr.App/Pages/OtherPages.cs:536
 msgid "Settings"
 msgstr "設定"
 
-#: src/FalconOcr.App/MainForm.cs:119
-#: src/FalconOcr.App/Pages/WorkspacePage.cs:551
+#: src/FalconOcr.App/MainForm.cs:120
+#: src/FalconOcr.App/Pages/WorkspacePage.cs:562
 msgid "Ready"
 msgstr "準備完了"
 
-#: src/FalconOcr.App/MainForm.cs:167
+#: src/FalconOcr.App/MainForm.cs:168
 #, csharp-format
 msgid ""
 "Some OCR model files are missing from the installation:\n"
@@ -35,61 +41,55 @@ msgstr ""
 "\n"
 "ネットワークに接続した PC で tools\\fetch-dependencies.ps1 を実行し、再ビルドしてください。"
 
-#: src/FalconOcr.App/MainForm.cs:228
+#: src/FalconOcr.App/MainForm.cs:229
 msgid "Expand sidebar"
 msgstr "サイドバーを展開"
 
-#: src/FalconOcr.App/MainForm.cs:228
+#: src/FalconOcr.App/MainForm.cs:229
 msgid "Collapse sidebar"
 msgstr "サイドバーを折りたたむ"
 
-#: src/FalconOcr.App/MainForm.cs:274
+#: src/FalconOcr.App/MainForm.cs:275
 msgid "Collapse"
 msgstr "折りたたむ"
 
-#: src/FalconOcr.App/MainForm.cs:289
+#: src/FalconOcr.App/MainForm.cs:290
 msgid "Activated — "
 msgstr "アクティベートしました — "
 
-#: src/FalconOcr.App/MainForm.cs:303
+#: src/FalconOcr.App/MainForm.cs:304
 msgid "TRIAL · 1 day left — Activate now"
 msgstr "試用版 · 残り 1 日 — 今すぐアクティベート"
 
-#: src/FalconOcr.App/MainForm.cs:303
+#: src/FalconOcr.App/MainForm.cs:304
 #, csharp-format
 msgid "TRIAL · {0} days left — Activate now"
 msgstr "試用版 · 残り {0} 日 — 今すぐアクティベート"
 
-#: src/FalconOcr.App/MainForm.cs:335
+#: src/FalconOcr.App/MainForm.cs:336
 #, csharp-format
 msgid "Total Files: {0}     |     Selected: {1}     |     Output: {2}"
 msgstr "ファイル数：{0}     |     選択：{1}     |     出力：{2}"
 
-#: src/FalconOcr.App/MainForm.cs:379
+#: src/FalconOcr.App/MainForm.cs:382
 msgid "Convert Scans and Images into Editable Documents"
 msgstr "スキャンや画像を編集可能な文書に変換"
 
-#: src/FalconOcr.App/MainForm.cs:96
+#: src/FalconOcr.App/MainForm.cs:97
 msgid "Home"
 msgstr "ホーム"
 
-#: src/FalconOcr.App/MainForm.cs:97
+#: src/FalconOcr.App/MainForm.cs:98
 msgid "OCR"
 msgstr "OCR"
 
-#: src/FalconOcr.App/MainForm.cs:98
+#: src/FalconOcr.App/MainForm.cs:99
 #: src/FalconOcr.App/Pages/OtherPages.cs:176
 #: src/FalconOcr.App/Pages/OtherPages.cs:284
 msgid "Batch Process"
 msgstr "一括処理"
 
-#: src/FalconOcr.App/MainForm.cs:99
-#: src/FalconOcr.App/Pages/OtherPages.cs:363
-#: src/FalconOcr.App/Pages/OtherPages.cs:389
-msgid "History"
-msgstr "履歴"
-
-#: src/FalconOcr.App/Pages/ActivationForm.cs:102
+#: src/FalconOcr.App/Pages/ActivationForm.cs:105
 msgid ""
 "Thank you — Falcon OCR is activated.\n"
 "\n"
@@ -97,71 +97,71 @@ msgstr ""
 "ありがとうございます — Falcon OCR がアクティベートされました。\n"
 "\n"
 
-#: src/FalconOcr.App/Pages/ActivationForm.cs:102
+#: src/FalconOcr.App/Pages/ActivationForm.cs:105
 msgid "Activated"
 msgstr "アクティベート済み"
 
 #: src/FalconOcr.App/Pages/ActivationForm.cs:24
-#: src/FalconOcr.App/Pages/ActivationForm.cs:41
+#: src/FalconOcr.App/Pages/ActivationForm.cs:44
 msgid "Activate Falcon OCR"
 msgstr "Falcon OCR のアクティベーション"
 
-#: src/FalconOcr.App/Pages/ActivationForm.cs:33
+#: src/FalconOcr.App/Pages/ActivationForm.cs:35
 msgid "Enter your license key."
 msgstr "ライセンスキーを入力してください。"
 
-#: src/FalconOcr.App/Pages/ActivationForm.cs:34
+#: src/FalconOcr.App/Pages/ActivationForm.cs:36
 #, csharp-format
 msgid "You are using the trial version — {0} of {1} days left."
 msgstr "試用版を使用しています — 残り {0}/{1} 日。"
 
-#: src/FalconOcr.App/Pages/ActivationForm.cs:35
+#: src/FalconOcr.App/Pages/ActivationForm.cs:37
 msgid "Your trial period has ended. A license key is required to continue."
 msgstr "試用期間が終了しました。続行するにはライセンスキーが必要です。"
 
-#: src/FalconOcr.App/Pages/ActivationForm.cs:53
+#: src/FalconOcr.App/Pages/ActivationForm.cs:56
 msgid "All features are available during the trial."
 msgstr "試用期間中はすべての機能を利用できます。"
 
-#: src/FalconOcr.App/Pages/ActivationForm.cs:59
+#: src/FalconOcr.App/Pages/ActivationForm.cs:62
 msgid "1. Send this machine code to your vendor (only needed for computer-bound licenses):"
 msgstr "1. このマシンコードを販売元に送ってください（PC 固定ライセンスの場合のみ）："
 
-#: src/FalconOcr.App/Pages/ActivationForm.cs:61
+#: src/FalconOcr.App/Pages/ActivationForm.cs:64
 msgid "Copy"
 msgstr "コピー"
 
-#: src/FalconOcr.App/Pages/ActivationForm.cs:62
+#: src/FalconOcr.App/Pages/ActivationForm.cs:65
 msgid "Machine code copied to the clipboard."
 msgstr "マシンコードをクリップボードにコピーしました。"
 
-#: src/FalconOcr.App/Pages/ActivationForm.cs:64
+#: src/FalconOcr.App/Pages/ActivationForm.cs:67
 msgid "2. Enter or paste the license key:"
 msgstr "2. ライセンスキーを入力または貼り付けてください："
 
-#: src/FalconOcr.App/Pages/ActivationForm.cs:72
+#: src/FalconOcr.App/Pages/ActivationForm.cs:75
 msgid "Load license file…"
 msgstr "ライセンス ファイルを読み込む…"
 
-#: src/FalconOcr.App/Pages/ActivationForm.cs:74
+#: src/FalconOcr.App/Pages/ActivationForm.cs:77
 msgid "Activate"
 msgstr "アクティベート"
 
-#: src/FalconOcr.App/Pages/ActivationForm.cs:76
+#: src/FalconOcr.App/Pages/ActivationForm.cs:79
 msgid "Exit"
 msgstr "終了"
 
-#: src/FalconOcr.App/Pages/ActivationForm.cs:76
+#: src/FalconOcr.App/Pages/ActivationForm.cs:79
 #: src/FalconOcr.App/Pages/Dialogs.cs:107
 #: src/FalconOcr.App/Pages/Dialogs.cs:139
 msgid "Cancel"
 msgstr "キャンセル"
 
-#: src/FalconOcr.App/Pages/ActivationForm.cs:77
+#: src/FalconOcr.App/Pages/ActivationForm.cs:80
 msgid "Continue Trial"
 msgstr "試用を続ける"
 
-#: src/FalconOcr.App/Pages/ActivationForm.cs:81
+#: src/FalconOcr.App/Pages/ActivationForm.cs:84
 msgid "License file|*.lic;*.key;*.txt|All files|*.*"
 msgstr "ライセンス ファイル|*.lic;*.key;*.txt|すべてのファイル|*.*"
 
@@ -268,25 +268,25 @@ msgid "Treat each folder as one document (image sequence)"
 msgstr "各フォルダーを 1 つの文書として扱う（画像シーケンス）"
 
 #: src/FalconOcr.App/Pages/OtherPages.cs:192
-#: src/FalconOcr.App/Pages/OtherPages.cs:449
-#: src/FalconOcr.App/Pages/WorkspacePage.cs:1248
+#: src/FalconOcr.App/Pages/OtherPages.cs:453
+#: src/FalconOcr.App/Pages/WorkspacePage.cs:1326
 msgid "Microsoft Word (.docx)"
 msgstr "Microsoft Word (.docx)"
 
 #: src/FalconOcr.App/Pages/OtherPages.cs:192
-#: src/FalconOcr.App/Pages/OtherPages.cs:449
-#: src/FalconOcr.App/Pages/WorkspacePage.cs:1249
+#: src/FalconOcr.App/Pages/OtherPages.cs:453
+#: src/FalconOcr.App/Pages/WorkspacePage.cs:1327
 msgid "Microsoft Excel (.xlsx)"
 msgstr "Microsoft Excel (.xlsx)"
 
 #: src/FalconOcr.App/Pages/OtherPages.cs:192
-#: src/FalconOcr.App/Pages/OtherPages.cs:449
-#: src/FalconOcr.App/Pages/WorkspacePage.cs:1250
+#: src/FalconOcr.App/Pages/OtherPages.cs:453
+#: src/FalconOcr.App/Pages/WorkspacePage.cs:1328
 msgid "HTML (.html)"
 msgstr "HTML (.html)"
 
 #: src/FalconOcr.App/Pages/OtherPages.cs:192
-#: src/FalconOcr.App/Pages/OtherPages.cs:449
+#: src/FalconOcr.App/Pages/OtherPages.cs:453
 msgid "Plain text (.txt)"
 msgstr "プレーン テキスト (.txt)"
 
@@ -299,8 +299,8 @@ msgid "Exact Copy"
 msgstr "完全コピー"
 
 #: src/FalconOcr.App/Pages/OtherPages.cs:193
-#: src/FalconOcr.App/Pages/OtherPages.cs:448
-#: src/FalconOcr.App/Pages/WorkspacePage.cs:1238
+#: src/FalconOcr.App/Pages/OtherPages.cs:452
+#: src/FalconOcr.App/Pages/WorkspacePage.cs:1316
 msgid "Plain Text"
 msgstr "プレーン テキスト"
 
@@ -460,158 +460,170 @@ msgid "Clear the whole history?"
 msgstr "履歴をすべて消去しますか？"
 
 #: src/FalconOcr.App/Pages/OtherPages.cs:409
-#: src/FalconOcr.App/Pages/OtherPages.cs:484
+#: src/FalconOcr.App/Pages/OtherPages.cs:488
 msgid "Recognition"
 msgstr "認識"
 
-#: src/FalconOcr.App/Pages/OtherPages.cs:435
+#: src/FalconOcr.App/Pages/OtherPages.cs:436
 msgid "Machine code: "
 msgstr "マシンコード："
 
-#: src/FalconOcr.App/Pages/OtherPages.cs:438
-msgid "Defaults for recognition and export. Everything runs offline with the bundled PaddleOCR models."
-msgstr "認識とエクスポートの既定値。すべての処理は同梱の PaddleOCR モデルでオフライン実行されます。"
+#: src/FalconOcr.App/Pages/OtherPages.cs:439
+msgid "Defaults for recognition and export. Everything runs offline on this computer."
+msgstr "認識とエクスポートの既定値。すべての処理はこのコンピューター上でオフラインで実行されます。"
 
-#: src/FalconOcr.App/Pages/OtherPages.cs:447
+#: src/FalconOcr.App/Pages/OtherPages.cs:449
+msgid "Automatic (by recognition language)"
+msgstr "自動（認識言語に合わせる）"
+
+#: src/FalconOcr.App/Pages/OtherPages.cs:451
 msgid "Automatic (columns, tables, figures)"
 msgstr "自動（段組み、表、図）"
 
-#: src/FalconOcr.App/Pages/OtherPages.cs:447
-#: src/FalconOcr.App/Pages/WorkspacePage.cs:1240
+#: src/FalconOcr.App/Pages/OtherPages.cs:451
+#: src/FalconOcr.App/Pages/WorkspacePage.cs:1318
 msgid "Single column"
 msgstr "1 段組み"
 
-#: src/FalconOcr.App/Pages/OtherPages.cs:447
-#: src/FalconOcr.App/Pages/WorkspacePage.cs:1240
+#: src/FalconOcr.App/Pages/OtherPages.cs:451
+#: src/FalconOcr.App/Pages/WorkspacePage.cs:1318
 msgid "Text lines only"
 msgstr "テキスト行のみ"
 
-#: src/FalconOcr.App/Pages/OtherPages.cs:448
-#: src/FalconOcr.App/Pages/WorkspacePage.cs:1238
+#: src/FalconOcr.App/Pages/OtherPages.cs:452
+#: src/FalconOcr.App/Pages/WorkspacePage.cs:1316
 msgid "Editable Document (Recommended)"
 msgstr "編集可能な文書（推奨）"
 
-#: src/FalconOcr.App/Pages/OtherPages.cs:448
-#: src/FalconOcr.App/Pages/WorkspacePage.cs:1238
+#: src/FalconOcr.App/Pages/OtherPages.cs:452
+#: src/FalconOcr.App/Pages/WorkspacePage.cs:1316
 msgid "Exact Copy (keep positions)"
 msgstr "完全コピー（位置を保持）"
 
-#: src/FalconOcr.App/Pages/OtherPages.cs:450
-#: src/FalconOcr.App/Pages/WorkspacePage.cs:1241
+#: src/FalconOcr.App/Pages/OtherPages.cs:454
+#: src/FalconOcr.App/Pages/WorkspacePage.cs:1319
 msgid "Detect tables and columns"
 msgstr "表と段組みを検出"
 
-#: src/FalconOcr.App/Pages/OtherPages.cs:451
+#: src/FalconOcr.App/Pages/OtherPages.cs:455
 msgid "Keep text, fill and page colors"
 msgstr "文字・塗りつぶし・ページの色を保持"
 
-#: src/FalconOcr.App/Pages/OtherPages.cs:452
+#: src/FalconOcr.App/Pages/OtherPages.cs:456
 msgid "Include pictures in exported documents"
 msgstr "エクスポートする文書に図を含める"
 
-#: src/FalconOcr.App/Pages/OtherPages.cs:453
+#: src/FalconOcr.App/Pages/OtherPages.cs:457
 msgid "Open the document after export"
 msgstr "エクスポート後に文書を開く"
 
-#: src/FalconOcr.App/Pages/OtherPages.cs:454
+#: src/FalconOcr.App/Pages/OtherPages.cs:458
 msgid "Recognize automatically when files are added"
 msgstr "ファイル追加時に自動で認識"
 
-#: src/FalconOcr.App/Pages/OtherPages.cs:455
+#: src/FalconOcr.App/Pages/OtherPages.cs:459
 msgid "Highlight uncertain characters in the results view"
 msgstr "結果ビューで不確かな文字を強調表示"
 
-#: src/FalconOcr.App/Pages/OtherPages.cs:482
+#: src/FalconOcr.App/Pages/OtherPages.cs:486
 msgid "General"
 msgstr "全般"
 
-#: src/FalconOcr.App/Pages/OtherPages.cs:483
+#: src/FalconOcr.App/Pages/OtherPages.cs:487
 msgid "Interface language:"
 msgstr "表示言語："
 
-#: src/FalconOcr.App/Pages/OtherPages.cs:485
+#: src/FalconOcr.App/Pages/OtherPages.cs:489
 msgid "Default language:"
 msgstr "既定の言語："
 
-#: src/FalconOcr.App/Pages/OtherPages.cs:486
+#: src/FalconOcr.App/Pages/OtherPages.cs:490
 msgid "Layout analysis:"
 msgstr "レイアウト解析："
 
-#: src/FalconOcr.App/Pages/OtherPages.cs:490
-#: src/FalconOcr.App/Pages/WorkspacePage.cs:84
-#: src/FalconOcr.App/Pages/WorkspacePage.cs:751
+#: src/FalconOcr.App/Pages/OtherPages.cs:494
+msgid "Default font:"
+msgstr "既定のフォント:"
+
+#: src/FalconOcr.App/Pages/OtherPages.cs:495
+msgid "Used for recognized text when the original font is unknown (scans, images). Applies to pages recognized afterwards."
+msgstr "元のフォントが不明な場合（スキャン、画像）に認識テキストに使用します。以降に認識するページに適用されます。"
+
+#: src/FalconOcr.App/Pages/OtherPages.cs:496
+#: src/FalconOcr.App/Pages/WorkspacePage.cs:88
+#: src/FalconOcr.App/Pages/WorkspacePage.cs:762
 msgid "Export"
 msgstr "エクスポート"
 
-#: src/FalconOcr.App/Pages/OtherPages.cs:491
+#: src/FalconOcr.App/Pages/OtherPages.cs:497
 msgid "Default output format:"
 msgstr "既定の出力形式："
 
-#: src/FalconOcr.App/Pages/OtherPages.cs:492
+#: src/FalconOcr.App/Pages/OtherPages.cs:498
 msgid "Document type:"
 msgstr "文書の種類："
 
-#: src/FalconOcr.App/Pages/OtherPages.cs:493
+#: src/FalconOcr.App/Pages/OtherPages.cs:499
 msgid "Output folder:"
 msgstr "出力フォルダー："
 
-#: src/FalconOcr.App/Pages/OtherPages.cs:497
+#: src/FalconOcr.App/Pages/OtherPages.cs:503
 msgid "Advanced recognition"
 msgstr "詳細な認識設定"
 
-#: src/FalconOcr.App/Pages/OtherPages.cs:499
+#: src/FalconOcr.App/Pages/OtherPages.cs:505
 msgid "OCR models (offline)"
 msgstr "OCR モデル（オフライン）"
 
-#: src/FalconOcr.App/Pages/OtherPages.cs:504
+#: src/FalconOcr.App/Pages/OtherPages.cs:510
 msgid "Change license key…"
 msgstr "ライセンスキーを変更…"
 
-#: src/FalconOcr.App/Pages/OtherPages.cs:505
+#: src/FalconOcr.App/Pages/OtherPages.cs:511
 msgid "Copy machine code"
 msgstr "マシンコードをコピー"
 
-#: src/FalconOcr.App/Pages/OtherPages.cs:514
+#: src/FalconOcr.App/Pages/OtherPages.cs:520
 msgid "Machine code copied: "
 msgstr "マシンコードをコピーしました："
 
-#: src/FalconOcr.App/Pages/OtherPages.cs:517
+#: src/FalconOcr.App/Pages/OtherPages.cs:523
 msgid "Save"
 msgstr "保存"
 
-#: src/FalconOcr.App/Pages/OtherPages.cs:519
+#: src/FalconOcr.App/Pages/OtherPages.cs:525
 msgid "Restore defaults"
 msgstr "既定値に戻す"
 
-#: src/FalconOcr.App/Pages/OtherPages.cs:520
+#: src/FalconOcr.App/Pages/OtherPages.cs:526
 msgid "Open data folder"
 msgstr "データ フォルダーを開く"
 
-#: src/FalconOcr.App/Pages/OtherPages.cs:530
+#: src/FalconOcr.App/Pages/OtherPages.cs:536
 msgid "Restore all settings to their defaults?"
 msgstr "すべての設定を既定値に戻しますか？"
 
-#: src/FalconOcr.App/Pages/OtherPages.cs:556
+#: src/FalconOcr.App/Pages/OtherPages.cs:563
 msgid "Location: "
 msgstr "場所："
 
-#: src/FalconOcr.App/Pages/OtherPages.cs:560
+#: src/FalconOcr.App/Pages/OtherPages.cs:567
 msgid "✗ missing  "
 msgstr "✗ 不足  "
 
-#: src/FalconOcr.App/Pages/OtherPages.cs:562
+#: src/FalconOcr.App/Pages/OtherPages.cs:569
 msgid "Languages: "
 msgstr "言語："
 
-#: src/FalconOcr.App/Pages/OtherPages.cs:601
+#: src/FalconOcr.App/Pages/OtherPages.cs:611
 msgid "Settings saved."
 msgstr "設定を保存しました。"
 
-#: src/FalconOcr.App/Pages/OtherPages.cs:608
+#: src/FalconOcr.App/Pages/OtherPages.cs:618
 msgid "The interface language is changed after a restart. Restart Falcon OCR now?"
 msgstr "表示言語は再起動後に変更されます。今すぐ Falcon OCR を再起動しますか？"
 
-#: src/FalconOcr.App/Pages/OtherPages.cs:608
+#: src/FalconOcr.App/Pages/OtherPages.cs:618
 msgid "Interface language"
 msgstr "表示言語"
 
@@ -647,68 +659,95 @@ msgstr "ワークスペースで開く"
 msgid "Images and PDF|*.png;*.jpg;*.jpeg;*.bmp;*.gif;*.tif;*.tiff;*.pdf"
 msgstr "画像と PDF|*.png;*.jpg;*.jpeg;*.bmp;*.gif;*.tif;*.tiff;*.pdf"
 
-#: src/FalconOcr.App/Pages/WorkspacePage.cs:1023
+#: src/FalconOcr.App/Pages/WorkspacePage.cs:100
+msgid "Add files (PDF, images)…\tCtrl+O"
+msgstr "ファイルを追加（PDF、画像）…\tCtrl+O"
+
+#: src/FalconOcr.App/Pages/WorkspacePage.cs:101
+msgid "Add images as one document (image sequence)…"
+msgstr "複数の画像を 1 つの文書として追加（画像シーケンス）…"
+
+#: src/FalconOcr.App/Pages/WorkspacePage.cs:1018
+#, csharp-format
+msgid "You are using the trial version of Falcon OCR — {0} of {1} days left. All features are available during the trial."
+msgstr "Falcon OCR の試用版を使用しています — 残り {0}/{1} 日。試用期間中はすべての機能を利用できます。"
+
+#: src/FalconOcr.App/Pages/WorkspacePage.cs:102
+msgid "Add folder as image sequence…"
+msgstr "フォルダーを画像シーケンスとして追加…"
+
+#: src/FalconOcr.App/Pages/WorkspacePage.cs:1020
+msgid "Activate now"
+msgstr "今すぐアクティベート"
+
+#: src/FalconOcr.App/Pages/WorkspacePage.cs:1025
+msgid "Hide until the next start"
+msgstr "次回起動まで非表示"
+
+#: src/FalconOcr.App/Pages/WorkspacePage.cs:1101
 #, csharp-format
 msgid "Font size set to {0} pt."
 msgstr "フォント サイズを {0} pt に設定しました。"
 
-#: src/FalconOcr.App/Pages/WorkspacePage.cs:1023
+#: src/FalconOcr.App/Pages/WorkspacePage.cs:1101
 #, csharp-format
 msgid "Font set to {0}."
 msgstr "フォントを {0} に設定しました。"
 
-#: src/FalconOcr.App/Pages/WorkspacePage.cs:1062
+#: src/FalconOcr.App/Pages/WorkspacePage.cs:1140
 msgid "Nothing to copy — recognize the document first."
 msgstr "コピーする内容がありません — 先に文書を認識してください。"
 
-#: src/FalconOcr.App/Pages/WorkspacePage.cs:1066
+#: src/FalconOcr.App/Pages/WorkspacePage.cs:1144
 msgid "Text copied to the clipboard."
 msgstr "テキストをクリップボードにコピーしました。"
 
-#: src/FalconOcr.App/Pages/WorkspacePage.cs:1087
+#: src/FalconOcr.App/Pages/WorkspacePage.cs:116
+#: src/FalconOcr.App/Pages/WorkspacePage.cs:985
+msgid "Files"
+msgstr "ファイル"
+
+#: src/FalconOcr.App/Pages/WorkspacePage.cs:116
+#: src/FalconOcr.App/Pages/WorkspacePage.cs:985
+msgid "Thumbnails"
+msgstr "サムネイル"
+
+#: src/FalconOcr.App/Pages/WorkspacePage.cs:1165
 #, csharp-format
 msgid "\"{0}\" is already recognized. Recognize it again with the current settings?"
 msgstr "「{0}」は認識済みです。現在の設定で再認識しますか？"
 
-#: src/FalconOcr.App/Pages/WorkspacePage.cs:112
-msgid "Files"
-msgstr "ファイル"
-
-#: src/FalconOcr.App/Pages/WorkspacePage.cs:112
-msgid "Thumbnails"
-msgstr "サムネイル"
-
-#: src/FalconOcr.App/Pages/WorkspacePage.cs:1125
+#: src/FalconOcr.App/Pages/WorkspacePage.cs:1203
 msgid "OCR models are missing:\n"
 msgstr "OCR モデルが見つかりません：\n"
 
-#: src/FalconOcr.App/Pages/WorkspacePage.cs:1129
+#: src/FalconOcr.App/Pages/WorkspacePage.cs:1207
 msgid "Stop"
 msgstr "停止"
 
-#: src/FalconOcr.App/Pages/WorkspacePage.cs:1137
+#: src/FalconOcr.App/Pages/WorkspacePage.cs:1215
 #, csharp-format
 msgid "Text recognition completed — {0} page(s) in {1:0.0}s."
 msgstr "テキスト認識完了 — {0} ページ、{1:0.0} 秒。"
 
-#: src/FalconOcr.App/Pages/WorkspacePage.cs:1144
+#: src/FalconOcr.App/Pages/WorkspacePage.cs:1222
 msgid "Recognition stopped."
 msgstr "認識を停止しました。"
 
-#: src/FalconOcr.App/Pages/WorkspacePage.cs:1149
+#: src/FalconOcr.App/Pages/WorkspacePage.cs:1227
 msgid "Recognition failed."
 msgstr "認識に失敗しました。"
 
-#: src/FalconOcr.App/Pages/WorkspacePage.cs:1179
+#: src/FalconOcr.App/Pages/WorkspacePage.cs:1257
 msgid "Add and recognize a document first."
 msgstr "先に文書を追加して認識してください。"
 
-#: src/FalconOcr.App/Pages/WorkspacePage.cs:1186
+#: src/FalconOcr.App/Pages/WorkspacePage.cs:1264
 #, csharp-format
 msgid "\"{0}\" has not been recognized yet. Recognize it now?"
 msgstr "「{0}」はまだ認識されていません。今すぐ認識しますか？"
 
-#: src/FalconOcr.App/Pages/WorkspacePage.cs:1187
+#: src/FalconOcr.App/Pages/WorkspacePage.cs:1265
 #, csharp-format
 msgid ""
 "{0} of {1} pages are not recognized.\n"
@@ -721,61 +760,61 @@ msgstr ""
 "はい = 先に認識する\n"
 "いいえ = 認識済みのページだけをエクスポート"
 
-#: src/FalconOcr.App/Pages/WorkspacePage.cs:1205
+#: src/FalconOcr.App/Pages/WorkspacePage.cs:1283
 msgid "Cannot create the output folder: "
 msgstr "出力フォルダーを作成できません："
 
-#: src/FalconOcr.App/Pages/WorkspacePage.cs:1209
+#: src/FalconOcr.App/Pages/WorkspacePage.cs:1287
 #, csharp-format
 msgid "Exporting {0}…"
 msgstr "{0} をエクスポートしています…"
 
-#: src/FalconOcr.App/Pages/WorkspacePage.cs:1218
+#: src/FalconOcr.App/Pages/WorkspacePage.cs:1296
 msgid "Export failed."
 msgstr "エクスポートに失敗しました。"
 
-#: src/FalconOcr.App/Pages/WorkspacePage.cs:1223
+#: src/FalconOcr.App/Pages/WorkspacePage.cs:1301
 #, csharp-format
 msgid "Exported to {0}"
 msgstr "{0} にエクスポートしました"
 
-#: src/FalconOcr.App/Pages/WorkspacePage.cs:1237
+#: src/FalconOcr.App/Pages/WorkspacePage.cs:1315
 msgid "OCR Settings"
 msgstr "OCR 設定"
 
-#: src/FalconOcr.App/Pages/WorkspacePage.cs:1240
+#: src/FalconOcr.App/Pages/WorkspacePage.cs:1318
 msgid "Automatic"
 msgstr "自動"
 
-#: src/FalconOcr.App/Pages/WorkspacePage.cs:1242
+#: src/FalconOcr.App/Pages/WorkspacePage.cs:1320
 msgid "⚙  Advanced Settings…"
 msgstr "⚙  詳細設定…"
 
-#: src/FalconOcr.App/Pages/WorkspacePage.cs:1245
+#: src/FalconOcr.App/Pages/WorkspacePage.cs:1323
 msgid "Document Type:"
 msgstr "文書の種類："
 
-#: src/FalconOcr.App/Pages/WorkspacePage.cs:1245
+#: src/FalconOcr.App/Pages/WorkspacePage.cs:1323
 msgid "Language:"
 msgstr "言語："
 
-#: src/FalconOcr.App/Pages/WorkspacePage.cs:1245
+#: src/FalconOcr.App/Pages/WorkspacePage.cs:1323
 msgid "Layout Analysis:"
 msgstr "レイアウト解析："
 
-#: src/FalconOcr.App/Pages/WorkspacePage.cs:1247
+#: src/FalconOcr.App/Pages/WorkspacePage.cs:1325
 msgid "Output Format"
 msgstr "出力形式"
 
-#: src/FalconOcr.App/Pages/WorkspacePage.cs:1263
+#: src/FalconOcr.App/Pages/WorkspacePage.cs:1341
 msgid "Output Folder:"
 msgstr "出力フォルダー："
 
-#: src/FalconOcr.App/Pages/WorkspacePage.cs:1299
+#: src/FalconOcr.App/Pages/WorkspacePage.cs:1377
 msgid "Output folder for exported documents"
 msgstr "エクスポートした文書の出力フォルダー"
 
-#: src/FalconOcr.App/Pages/WorkspacePage.cs:1361
+#: src/FalconOcr.App/Pages/WorkspacePage.cs:1439
 msgid ""
 "Falcon OCR — offline OCR with PaddleOCR (PP-OCRv5)\n"
 "\n"
@@ -799,140 +838,140 @@ msgstr ""
 "ショートカット：Ctrl+O ファイル追加 · Ctrl+V 画像貼り付け · Ctrl+R 回転 · Del 削除\n"
 "PgUp/PgDn ページ移動 · Ctrl+ホイール ズーム · 中ボタン ドラッグで移動"
 
-#: src/FalconOcr.App/Pages/WorkspacePage.cs:1369
+#: src/FalconOcr.App/Pages/WorkspacePage.cs:1447
 msgid "Unlicensed"
 msgstr "未ライセンス"
 
-#: src/FalconOcr.App/Pages/WorkspacePage.cs:1376
+#: src/FalconOcr.App/Pages/WorkspacePage.cs:1454
 msgid "Recognition is still running. Stop it and exit?"
 msgstr "認識を実行中です。停止して終了しますか？"
 
-#: src/FalconOcr.App/Pages/WorkspacePage.cs:170
+#: src/FalconOcr.App/Pages/WorkspacePage.cs:180
 msgid "Zoom out"
 msgstr "縮小"
 
-#: src/FalconOcr.App/Pages/WorkspacePage.cs:171
+#: src/FalconOcr.App/Pages/WorkspacePage.cs:181
 msgid "Zoom in"
 msgstr "拡大"
 
-#: src/FalconOcr.App/Pages/WorkspacePage.cs:173
-#: src/FalconOcr.App/Pages/WorkspacePage.cs:174
-#: src/FalconOcr.App/Pages/WorkspacePage.cs:341
+#: src/FalconOcr.App/Pages/WorkspacePage.cs:183
+#: src/FalconOcr.App/Pages/WorkspacePage.cs:184
+#: src/FalconOcr.App/Pages/WorkspacePage.cs:352
 msgid "Fit width"
 msgstr "幅に合わせる"
 
-#: src/FalconOcr.App/Pages/WorkspacePage.cs:173
-#: src/FalconOcr.App/Pages/WorkspacePage.cs:175
-#: src/FalconOcr.App/Pages/WorkspacePage.cs:610
+#: src/FalconOcr.App/Pages/WorkspacePage.cs:183
+#: src/FalconOcr.App/Pages/WorkspacePage.cs:185
+#: src/FalconOcr.App/Pages/WorkspacePage.cs:621
 msgid "Fit page"
 msgstr "ページに合わせる"
 
-#: src/FalconOcr.App/Pages/WorkspacePage.cs:176
+#: src/FalconOcr.App/Pages/WorkspacePage.cs:186
 msgid "Rotate page 90°"
 msgstr "ページを 90° 回転"
 
-#: src/FalconOcr.App/Pages/WorkspacePage.cs:177
+#: src/FalconOcr.App/Pages/WorkspacePage.cs:187
 msgid "Pan (hand tool)"
 msgstr "移動（手のひらツール）"
 
-#: src/FalconOcr.App/Pages/WorkspacePage.cs:178
+#: src/FalconOcr.App/Pages/WorkspacePage.cs:188
 msgid "Previous page (PgUp)"
 msgstr "前のページ (PgUp)"
 
-#: src/FalconOcr.App/Pages/WorkspacePage.cs:179
+#: src/FalconOcr.App/Pages/WorkspacePage.cs:189
 msgid "Next page (PgDn)"
 msgstr "次のページ (PgDn)"
 
-#: src/FalconOcr.App/Pages/WorkspacePage.cs:186
+#: src/FalconOcr.App/Pages/WorkspacePage.cs:196
 msgid "Source Page"
 msgstr "元のページ"
 
-#: src/FalconOcr.App/Pages/WorkspacePage.cs:214
+#: src/FalconOcr.App/Pages/WorkspacePage.cs:224
 msgid "Recognized Text"
 msgstr "認識テキスト"
 
-#: src/FalconOcr.App/Pages/WorkspacePage.cs:214
+#: src/FalconOcr.App/Pages/WorkspacePage.cs:224
 msgid "Original Image"
 msgstr "元の画像"
 
-#: src/FalconOcr.App/Pages/WorkspacePage.cs:216
+#: src/FalconOcr.App/Pages/WorkspacePage.cs:226
 msgid "Normal"
 msgstr "標準"
 
-#: src/FalconOcr.App/Pages/WorkspacePage.cs:216
+#: src/FalconOcr.App/Pages/WorkspacePage.cs:226
 msgid "Heading 1"
 msgstr "見出し 1"
 
-#: src/FalconOcr.App/Pages/WorkspacePage.cs:216
+#: src/FalconOcr.App/Pages/WorkspacePage.cs:226
 msgid "Heading 2"
 msgstr "見出し 2"
 
-#: src/FalconOcr.App/Pages/WorkspacePage.cs:216
+#: src/FalconOcr.App/Pages/WorkspacePage.cs:226
 msgid "Heading 3"
 msgstr "見出し 3"
 
-#: src/FalconOcr.App/Pages/WorkspacePage.cs:216
+#: src/FalconOcr.App/Pages/WorkspacePage.cs:226
 msgid "List item"
 msgstr "リスト項目"
 
-#: src/FalconOcr.App/Pages/WorkspacePage.cs:224
+#: src/FalconOcr.App/Pages/WorkspacePage.cs:234
 msgid "Font"
 msgstr "フォント"
 
-#: src/FalconOcr.App/Pages/WorkspacePage.cs:225
+#: src/FalconOcr.App/Pages/WorkspacePage.cs:235
 msgid "Font size"
 msgstr "フォント サイズ"
 
-#: src/FalconOcr.App/Pages/WorkspacePage.cs:226
+#: src/FalconOcr.App/Pages/WorkspacePage.cs:236
 msgid "Bold"
 msgstr "太字"
 
-#: src/FalconOcr.App/Pages/WorkspacePage.cs:227
+#: src/FalconOcr.App/Pages/WorkspacePage.cs:237
 msgid "Italic"
 msgstr "斜体"
 
-#: src/FalconOcr.App/Pages/WorkspacePage.cs:228
+#: src/FalconOcr.App/Pages/WorkspacePage.cs:238
 msgid "Underline"
 msgstr "下線"
 
-#: src/FalconOcr.App/Pages/WorkspacePage.cs:229
+#: src/FalconOcr.App/Pages/WorkspacePage.cs:239
 msgid "Bulleted list"
 msgstr "箇条書き"
 
-#: src/FalconOcr.App/Pages/WorkspacePage.cs:230
-#: src/FalconOcr.App/Pages/WorkspacePage.cs:890
+#: src/FalconOcr.App/Pages/WorkspacePage.cs:240
+#: src/FalconOcr.App/Pages/WorkspacePage.cs:901
 msgid "Numbered list"
 msgstr "番号付きリスト"
 
-#: src/FalconOcr.App/Pages/WorkspacePage.cs:231
+#: src/FalconOcr.App/Pages/WorkspacePage.cs:241
 msgid "More"
 msgstr "その他"
 
-#: src/FalconOcr.App/Pages/WorkspacePage.cs:282
+#: src/FalconOcr.App/Pages/WorkspacePage.cs:292
 msgid "Highlight uncertain characters"
 msgstr "不確かな文字を強調表示"
 
-#: src/FalconOcr.App/Pages/WorkspacePage.cs:286
+#: src/FalconOcr.App/Pages/WorkspacePage.cs:296
 msgid "Copy page text"
 msgstr "ページのテキストをコピー"
 
-#: src/FalconOcr.App/Pages/WorkspacePage.cs:287
+#: src/FalconOcr.App/Pages/WorkspacePage.cs:297
 msgid "Copy document text"
 msgstr "文書のテキストをコピー"
 
-#: src/FalconOcr.App/Pages/WorkspacePage.cs:289
+#: src/FalconOcr.App/Pages/WorkspacePage.cs:299
 msgid "Recognize this page again"
 msgstr "このページを再認識"
 
-#: src/FalconOcr.App/Pages/WorkspacePage.cs:302
+#: src/FalconOcr.App/Pages/WorkspacePage.cs:312
 msgid "Edited: "
 msgstr "編集しました："
 
-#: src/FalconOcr.App/Pages/WorkspacePage.cs:397
+#: src/FalconOcr.App/Pages/WorkspacePage.cs:408
 msgid "unsupported file type"
 msgstr "サポートされていないファイル形式"
 
-#: src/FalconOcr.App/Pages/WorkspacePage.cs:409
+#: src/FalconOcr.App/Pages/WorkspacePage.cs:420
 msgid ""
 "Some files could not be opened:\n"
 "\n"
@@ -940,151 +979,134 @@ msgstr ""
 "一部のファイルを開けませんでした：\n"
 "\n"
 
-#: src/FalconOcr.App/Pages/WorkspacePage.cs:431
+#: src/FalconOcr.App/Pages/WorkspacePage.cs:442
 msgid "Images|*.png;*.jpg;*.jpeg;*.jpe;*.bmp;*.gif;*.tif;*.tiff"
 msgstr "画像|*.png;*.jpg;*.jpeg;*.jpe;*.bmp;*.gif;*.tif;*.tiff"
 
-#: src/FalconOcr.App/Pages/WorkspacePage.cs:431
+#: src/FalconOcr.App/Pages/WorkspacePage.cs:442
 msgid "Select the images of one document"
 msgstr "1 つの文書の画像を選択"
 
-#: src/FalconOcr.App/Pages/WorkspacePage.cs:436
+#: src/FalconOcr.App/Pages/WorkspacePage.cs:447
 #, csharp-format
 msgid "{0} ({1} images)"
 msgstr "{0}（{1} 枚の画像）"
 
-#: src/FalconOcr.App/Pages/WorkspacePage.cs:439
+#: src/FalconOcr.App/Pages/WorkspacePage.cs:450
 msgid "Add image sequence"
 msgstr "画像シーケンスを追加"
 
-#: src/FalconOcr.App/Pages/WorkspacePage.cs:445
+#: src/FalconOcr.App/Pages/WorkspacePage.cs:456
 msgid "Select a folder of page images (sorted by file name)"
 msgstr "ページ画像のフォルダーを選択（ファイル名順）"
 
-#: src/FalconOcr.App/Pages/WorkspacePage.cs:460
+#: src/FalconOcr.App/Pages/WorkspacePage.cs:471
 msgid "The clipboard does not contain an image."
 msgstr "クリップボードに画像がありません。"
 
-#: src/FalconOcr.App/Pages/WorkspacePage.cs:531
+#: src/FalconOcr.App/Pages/WorkspacePage.cs:542
 #, csharp-format
 msgid "Loading {0}…"
 msgstr "{0} を読み込んでいます…"
 
-#: src/FalconOcr.App/Pages/WorkspacePage.cs:542
+#: src/FalconOcr.App/Pages/WorkspacePage.cs:553
 msgid "Cannot display page: "
 msgstr "ページを表示できません："
 
-#: src/FalconOcr.App/Pages/WorkspacePage.cs:574
+#: src/FalconOcr.App/Pages/WorkspacePage.cs:585
 #, csharp-format
 msgid "{0}  ·  {1} × {2} px  ·  {3:0} dpi"
 msgstr "{0}  ·  {1} × {2} px  ·  {3:0} dpi"
 
-#: src/FalconOcr.App/Pages/WorkspacePage.cs:574
+#: src/FalconOcr.App/Pages/WorkspacePage.cs:585
 #, csharp-format
 msgid "  ·  rotated {0}°"
 msgstr "  ·  {0}° 回転"
 
-#: src/FalconOcr.App/Pages/WorkspacePage.cs:574
+#: src/FalconOcr.App/Pages/WorkspacePage.cs:585
 msgid "cropped"
 msgstr "トリミング済み"
 
-#: src/FalconOcr.App/Pages/WorkspacePage.cs:646
+#: src/FalconOcr.App/Pages/WorkspacePage.cs:657
 #, csharp-format
 msgid "Text layer read from PDF — {0} lines, {1} blocks."
 msgstr "PDF のテキスト レイヤーを読み込みました — {0} 行、{1} ブロック。"
 
-#: src/FalconOcr.App/Pages/WorkspacePage.cs:647
+#: src/FalconOcr.App/Pages/WorkspacePage.cs:658
 #, csharp-format
 msgid "Text recognition completed — {0} lines, {1} blocks, {2:P0} confidence ({3:0.0}s)."
 msgstr "テキスト認識完了 — {0} 行、{1} ブロック、信頼度 {2:P0}（{3:0.0} 秒）。"
 
-#: src/FalconOcr.App/Pages/WorkspacePage.cs:652
+#: src/FalconOcr.App/Pages/WorkspacePage.cs:663
 msgid "No document selected."
 msgstr "文書が選択されていません。"
 
-#: src/FalconOcr.App/Pages/WorkspacePage.cs:652
+#: src/FalconOcr.App/Pages/WorkspacePage.cs:663
 msgid "This page has not been recognized yet."
 msgstr "このページはまだ認識されていません。"
 
-#: src/FalconOcr.App/Pages/WorkspacePage.cs:741
+#: src/FalconOcr.App/Pages/WorkspacePage.cs:752
 msgid "1 page"
 msgstr "1 ページ"
 
-#: src/FalconOcr.App/Pages/WorkspacePage.cs:741
+#: src/FalconOcr.App/Pages/WorkspacePage.cs:752
 #, csharp-format
 msgid "{0} images"
 msgstr "{0} 枚の画像"
 
-#: src/FalconOcr.App/Pages/WorkspacePage.cs:741
+#: src/FalconOcr.App/Pages/WorkspacePage.cs:752
 #, csharp-format
 msgid "{0} pages"
 msgstr "{0} ページ"
 
-#: src/FalconOcr.App/Pages/WorkspacePage.cs:742
+#: src/FalconOcr.App/Pages/WorkspacePage.cs:753
 msgid "recognized"
 msgstr "認識済み"
 
-#: src/FalconOcr.App/Pages/WorkspacePage.cs:742
+#: src/FalconOcr.App/Pages/WorkspacePage.cs:753
 #, csharp-format
 msgid "{0}/{1} done"
 msgstr "{0}/{1} 完了"
 
-#: src/FalconOcr.App/Pages/WorkspacePage.cs:750
+#: src/FalconOcr.App/Pages/WorkspacePage.cs:761
 msgid "Recognize all documents"
 msgstr "すべての文書を認識"
 
-#: src/FalconOcr.App/Pages/WorkspacePage.cs:752
+#: src/FalconOcr.App/Pages/WorkspacePage.cs:763
 msgid "Export as…"
 msgstr "名前を付けてエクスポート…"
 
-#: src/FalconOcr.App/Pages/WorkspacePage.cs:754
+#: src/FalconOcr.App/Pages/WorkspacePage.cs:765
 msgid "Rename…"
 msgstr "名前の変更…"
 
-#: src/FalconOcr.App/Pages/WorkspacePage.cs:755
+#: src/FalconOcr.App/Pages/WorkspacePage.cs:766
 msgid "Open containing folder"
 msgstr "保存先フォルダーを開く"
 
-#: src/FalconOcr.App/Pages/WorkspacePage.cs:763
+#: src/FalconOcr.App/Pages/WorkspacePage.cs:774
 msgid "Remove"
 msgstr "削除"
 
-#: src/FalconOcr.App/Pages/WorkspacePage.cs:764
-#: src/FalconOcr.App/Pages/WorkspacePage.cs:846
+#: src/FalconOcr.App/Pages/WorkspacePage.cs:775
+#: src/FalconOcr.App/Pages/WorkspacePage.cs:857
 msgid "Remove all"
 msgstr "すべて削除"
 
-#: src/FalconOcr.App/Pages/WorkspacePage.cs:77
-#: src/FalconOcr.App/Pages/WorkspacePage.cs:409
-#: src/FalconOcr.App/Pages/WorkspacePage.cs:425
-msgid "Add Files"
-msgstr "ファイルを追加"
-
-#: src/FalconOcr.App/Pages/WorkspacePage.cs:772
+#: src/FalconOcr.App/Pages/WorkspacePage.cs:783
 msgid "Rename document"
 msgstr "文書の名前を変更"
 
-#: src/FalconOcr.App/Pages/WorkspacePage.cs:772
+#: src/FalconOcr.App/Pages/WorkspacePage.cs:783
 msgid "Name:"
 msgstr "名前："
 
-#: src/FalconOcr.App/Pages/WorkspacePage.cs:78
-#: src/FalconOcr.App/Pages/WorkspacePage.cs:480
-msgid "Scan"
-msgstr "スキャン"
-
-#: src/FalconOcr.App/Pages/WorkspacePage.cs:785
+#: src/FalconOcr.App/Pages/WorkspacePage.cs:796
 #, csharp-format
 msgid "{0} rotated to {1}° — recognize again to update the text."
 msgstr "{0} を {1}° に回転しました — テキストを更新するには再認識してください。"
 
-#: src/FalconOcr.App/Pages/WorkspacePage.cs:79
-#: src/FalconOcr.App/Pages/WorkspacePage.cs:460
-#: src/FalconOcr.App/Pages/WorkspacePage.cs:470
-msgid "From Clipboard"
-msgstr "クリップボードから"
-
-#: src/FalconOcr.App/Pages/WorkspacePage.cs:796
+#: src/FalconOcr.App/Pages/WorkspacePage.cs:807
 msgid ""
 "This page is already cropped.\n"
 "\n"
@@ -1094,80 +1116,84 @@ msgstr ""
 "\n"
 "はい = さらにトリミング、いいえ = ページ全体に戻す。"
 
-#: src/FalconOcr.App/Pages/WorkspacePage.cs:80
-msgid "Rotate"
-msgstr "回転"
-
 #: src/FalconOcr.App/Pages/WorkspacePage.cs:81
-#: src/FalconOcr.App/Pages/WorkspacePage.cs:796
-msgid "Crop"
-msgstr "トリミング"
+#: src/FalconOcr.App/Pages/WorkspacePage.cs:420
+#: src/FalconOcr.App/Pages/WorkspacePage.cs:436
+msgid "Add Files"
+msgstr "ファイルを追加"
 
-#: src/FalconOcr.App/Pages/WorkspacePage.cs:816
+#: src/FalconOcr.App/Pages/WorkspacePage.cs:82
+#: src/FalconOcr.App/Pages/WorkspacePage.cs:491
+msgid "Scan"
+msgstr "スキャン"
+
+#: src/FalconOcr.App/Pages/WorkspacePage.cs:827
 #, csharp-format
 msgid "{0} cropped — recognize again to update the text."
 msgstr "{0} をトリミングしました — テキストを更新するには再認識してください。"
 
-#: src/FalconOcr.App/Pages/WorkspacePage.cs:82
-#: src/FalconOcr.App/Pages/WorkspacePage.cs:827
-#: src/FalconOcr.App/Pages/WorkspacePage.cs:833
-msgid "Delete"
-msgstr "削除"
+#: src/FalconOcr.App/Pages/WorkspacePage.cs:83
+#: src/FalconOcr.App/Pages/WorkspacePage.cs:471
+#: src/FalconOcr.App/Pages/WorkspacePage.cs:481
+msgid "From Clipboard"
+msgstr "クリップボードから"
 
-#: src/FalconOcr.App/Pages/WorkspacePage.cs:827
+#: src/FalconOcr.App/Pages/WorkspacePage.cs:838
 #, csharp-format
 msgid "Remove {0} from \"{1}\"?"
 msgstr "「{1}」から {0} を削除しますか？"
 
-#: src/FalconOcr.App/Pages/WorkspacePage.cs:83
-#: src/FalconOcr.App/Pages/WorkspacePage.cs:749
-#: src/FalconOcr.App/Pages/WorkspacePage.cs:1087
-msgid "Recognize"
-msgstr "認識"
+#: src/FalconOcr.App/Pages/WorkspacePage.cs:84
+msgid "Rotate"
+msgstr "回転"
 
-#: src/FalconOcr.App/Pages/WorkspacePage.cs:833
+#: src/FalconOcr.App/Pages/WorkspacePage.cs:844
 #, csharp-format
 msgid "Remove \"{0}\" and its recognition results?"
 msgstr "「{0}」とその認識結果を削除しますか？"
 
-#: src/FalconOcr.App/Pages/WorkspacePage.cs:846
+#: src/FalconOcr.App/Pages/WorkspacePage.cs:85
+#: src/FalconOcr.App/Pages/WorkspacePage.cs:807
+msgid "Crop"
+msgstr "トリミング"
+
+#: src/FalconOcr.App/Pages/WorkspacePage.cs:857
 msgid "Remove all documents from the workspace?"
 msgstr "ワークスペースからすべての文書を削除しますか？"
 
-#: src/FalconOcr.App/Pages/WorkspacePage.cs:88
-#: src/FalconOcr.App/Pages/WorkspacePage.cs:1370
-msgid "Help"
-msgstr "ヘルプ"
+#: src/FalconOcr.App/Pages/WorkspacePage.cs:86
+#: src/FalconOcr.App/Pages/WorkspacePage.cs:838
+#: src/FalconOcr.App/Pages/WorkspacePage.cs:844
+msgid "Delete"
+msgstr "削除"
 
-#: src/FalconOcr.App/Pages/WorkspacePage.cs:890
+#: src/FalconOcr.App/Pages/WorkspacePage.cs:87
+#: src/FalconOcr.App/Pages/WorkspacePage.cs:760
+#: src/FalconOcr.App/Pages/WorkspacePage.cs:1165
+msgid "Recognize"
+msgstr "認識"
+
+#: src/FalconOcr.App/Pages/WorkspacePage.cs:901
 #, csharp-format
 msgid "Paragraph style changed to {0}."
 msgstr "段落スタイルを {0} に変更しました。"
 
-#: src/FalconOcr.App/Pages/WorkspacePage.cs:940
-#, csharp-format
-msgid "You are using the trial version of Falcon OCR — {0} of {1} days left. All features are available during the trial."
-msgstr "Falcon OCR の試用版を使用しています — 残り {0}/{1} 日。試用期間中はすべての機能を利用できます。"
+#: src/FalconOcr.App/Pages/WorkspacePage.cs:92
+#: src/FalconOcr.App/Pages/WorkspacePage.cs:1448
+msgid "Help"
+msgstr "ヘルプ"
 
-#: src/FalconOcr.App/Pages/WorkspacePage.cs:942
-msgid "Activate now"
-msgstr "今すぐアクティベート"
+#: src/FalconOcr.App/Pages/WorkspacePage.cs:939
+msgid "Show files and thumbnails"
+msgstr "ファイルとサムネイルを表示"
 
-#: src/FalconOcr.App/Pages/WorkspacePage.cs:947
-msgid "Hide until the next start"
-msgstr "次回起動まで非表示"
+#: src/FalconOcr.App/Pages/WorkspacePage.cs:939
+msgid "Hide files and thumbnails"
+msgstr "ファイルとサムネイルを隠す"
 
-#: src/FalconOcr.App/Pages/WorkspacePage.cs:96
-msgid "Add files (PDF, images)…\tCtrl+O"
-msgstr "ファイルを追加（PDF、画像）…\tCtrl+O"
-
-#: src/FalconOcr.App/Pages/WorkspacePage.cs:97
-msgid "Add images as one document (image sequence)…"
-msgstr "複数の画像を 1 つの文書として追加（画像シーケンス）…"
-
-#: src/FalconOcr.App/Pages/WorkspacePage.cs:98
-msgid "Add folder as image sequence…"
-msgstr "フォルダーを画像シーケンスとして追加…"
+#: src/FalconOcr.App/Pages/WorkspacePage.cs:992
+msgid "Hide panel"
+msgstr "パネルを隠す"
 
 #: src/FalconOcr.App/Program.cs:29
 msgid "Falcon OCR must run as a 64-bit process."
@@ -1190,11 +1216,11 @@ msgstr ""
 "詳細は次の場所に記録されました：\n"
 "{1}"
 
-#: src/FalconOcr.App/Services/AppServices.cs:176
+#: src/FalconOcr.App/Services/AppServices.cs:177
 msgid "Windows Image Acquisition (WIA) is not available on this computer."
 msgstr "この PC では Windows Image Acquisition (WIA) を使用できません。"
 
-#: src/FalconOcr.App/Services/AppServices.cs:186
+#: src/FalconOcr.App/Services/AppServices.cs:187
 msgid "No scanner was found. Connect a WIA-compatible scanner and try again."
 msgstr "スキャナーが見つかりません。WIA 対応スキャナーを接続して再試行してください。"
 

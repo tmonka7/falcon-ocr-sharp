@@ -85,7 +85,7 @@ def build():
         ("Trial notification", "Only in the trial: remaining days, Activate now, ✕ to hide."),
         ("Navigation bar (left)", "Home (workspace), OCR (quick text), Batch Process, History, Settings; « Collapse at the bottom."),
         ("Toolbar", "Add Files, Scan, From Clipboard, Rotate, Crop, Delete, Recognize, Export; Settings and Help on the right."),
-        ("Files / Thumbnails", "Your documents; the pages of the selected document."),
+        ("Files / Thumbnails", "Your documents; the pages of the selected document; « Hide panel at the bottom."),
         ("Source Page", "The original page with zoom and page controls."),
         ("Recognized Text / Original Image", "The recognized page rebuilt next to the original / the original with the detected areas."),
         ("OCR Settings / Output Format", "Language, document type, layout options, output format and folder; Export button. Drag its left edge to change the width."),
@@ -95,6 +95,7 @@ def build():
     d.h2("4.1 Customizing the window")
     d.ul(["**Interface language** — English, 简体中文 (Chinese) or 日本語 (Japanese): *Settings → General → Interface language*, then **Save** and confirm the restart. On first start Falcon OCR uses the language of Windows.",
           "**Collapse the sidebar** — click **« Collapse** at the bottom of the navigation bar to show only the icons (point at an icon to see its name). Click **»** to expand it again.",
+          "**Hide the Files / Thumbnails panel** — click **« Hide panel** at the bottom of the panel to get more room for the pages; a narrow strip remains. Click **»** on the strip to show the panel again.",
           "**Resize the settings panel** — drag the dotted grip at the left edge of the right-hand panel with the mouse (280–640 pixels).",
           "Falcon OCR remembers these choices, the window size and position."])
     d.img_grid([("sidebar-collapsed.png", "Collapsed sidebar"), ("right-panel-splitter.png", "Grip for resizing the settings panel")], width=290)
@@ -228,10 +229,9 @@ def build():
     d.img("settings.png", "Settings", 560)
     d.table(["Section", "What you can set"], [
         ("General", "Interface language (English, 简体中文, 日本語) — takes effect after a restart."),
-        ("Recognition", "Default language and layout analysis, table detection, recognize automatically when files are added, highlight uncertain characters."),
+        ("Recognition", "Default language and layout analysis, table detection, recognize automatically when files are added, highlight uncertain characters, default font (Automatic uses the usual font of the recognition language; choose a font to use it for scanned text whose font is unknown — it applies to pages recognized afterwards and to exports)."),
         ("Export", "Default output format (also Plain text), document type, output folder, keep colors, include pictures, open the document after export."),
         ("Advanced recognition", "The options of chapter 7.3."),
-        ("OCR models", "Shows that all language models are installed."),
         ("License", "License or trial status, your machine code, Change license key…"),
     ], [25, 75], "Settings")
     d.p("Click **Save** to apply. **Restore defaults** resets all values; **Open data folder** opens the folder with your settings and history.")
@@ -241,7 +241,7 @@ def build():
     d.h1("15. Command line")
     d.p("falcon-ocr.exe (in the same folder) converts files without opening the window — useful for scripts and scheduled tasks. It uses the same license or trial as the application.")
     d.code(["falcon-ocr <files or folders> [-l en|zh|ja|ko|ru] [-f docx,xlsx,html,txt] [-o output-folder]",
-            "           [--exact | --plain] [--seq] [--no-tables] [--ocr-only] [--dpi 300] [--cls]",
+            "           [--exact | --plain] [--seq] [--no-tables] [--ocr-only] [--dpi 300] [--cls] [--font NAME]",
             "falcon-ocr --license <key>        activate",
             "falcon-ocr --machine-code         show the machine code",
             "",
@@ -253,6 +253,7 @@ def build():
         ("-l", "Language (default en)."), ("-f", "One or more formats, comma separated (default docx)."), ("-o", "Output folder (default: next to the source)."),
         ("--exact / --plain", "Exact Copy / Plain Text instead of Editable Document."), ("--seq", "All inputs form one image-sequence document."),
         ("--no-tables", "Do not detect tables."), ("--ocr-only", "Ignore PDF text layers."), ("--dpi", "PDF rendering resolution."), ("--cls", "Correct upside-down lines."),
+        ("--font NAME", "Default font for text whose original font is unknown."),
     ], [25, 75], "Command-line options")
     d.p("Exit codes: 0 = success, 1 = usage error, 2 = models missing, 3 = not activated / trial ended.")
 

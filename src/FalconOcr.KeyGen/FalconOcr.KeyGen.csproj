@@ -8,6 +8,7 @@
     <RootNamespace>FalconOcr.KeyGen</RootNamespace>
     <AssemblyName>FalconOcrKeyGen</AssemblyName>
     <ApplicationManifest>..\FalconOcr.App\app.manifest</ApplicationManifest>
+    <ApplicationIcon>..\FalconOcr.App\app.ico</ApplicationIcon>
   </PropertyGroup>
 
   <ItemGroup>

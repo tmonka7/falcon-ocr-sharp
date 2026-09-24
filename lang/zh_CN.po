@@ -10,17 +10,23 @@ msgstr ""
 "X-Language-Name: Chinese (Simplified)\n"
 
 #: src/FalconOcr.App/MainForm.cs:100
-#: src/FalconOcr.App/Pages/OtherPages.cs:438
-#: src/FalconOcr.App/Pages/OtherPages.cs:530
+#: src/FalconOcr.App/Pages/OtherPages.cs:363
+#: src/FalconOcr.App/Pages/OtherPages.cs:389
+msgid "History"
+msgstr "历史记录"
+
+#: src/FalconOcr.App/MainForm.cs:101
+#: src/FalconOcr.App/Pages/OtherPages.cs:439
+#: src/FalconOcr.App/Pages/OtherPages.cs:536
 msgid "Settings"
 msgstr "设置"
 
-#: src/FalconOcr.App/MainForm.cs:119
-#: src/FalconOcr.App/Pages/WorkspacePage.cs:551
+#: src/FalconOcr.App/MainForm.cs:120
+#: src/FalconOcr.App/Pages/WorkspacePage.cs:562
 msgid "Ready"
 msgstr "就绪"
 
-#: src/FalconOcr.App/MainForm.cs:167
+#: src/FalconOcr.App/MainForm.cs:168
 #, csharp-format
 msgid ""
 "Some OCR model files are missing from the installation:\n"
@@ -35,61 +41,55 @@ msgstr ""
 "\n"
 "请在联网的计算机上运行 tools\\fetch-dependencies.ps1 并重新生成。"
 
-#: src/FalconOcr.App/MainForm.cs:228
+#: src/FalconOcr.App/MainForm.cs:229
 msgid "Expand sidebar"
 msgstr "展开侧边栏"
 
-#: src/FalconOcr.App/MainForm.cs:228
+#: src/FalconOcr.App/MainForm.cs:229
 msgid "Collapse sidebar"
 msgstr "收起侧边栏"
 
-#: src/FalconOcr.App/MainForm.cs:274
+#: src/FalconOcr.App/MainForm.cs:275
 msgid "Collapse"
 msgstr "收起"
 
-#: src/FalconOcr.App/MainForm.cs:289
+#: src/FalconOcr.App/MainForm.cs:290
 msgid "Activated — "
 msgstr "已激活 — "
 
-#: src/FalconOcr.App/MainForm.cs:303
+#: src/FalconOcr.App/MainForm.cs:304
 msgid "TRIAL · 1 day left — Activate now"
 msgstr "试用版 · 剩余 1 天 — 立即激活"
 
-#: src/FalconOcr.App/MainForm.cs:303
+#: src/FalconOcr.App/MainForm.cs:304
 #, csharp-format
 msgid "TRIAL · {0} days left — Activate now"
 msgstr "试用版 · 剩余 {0} 天 — 立即激活"
 
-#: src/FalconOcr.App/MainForm.cs:335
+#: src/FalconOcr.App/MainForm.cs:336
 #, csharp-format
 msgid "Total Files: {0}     |     Selected: {1}     |     Output: {2}"
 msgstr "文件总数：{0}     |     已选择：{1}     |     输出：{2}"
 
-#: src/FalconOcr.App/MainForm.cs:379
+#: src/FalconOcr.App/MainForm.cs:382
 msgid "Convert Scans and Images into Editable Documents"
 msgstr "将扫描件和图像转换为可编辑文档"
 
-#: src/FalconOcr.App/MainForm.cs:96
+#: src/FalconOcr.App/MainForm.cs:97
 msgid "Home"
 msgstr "主页"
 
-#: src/FalconOcr.App/MainForm.cs:97
+#: src/FalconOcr.App/MainForm.cs:98
 msgid "OCR"
 msgstr "OCR"
 
-#: src/FalconOcr.App/MainForm.cs:98
+#: src/FalconOcr.App/MainForm.cs:99
 #: src/FalconOcr.App/Pages/OtherPages.cs:176
 #: src/FalconOcr.App/Pages/OtherPages.cs:284
 msgid "Batch Process"
 msgstr "批量处理"
 
-#: src/FalconOcr.App/MainForm.cs:99
-#: src/FalconOcr.App/Pages/OtherPages.cs:363
-#: src/FalconOcr.App/Pages/OtherPages.cs:389
-msgid "History"
-msgstr "历史记录"
-
-#: src/FalconOcr.App/Pages/ActivationForm.cs:102
+#: src/FalconOcr.App/Pages/ActivationForm.cs:105
 msgid ""
 "Thank you — Falcon OCR is activated.\n"
 "\n"
@@ -97,71 +97,71 @@ msgstr ""
 "谢谢 — Falcon OCR 已激活。\n"
 "\n"
 
-#: src/FalconOcr.App/Pages/ActivationForm.cs:102
+#: src/FalconOcr.App/Pages/ActivationForm.cs:105
 msgid "Activated"
 msgstr "已激活"
 
 #: src/FalconOcr.App/Pages/ActivationForm.cs:24
-#: src/FalconOcr.App/Pages/ActivationForm.cs:41
+#: src/FalconOcr.App/Pages/ActivationForm.cs:44
 msgid "Activate Falcon OCR"
 msgstr "激活 Falcon OCR"
 
-#: src/FalconOcr.App/Pages/ActivationForm.cs:33
+#: src/FalconOcr.App/Pages/ActivationForm.cs:35
 msgid "Enter your license key."
 msgstr "请输入您的许可证密钥。"
 
-#: src/FalconOcr.App/Pages/ActivationForm.cs:34
+#: src/FalconOcr.App/Pages/ActivationForm.cs:36
 #, csharp-format
 msgid "You are using the trial version — {0} of {1} days left."
 msgstr "您正在使用试用版 — 剩余 {0}/{1} 天。"
 
-#: src/FalconOcr.App/Pages/ActivationForm.cs:35
+#: src/FalconOcr.App/Pages/ActivationForm.cs:37
 msgid "Your trial period has ended. A license key is required to continue."
 msgstr "试用期已结束。需要许可证密钥才能继续使用。"
 
-#: src/FalconOcr.App/Pages/ActivationForm.cs:53
+#: src/FalconOcr.App/Pages/ActivationForm.cs:56
 msgid "All features are available during the trial."
 msgstr "试用期间可使用全部功能。"
 
-#: src/FalconOcr.App/Pages/ActivationForm.cs:59
+#: src/FalconOcr.App/Pages/ActivationForm.cs:62
 msgid "1. Send this machine code to your vendor (only needed for computer-bound licenses):"
 msgstr "1. 将此机器码发送给供应商（仅绑定计算机的许可证需要）："
 
-#: src/FalconOcr.App/Pages/ActivationForm.cs:61
+#: src/FalconOcr.App/Pages/ActivationForm.cs:64
 msgid "Copy"
 msgstr "复制"
 
-#: src/FalconOcr.App/Pages/ActivationForm.cs:62
+#: src/FalconOcr.App/Pages/ActivationForm.cs:65
 msgid "Machine code copied to the clipboard."
 msgstr "机器码已复制到剪贴板。"
 
-#: src/FalconOcr.App/Pages/ActivationForm.cs:64
+#: src/FalconOcr.App/Pages/ActivationForm.cs:67
 msgid "2. Enter or paste the license key:"
 msgstr "2. 输入或粘贴许可证密钥："
 
-#: src/FalconOcr.App/Pages/ActivationForm.cs:72
+#: src/FalconOcr.App/Pages/ActivationForm.cs:75
 msgid "Load license file…"
 msgstr "加载许可证文件…"
 
-#: src/FalconOcr.App/Pages/ActivationForm.cs:74
+#: src/FalconOcr.App/Pages/ActivationForm.cs:77
 msgid "Activate"
 msgstr "激活"
 
-#: src/FalconOcr.App/Pages/ActivationForm.cs:76
+#: src/FalconOcr.App/Pages/ActivationForm.cs:79
 msgid "Exit"
 msgstr "退出"
 
-#: src/FalconOcr.App/Pages/ActivationForm.cs:76
+#: src/FalconOcr.App/Pages/ActivationForm.cs:79
 #: src/FalconOcr.App/Pages/Dialogs.cs:107
 #: src/FalconOcr.App/Pages/Dialogs.cs:139
 msgid "Cancel"
 msgstr "取消"
 
-#: src/FalconOcr.App/Pages/ActivationForm.cs:77
+#: src/FalconOcr.App/Pages/ActivationForm.cs:80
 msgid "Continue Trial"
 msgstr "继续试用"
 
-#: src/FalconOcr.App/Pages/ActivationForm.cs:81
+#: src/FalconOcr.App/Pages/ActivationForm.cs:84
 msgid "License file|*.lic;*.key;*.txt|All files|*.*"
 msgstr "许可证文件|*.lic;*.key;*.txt|所有文件|*.*"
 
@@ -268,25 +268,25 @@ msgid "Treat each folder as one document (image sequence)"
 msgstr "将每个文件夹作为一个文档（图像序列）"
 
 #: src/FalconOcr.App/Pages/OtherPages.cs:192
-#: src/FalconOcr.App/Pages/OtherPages.cs:449
-#: src/FalconOcr.App/Pages/WorkspacePage.cs:1248
+#: src/FalconOcr.App/Pages/OtherPages.cs:453
+#: src/FalconOcr.App/Pages/WorkspacePage.cs:1326
 msgid "Microsoft Word (.docx)"
 msgstr "Microsoft Word (.docx)"
 
 #: src/FalconOcr.App/Pages/OtherPages.cs:192
-#: src/FalconOcr.App/Pages/OtherPages.cs:449
-#: src/FalconOcr.App/Pages/WorkspacePage.cs:1249
+#: src/FalconOcr.App/Pages/OtherPages.cs:453
+#: src/FalconOcr.App/Pages/WorkspacePage.cs:1327
 msgid "Microsoft Excel (.xlsx)"
 msgstr "Microsoft Excel (.xlsx)"
 
 #: src/FalconOcr.App/Pages/OtherPages.cs:192
-#: src/FalconOcr.App/Pages/OtherPages.cs:449
-#: src/FalconOcr.App/Pages/WorkspacePage.cs:1250
+#: src/FalconOcr.App/Pages/OtherPages.cs:453
+#: src/FalconOcr.App/Pages/WorkspacePage.cs:1328
 msgid "HTML (.html)"
 msgstr "HTML (.html)"
 
 #: src/FalconOcr.App/Pages/OtherPages.cs:192
-#: src/FalconOcr.App/Pages/OtherPages.cs:449
+#: src/FalconOcr.App/Pages/OtherPages.cs:453
 msgid "Plain text (.txt)"
 msgstr "纯文本 (.txt)"
 
@@ -299,8 +299,8 @@ msgid "Exact Copy"
 msgstr "精确副本"
 
 #: src/FalconOcr.App/Pages/OtherPages.cs:193
-#: src/FalconOcr.App/Pages/OtherPages.cs:448
-#: src/FalconOcr.App/Pages/WorkspacePage.cs:1238
+#: src/FalconOcr.App/Pages/OtherPages.cs:452
+#: src/FalconOcr.App/Pages/WorkspacePage.cs:1316
 msgid "Plain Text"
 msgstr "纯文本"
 
@@ -460,158 +460,170 @@ msgid "Clear the whole history?"
 msgstr "清除全部历史记录吗？"
 
 #: src/FalconOcr.App/Pages/OtherPages.cs:409
-#: src/FalconOcr.App/Pages/OtherPages.cs:484
+#: src/FalconOcr.App/Pages/OtherPages.cs:488
 msgid "Recognition"
 msgstr "识别"
 
-#: src/FalconOcr.App/Pages/OtherPages.cs:435
+#: src/FalconOcr.App/Pages/OtherPages.cs:436
 msgid "Machine code: "
 msgstr "机器码："
 
-#: src/FalconOcr.App/Pages/OtherPages.cs:438
-msgid "Defaults for recognition and export. Everything runs offline with the bundled PaddleOCR models."
-msgstr "识别和导出的默认设置。所有处理均使用内置的 PaddleOCR 模型离线完成。"
+#: src/FalconOcr.App/Pages/OtherPages.cs:439
+msgid "Defaults for recognition and export. Everything runs offline on this computer."
+msgstr "识别和导出的默认设置。所有处理均在本机离线完成。"
 
-#: src/FalconOcr.App/Pages/OtherPages.cs:447
+#: src/FalconOcr.App/Pages/OtherPages.cs:449
+msgid "Automatic (by recognition language)"
+msgstr "自动（按识别语言）"
+
+#: src/FalconOcr.App/Pages/OtherPages.cs:451
 msgid "Automatic (columns, tables, figures)"
 msgstr "自动（分栏、表格、图片）"
 
-#: src/FalconOcr.App/Pages/OtherPages.cs:447
-#: src/FalconOcr.App/Pages/WorkspacePage.cs:1240
+#: src/FalconOcr.App/Pages/OtherPages.cs:451
+#: src/FalconOcr.App/Pages/WorkspacePage.cs:1318
 msgid "Single column"
 msgstr "单栏"
 
-#: src/FalconOcr.App/Pages/OtherPages.cs:447
-#: src/FalconOcr.App/Pages/WorkspacePage.cs:1240
+#: src/FalconOcr.App/Pages/OtherPages.cs:451
+#: src/FalconOcr.App/Pages/WorkspacePage.cs:1318
 msgid "Text lines only"
 msgstr "仅文本行"
 
-#: src/FalconOcr.App/Pages/OtherPages.cs:448
-#: src/FalconOcr.App/Pages/WorkspacePage.cs:1238
+#: src/FalconOcr.App/Pages/OtherPages.cs:452
+#: src/FalconOcr.App/Pages/WorkspacePage.cs:1316
 msgid "Editable Document (Recommended)"
 msgstr "可编辑文档（推荐）"
 
-#: src/FalconOcr.App/Pages/OtherPages.cs:448
-#: src/FalconOcr.App/Pages/WorkspacePage.cs:1238
+#: src/FalconOcr.App/Pages/OtherPages.cs:452
+#: src/FalconOcr.App/Pages/WorkspacePage.cs:1316
 msgid "Exact Copy (keep positions)"
 msgstr "精确副本（保持位置）"
 
-#: src/FalconOcr.App/Pages/OtherPages.cs:450
-#: src/FalconOcr.App/Pages/WorkspacePage.cs:1241
+#: src/FalconOcr.App/Pages/OtherPages.cs:454
+#: src/FalconOcr.App/Pages/WorkspacePage.cs:1319
 msgid "Detect tables and columns"
 msgstr "检测表格和分栏"
 
-#: src/FalconOcr.App/Pages/OtherPages.cs:451
+#: src/FalconOcr.App/Pages/OtherPages.cs:455
 msgid "Keep text, fill and page colors"
 msgstr "保留文字、填充和页面颜色"
 
-#: src/FalconOcr.App/Pages/OtherPages.cs:452
+#: src/FalconOcr.App/Pages/OtherPages.cs:456
 msgid "Include pictures in exported documents"
 msgstr "在导出的文档中包含图片"
 
-#: src/FalconOcr.App/Pages/OtherPages.cs:453
+#: src/FalconOcr.App/Pages/OtherPages.cs:457
 msgid "Open the document after export"
 msgstr "导出后打开文档"
 
-#: src/FalconOcr.App/Pages/OtherPages.cs:454
+#: src/FalconOcr.App/Pages/OtherPages.cs:458
 msgid "Recognize automatically when files are added"
 msgstr "添加文件时自动识别"
 
-#: src/FalconOcr.App/Pages/OtherPages.cs:455
+#: src/FalconOcr.App/Pages/OtherPages.cs:459
 msgid "Highlight uncertain characters in the results view"
 msgstr "在结果视图中突出显示不确定的字符"
 
-#: src/FalconOcr.App/Pages/OtherPages.cs:482
+#: src/FalconOcr.App/Pages/OtherPages.cs:486
 msgid "General"
 msgstr "常规"
 
-#: src/FalconOcr.App/Pages/OtherPages.cs:483
+#: src/FalconOcr.App/Pages/OtherPages.cs:487
 msgid "Interface language:"
 msgstr "界面语言："
 
-#: src/FalconOcr.App/Pages/OtherPages.cs:485
+#: src/FalconOcr.App/Pages/OtherPages.cs:489
 msgid "Default language:"
 msgstr "默认语言："
 
-#: src/FalconOcr.App/Pages/OtherPages.cs:486
+#: src/FalconOcr.App/Pages/OtherPages.cs:490
 msgid "Layout analysis:"
 msgstr "版面分析："
 
-#: src/FalconOcr.App/Pages/OtherPages.cs:490
-#: src/FalconOcr.App/Pages/WorkspacePage.cs:84
-#: src/FalconOcr.App/Pages/WorkspacePage.cs:751
+#: src/FalconOcr.App/Pages/OtherPages.cs:494
+msgid "Default font:"
+msgstr "默认字体："
+
+#: src/FalconOcr.App/Pages/OtherPages.cs:495
+msgid "Used for recognized text when the original font is unknown (scans, images). Applies to pages recognized afterwards."
+msgstr "当原始字体未知时（扫描件、图像）用于识别出的文本。仅对之后识别的页面生效。"
+
+#: src/FalconOcr.App/Pages/OtherPages.cs:496
+#: src/FalconOcr.App/Pages/WorkspacePage.cs:88
+#: src/FalconOcr.App/Pages/WorkspacePage.cs:762
 msgid "Export"
 msgstr "导出"
 
-#: src/FalconOcr.App/Pages/OtherPages.cs:491
+#: src/FalconOcr.App/Pages/OtherPages.cs:497
 msgid "Default output format:"
 msgstr "默认输出格式："
 
-#: src/FalconOcr.App/Pages/OtherPages.cs:492
+#: src/FalconOcr.App/Pages/OtherPages.cs:498
 msgid "Document type:"
 msgstr "文档类型："
 
-#: src/FalconOcr.App/Pages/OtherPages.cs:493
+#: src/FalconOcr.App/Pages/OtherPages.cs:499
 msgid "Output folder:"
 msgstr "输出文件夹："
 
-#: src/FalconOcr.App/Pages/OtherPages.cs:497
+#: src/FalconOcr.App/Pages/OtherPages.cs:503
 msgid "Advanced recognition"
 msgstr "高级识别"
 
-#: src/FalconOcr.App/Pages/OtherPages.cs:499
+#: src/FalconOcr.App/Pages/OtherPages.cs:505
 msgid "OCR models (offline)"
 msgstr "OCR 模型（离线）"
 
-#: src/FalconOcr.App/Pages/OtherPages.cs:504
+#: src/FalconOcr.App/Pages/OtherPages.cs:510
 msgid "Change license key…"
 msgstr "更改许可证密钥…"
 
-#: src/FalconOcr.App/Pages/OtherPages.cs:505
+#: src/FalconOcr.App/Pages/OtherPages.cs:511
 msgid "Copy machine code"
 msgstr "复制机器码"
 
-#: src/FalconOcr.App/Pages/OtherPages.cs:514
+#: src/FalconOcr.App/Pages/OtherPages.cs:520
 msgid "Machine code copied: "
 msgstr "已复制机器码："
 
-#: src/FalconOcr.App/Pages/OtherPages.cs:517
+#: src/FalconOcr.App/Pages/OtherPages.cs:523
 msgid "Save"
 msgstr "保存"
 
-#: src/FalconOcr.App/Pages/OtherPages.cs:519
+#: src/FalconOcr.App/Pages/OtherPages.cs:525
 msgid "Restore defaults"
 msgstr "恢复默认值"
 
-#: src/FalconOcr.App/Pages/OtherPages.cs:520
+#: src/FalconOcr.App/Pages/OtherPages.cs:526
 msgid "Open data folder"
 msgstr "打开数据文件夹"
 
-#: src/FalconOcr.App/Pages/OtherPages.cs:530
+#: src/FalconOcr.App/Pages/OtherPages.cs:536
 msgid "Restore all settings to their defaults?"
 msgstr "将所有设置恢复为默认值吗？"
 
-#: src/FalconOcr.App/Pages/OtherPages.cs:556
+#: src/FalconOcr.App/Pages/OtherPages.cs:563
 msgid "Location: "
 msgstr "位置："
 
-#: src/FalconOcr.App/Pages/OtherPages.cs:560
+#: src/FalconOcr.App/Pages/OtherPages.cs:567
 msgid "✗ missing  "
 msgstr "✗ 缺失  "
 
-#: src/FalconOcr.App/Pages/OtherPages.cs:562
+#: src/FalconOcr.App/Pages/OtherPages.cs:569
 msgid "Languages: "
 msgstr "语言："
 
-#: src/FalconOcr.App/Pages/OtherPages.cs:601
+#: src/FalconOcr.App/Pages/OtherPages.cs:611
 msgid "Settings saved."
 msgstr "设置已保存。"
 
-#: src/FalconOcr.App/Pages/OtherPages.cs:608
+#: src/FalconOcr.App/Pages/OtherPages.cs:618
 msgid "The interface language is changed after a restart. Restart Falcon OCR now?"
 msgstr "界面语言将在重新启动后更改。现在重新启动 Falcon OCR 吗？"
 
-#: src/FalconOcr.App/Pages/OtherPages.cs:608
+#: src/FalconOcr.App/Pages/OtherPages.cs:618
 msgid "Interface language"
 msgstr "界面语言"
 
@@ -647,68 +659,95 @@ msgstr "在工作区中打开"
 msgid "Images and PDF|*.png;*.jpg;*.jpeg;*.bmp;*.gif;*.tif;*.tiff;*.pdf"
 msgstr "图像和 PDF|*.png;*.jpg;*.jpeg;*.bmp;*.gif;*.tif;*.tiff;*.pdf"
 
-#: src/FalconOcr.App/Pages/WorkspacePage.cs:1023
+#: src/FalconOcr.App/Pages/WorkspacePage.cs:100
+msgid "Add files (PDF, images)…\tCtrl+O"
+msgstr "添加文件（PDF、图像）…\tCtrl+O"
+
+#: src/FalconOcr.App/Pages/WorkspacePage.cs:101
+msgid "Add images as one document (image sequence)…"
+msgstr "将多张图像添加为一个文档（图像序列）…"
+
+#: src/FalconOcr.App/Pages/WorkspacePage.cs:1018
+#, csharp-format
+msgid "You are using the trial version of Falcon OCR — {0} of {1} days left. All features are available during the trial."
+msgstr "您正在使用 Falcon OCR 试用版 — 剩余 {0}/{1} 天。试用期间可使用全部功能。"
+
+#: src/FalconOcr.App/Pages/WorkspacePage.cs:102
+msgid "Add folder as image sequence…"
+msgstr "将文件夹添加为图像序列…"
+
+#: src/FalconOcr.App/Pages/WorkspacePage.cs:1020
+msgid "Activate now"
+msgstr "立即激活"
+
+#: src/FalconOcr.App/Pages/WorkspacePage.cs:1025
+msgid "Hide until the next start"
+msgstr "在下次启动前隐藏"
+
+#: src/FalconOcr.App/Pages/WorkspacePage.cs:1101
 #, csharp-format
 msgid "Font size set to {0} pt."
 msgstr "字号已设置为 {0} 磅。"
 
-#: src/FalconOcr.App/Pages/WorkspacePage.cs:1023
+#: src/FalconOcr.App/Pages/WorkspacePage.cs:1101
 #, csharp-format
 msgid "Font set to {0}."
 msgstr "字体已设置为 {0}。"
 
-#: src/FalconOcr.App/Pages/WorkspacePage.cs:1062
+#: src/FalconOcr.App/Pages/WorkspacePage.cs:1140
 msgid "Nothing to copy — recognize the document first."
 msgstr "没有可复制的内容 — 请先识别文档。"
 
-#: src/FalconOcr.App/Pages/WorkspacePage.cs:1066
+#: src/FalconOcr.App/Pages/WorkspacePage.cs:1144
 msgid "Text copied to the clipboard."
 msgstr "文本已复制到剪贴板。"
 
-#: src/FalconOcr.App/Pages/WorkspacePage.cs:1087
+#: src/FalconOcr.App/Pages/WorkspacePage.cs:116
+#: src/FalconOcr.App/Pages/WorkspacePage.cs:985
+msgid "Files"
+msgstr "文件"
+
+#: src/FalconOcr.App/Pages/WorkspacePage.cs:116
+#: src/FalconOcr.App/Pages/WorkspacePage.cs:985
+msgid "Thumbnails"
+msgstr "缩略图"
+
+#: src/FalconOcr.App/Pages/WorkspacePage.cs:1165
 #, csharp-format
 msgid "\"{0}\" is already recognized. Recognize it again with the current settings?"
 msgstr "“{0}”已识别。要使用当前设置重新识别吗？"
 
-#: src/FalconOcr.App/Pages/WorkspacePage.cs:112
-msgid "Files"
-msgstr "文件"
-
-#: src/FalconOcr.App/Pages/WorkspacePage.cs:112
-msgid "Thumbnails"
-msgstr "缩略图"
-
-#: src/FalconOcr.App/Pages/WorkspacePage.cs:1125
+#: src/FalconOcr.App/Pages/WorkspacePage.cs:1203
 msgid "OCR models are missing:\n"
 msgstr "缺少 OCR 模型：\n"
 
-#: src/FalconOcr.App/Pages/WorkspacePage.cs:1129
+#: src/FalconOcr.App/Pages/WorkspacePage.cs:1207
 msgid "Stop"
 msgstr "停止"
 
-#: src/FalconOcr.App/Pages/WorkspacePage.cs:1137
+#: src/FalconOcr.App/Pages/WorkspacePage.cs:1215
 #, csharp-format
 msgid "Text recognition completed — {0} page(s) in {1:0.0}s."
 msgstr "文本识别完成 — {0} 页，用时 {1:0.0} 秒。"
 
-#: src/FalconOcr.App/Pages/WorkspacePage.cs:1144
+#: src/FalconOcr.App/Pages/WorkspacePage.cs:1222
 msgid "Recognition stopped."
 msgstr "识别已停止。"
 
-#: src/FalconOcr.App/Pages/WorkspacePage.cs:1149
+#: src/FalconOcr.App/Pages/WorkspacePage.cs:1227
 msgid "Recognition failed."
 msgstr "识别失败。"
 
-#: src/FalconOcr.App/Pages/WorkspacePage.cs:1179
+#: src/FalconOcr.App/Pages/WorkspacePage.cs:1257
 msgid "Add and recognize a document first."
 msgstr "请先添加并识别文档。"
 
-#: src/FalconOcr.App/Pages/WorkspacePage.cs:1186
+#: src/FalconOcr.App/Pages/WorkspacePage.cs:1264
 #, csharp-format
 msgid "\"{0}\" has not been recognized yet. Recognize it now?"
 msgstr "“{0}”尚未识别。现在识别吗？"
 
-#: src/FalconOcr.App/Pages/WorkspacePage.cs:1187
+#: src/FalconOcr.App/Pages/WorkspacePage.cs:1265
 #, csharp-format
 msgid ""
 "{0} of {1} pages are not recognized.\n"
@@ -721,61 +760,61 @@ msgstr ""
 "是 = 先识别这些页\n"
 "否 = 仅导出已识别的页"
 
-#: src/FalconOcr.App/Pages/WorkspacePage.cs:1205
+#: src/FalconOcr.App/Pages/WorkspacePage.cs:1283
 msgid "Cannot create the output folder: "
 msgstr "无法创建输出文件夹："
 
-#: src/FalconOcr.App/Pages/WorkspacePage.cs:1209
+#: src/FalconOcr.App/Pages/WorkspacePage.cs:1287
 #, csharp-format
 msgid "Exporting {0}…"
 msgstr "正在导出 {0}…"
 
-#: src/FalconOcr.App/Pages/WorkspacePage.cs:1218
+#: src/FalconOcr.App/Pages/WorkspacePage.cs:1296
 msgid "Export failed."
 msgstr "导出失败。"
 
-#: src/FalconOcr.App/Pages/WorkspacePage.cs:1223
+#: src/FalconOcr.App/Pages/WorkspacePage.cs:1301
 #, csharp-format
 msgid "Exported to {0}"
 msgstr "已导出到 {0}"
 
-#: src/FalconOcr.App/Pages/WorkspacePage.cs:1237
+#: src/FalconOcr.App/Pages/WorkspacePage.cs:1315
 msgid "OCR Settings"
 msgstr "OCR 设置"
 
-#: src/FalconOcr.App/Pages/WorkspacePage.cs:1240
+#: src/FalconOcr.App/Pages/WorkspacePage.cs:1318
 msgid "Automatic"
 msgstr "自动"
 
-#: src/FalconOcr.App/Pages/WorkspacePage.cs:1242
+#: src/FalconOcr.App/Pages/WorkspacePage.cs:1320
 msgid "⚙  Advanced Settings…"
 msgstr "⚙  高级设置…"
 
-#: src/FalconOcr.App/Pages/WorkspacePage.cs:1245
+#: src/FalconOcr.App/Pages/WorkspacePage.cs:1323
 msgid "Document Type:"
 msgstr "文档类型："
 
-#: src/FalconOcr.App/Pages/WorkspacePage.cs:1245
+#: src/FalconOcr.App/Pages/WorkspacePage.cs:1323
 msgid "Language:"
 msgstr "语言："
 
-#: src/FalconOcr.App/Pages/WorkspacePage.cs:1245
+#: src/FalconOcr.App/Pages/WorkspacePage.cs:1323
 msgid "Layout Analysis:"
 msgstr "版面分析："
 
-#: src/FalconOcr.App/Pages/WorkspacePage.cs:1247
+#: src/FalconOcr.App/Pages/WorkspacePage.cs:1325
 msgid "Output Format"
 msgstr "输出格式"
 
-#: src/FalconOcr.App/Pages/WorkspacePage.cs:1263
+#: src/FalconOcr.App/Pages/WorkspacePage.cs:1341
 msgid "Output Folder:"
 msgstr "输出文件夹："
 
-#: src/FalconOcr.App/Pages/WorkspacePage.cs:1299
+#: src/FalconOcr.App/Pages/WorkspacePage.cs:1377
 msgid "Output folder for exported documents"
 msgstr "导出文档的输出文件夹"
 
-#: src/FalconOcr.App/Pages/WorkspacePage.cs:1361
+#: src/FalconOcr.App/Pages/WorkspacePage.cs:1439
 msgid ""
 "Falcon OCR — offline OCR with PaddleOCR (PP-OCRv5)\n"
 "\n"
@@ -799,140 +838,140 @@ msgstr ""
 "快捷键：Ctrl+O 添加文件 · Ctrl+V 粘贴图像 · Ctrl+R 旋转 · Del 删除\n"
 "PgUp/PgDn 翻页 · Ctrl+滚轮 缩放 · 鼠标中键 平移"
 
-#: src/FalconOcr.App/Pages/WorkspacePage.cs:1369
+#: src/FalconOcr.App/Pages/WorkspacePage.cs:1447
 msgid "Unlicensed"
 msgstr "未授权"
 
-#: src/FalconOcr.App/Pages/WorkspacePage.cs:1376
+#: src/FalconOcr.App/Pages/WorkspacePage.cs:1454
 msgid "Recognition is still running. Stop it and exit?"
 msgstr "识别仍在进行中。要停止并退出吗？"
 
-#: src/FalconOcr.App/Pages/WorkspacePage.cs:170
+#: src/FalconOcr.App/Pages/WorkspacePage.cs:180
 msgid "Zoom out"
 msgstr "缩小"
 
-#: src/FalconOcr.App/Pages/WorkspacePage.cs:171
+#: src/FalconOcr.App/Pages/WorkspacePage.cs:181
 msgid "Zoom in"
 msgstr "放大"
 
-#: src/FalconOcr.App/Pages/WorkspacePage.cs:173
-#: src/FalconOcr.App/Pages/WorkspacePage.cs:174
-#: src/FalconOcr.App/Pages/WorkspacePage.cs:341
+#: src/FalconOcr.App/Pages/WorkspacePage.cs:183
+#: src/FalconOcr.App/Pages/WorkspacePage.cs:184
+#: src/FalconOcr.App/Pages/WorkspacePage.cs:352
 msgid "Fit width"
 msgstr "适合宽度"
 
-#: src/FalconOcr.App/Pages/WorkspacePage.cs:173
-#: src/FalconOcr.App/Pages/WorkspacePage.cs:175
-#: src/FalconOcr.App/Pages/WorkspacePage.cs:610
+#: src/FalconOcr.App/Pages/WorkspacePage.cs:183
+#: src/FalconOcr.App/Pages/WorkspacePage.cs:185
+#: src/FalconOcr.App/Pages/WorkspacePage.cs:621
 msgid "Fit page"
 msgstr "适合页面"
 
-#: src/FalconOcr.App/Pages/WorkspacePage.cs:176
+#: src/FalconOcr.App/Pages/WorkspacePage.cs:186
 msgid "Rotate page 90°"
 msgstr "将页面旋转 90°"
 
-#: src/FalconOcr.App/Pages/WorkspacePage.cs:177
+#: src/FalconOcr.App/Pages/WorkspacePage.cs:187
 msgid "Pan (hand tool)"
 msgstr "平移（抓手工具）"
 
-#: src/FalconOcr.App/Pages/WorkspacePage.cs:178
+#: src/FalconOcr.App/Pages/WorkspacePage.cs:188
 msgid "Previous page (PgUp)"
 msgstr "上一页 (PgUp)"
 
-#: src/FalconOcr.App/Pages/WorkspacePage.cs:179
+#: src/FalconOcr.App/Pages/WorkspacePage.cs:189
 msgid "Next page (PgDn)"
 msgstr "下一页 (PgDn)"
 
-#: src/FalconOcr.App/Pages/WorkspacePage.cs:186
+#: src/FalconOcr.App/Pages/WorkspacePage.cs:196
 msgid "Source Page"
 msgstr "源页面"
 
-#: src/FalconOcr.App/Pages/WorkspacePage.cs:214
+#: src/FalconOcr.App/Pages/WorkspacePage.cs:224
 msgid "Recognized Text"
 msgstr "识别文本"
 
-#: src/FalconOcr.App/Pages/WorkspacePage.cs:214
+#: src/FalconOcr.App/Pages/WorkspacePage.cs:224
 msgid "Original Image"
 msgstr "原始图像"
 
-#: src/FalconOcr.App/Pages/WorkspacePage.cs:216
+#: src/FalconOcr.App/Pages/WorkspacePage.cs:226
 msgid "Normal"
 msgstr "正文"
 
-#: src/FalconOcr.App/Pages/WorkspacePage.cs:216
+#: src/FalconOcr.App/Pages/WorkspacePage.cs:226
 msgid "Heading 1"
 msgstr "标题 1"
 
-#: src/FalconOcr.App/Pages/WorkspacePage.cs:216
+#: src/FalconOcr.App/Pages/WorkspacePage.cs:226
 msgid "Heading 2"
 msgstr "标题 2"
 
-#: src/FalconOcr.App/Pages/WorkspacePage.cs:216
+#: src/FalconOcr.App/Pages/WorkspacePage.cs:226
 msgid "Heading 3"
 msgstr "标题 3"
 
-#: src/FalconOcr.App/Pages/WorkspacePage.cs:216
+#: src/FalconOcr.App/Pages/WorkspacePage.cs:226
 msgid "List item"
 msgstr "列表项"
 
-#: src/FalconOcr.App/Pages/WorkspacePage.cs:224
+#: src/FalconOcr.App/Pages/WorkspacePage.cs:234
 msgid "Font"
 msgstr "字体"
 
-#: src/FalconOcr.App/Pages/WorkspacePage.cs:225
+#: src/FalconOcr.App/Pages/WorkspacePage.cs:235
 msgid "Font size"
 msgstr "字号"
 
-#: src/FalconOcr.App/Pages/WorkspacePage.cs:226
+#: src/FalconOcr.App/Pages/WorkspacePage.cs:236
 msgid "Bold"
 msgstr "加粗"
 
-#: src/FalconOcr.App/Pages/WorkspacePage.cs:227
+#: src/FalconOcr.App/Pages/WorkspacePage.cs:237
 msgid "Italic"
 msgstr "倾斜"
 
-#: src/FalconOcr.App/Pages/WorkspacePage.cs:228
+#: src/FalconOcr.App/Pages/WorkspacePage.cs:238
 msgid "Underline"
 msgstr "下划线"
 
-#: src/FalconOcr.App/Pages/WorkspacePage.cs:229
+#: src/FalconOcr.App/Pages/WorkspacePage.cs:239
 msgid "Bulleted list"
 msgstr "项目符号列表"
 
-#: src/FalconOcr.App/Pages/WorkspacePage.cs:230
-#: src/FalconOcr.App/Pages/WorkspacePage.cs:890
+#: src/FalconOcr.App/Pages/WorkspacePage.cs:240
+#: src/FalconOcr.App/Pages/WorkspacePage.cs:901
 msgid "Numbered list"
 msgstr "编号列表"
 
-#: src/FalconOcr.App/Pages/WorkspacePage.cs:231
+#: src/FalconOcr.App/Pages/WorkspacePage.cs:241
 msgid "More"
 msgstr "更多"
 
-#: src/FalconOcr.App/Pages/WorkspacePage.cs:282
+#: src/FalconOcr.App/Pages/WorkspacePage.cs:292
 msgid "Highlight uncertain characters"
 msgstr "突出显示不确定的字符"
 
-#: src/FalconOcr.App/Pages/WorkspacePage.cs:286
+#: src/FalconOcr.App/Pages/WorkspacePage.cs:296
 msgid "Copy page text"
 msgstr "复制页面文本"
 
-#: src/FalconOcr.App/Pages/WorkspacePage.cs:287
+#: src/FalconOcr.App/Pages/WorkspacePage.cs:297
 msgid "Copy document text"
 msgstr "复制文档文本"
 
-#: src/FalconOcr.App/Pages/WorkspacePage.cs:289
+#: src/FalconOcr.App/Pages/WorkspacePage.cs:299
 msgid "Recognize this page again"
 msgstr "重新识别此页"
 
-#: src/FalconOcr.App/Pages/WorkspacePage.cs:302
+#: src/FalconOcr.App/Pages/WorkspacePage.cs:312
 msgid "Edited: "
 msgstr "已编辑："
 
-#: src/FalconOcr.App/Pages/WorkspacePage.cs:397
+#: src/FalconOcr.App/Pages/WorkspacePage.cs:408
 msgid "unsupported file type"
 msgstr "不支持的文件类型"
 
-#: src/FalconOcr.App/Pages/WorkspacePage.cs:409
+#: src/FalconOcr.App/Pages/WorkspacePage.cs:420
 msgid ""
 "Some files could not be opened:\n"
 "\n"
@@ -940,151 +979,134 @@ msgstr ""
 "部分文件无法打开：\n"
 "\n"
 
-#: src/FalconOcr.App/Pages/WorkspacePage.cs:431
+#: src/FalconOcr.App/Pages/WorkspacePage.cs:442
 msgid "Images|*.png;*.jpg;*.jpeg;*.jpe;*.bmp;*.gif;*.tif;*.tiff"
 msgstr "图像|*.png;*.jpg;*.jpeg;*.jpe;*.bmp;*.gif;*.tif;*.tiff"
 
-#: src/FalconOcr.App/Pages/WorkspacePage.cs:431
+#: src/FalconOcr.App/Pages/WorkspacePage.cs:442
 msgid "Select the images of one document"
 msgstr "选择同一文档的图像"
 
-#: src/FalconOcr.App/Pages/WorkspacePage.cs:436
+#: src/FalconOcr.App/Pages/WorkspacePage.cs:447
 #, csharp-format
 msgid "{0} ({1} images)"
 msgstr "{0}（{1} 张图像）"
 
-#: src/FalconOcr.App/Pages/WorkspacePage.cs:439
+#: src/FalconOcr.App/Pages/WorkspacePage.cs:450
 msgid "Add image sequence"
 msgstr "添加图像序列"
 
-#: src/FalconOcr.App/Pages/WorkspacePage.cs:445
+#: src/FalconOcr.App/Pages/WorkspacePage.cs:456
 msgid "Select a folder of page images (sorted by file name)"
 msgstr "选择页面图像所在的文件夹（按文件名排序）"
 
-#: src/FalconOcr.App/Pages/WorkspacePage.cs:460
+#: src/FalconOcr.App/Pages/WorkspacePage.cs:471
 msgid "The clipboard does not contain an image."
 msgstr "剪贴板中没有图像。"
 
-#: src/FalconOcr.App/Pages/WorkspacePage.cs:531
+#: src/FalconOcr.App/Pages/WorkspacePage.cs:542
 #, csharp-format
 msgid "Loading {0}…"
 msgstr "正在加载 {0}…"
 
-#: src/FalconOcr.App/Pages/WorkspacePage.cs:542
+#: src/FalconOcr.App/Pages/WorkspacePage.cs:553
 msgid "Cannot display page: "
 msgstr "无法显示页面："
 
-#: src/FalconOcr.App/Pages/WorkspacePage.cs:574
+#: src/FalconOcr.App/Pages/WorkspacePage.cs:585
 #, csharp-format
 msgid "{0}  ·  {1} × {2} px  ·  {3:0} dpi"
 msgstr "{0}  ·  {1} × {2} 像素  ·  {3:0} dpi"
 
-#: src/FalconOcr.App/Pages/WorkspacePage.cs:574
+#: src/FalconOcr.App/Pages/WorkspacePage.cs:585
 #, csharp-format
 msgid "  ·  rotated {0}°"
 msgstr "  ·  已旋转 {0}°"
 
-#: src/FalconOcr.App/Pages/WorkspacePage.cs:574
+#: src/FalconOcr.App/Pages/WorkspacePage.cs:585
 msgid "cropped"
 msgstr "已裁剪"
 
-#: src/FalconOcr.App/Pages/WorkspacePage.cs:646
+#: src/FalconOcr.App/Pages/WorkspacePage.cs:657
 #, csharp-format
 msgid "Text layer read from PDF — {0} lines, {1} blocks."
 msgstr "已从 PDF 读取文本层 — {0} 行，{1} 个块。"
 
-#: src/FalconOcr.App/Pages/WorkspacePage.cs:647
+#: src/FalconOcr.App/Pages/WorkspacePage.cs:658
 #, csharp-format
 msgid "Text recognition completed — {0} lines, {1} blocks, {2:P0} confidence ({3:0.0}s)."
 msgstr "文本识别完成 — {0} 行，{1} 个块，置信度 {2:P0}（{3:0.0} 秒）。"
 
-#: src/FalconOcr.App/Pages/WorkspacePage.cs:652
+#: src/FalconOcr.App/Pages/WorkspacePage.cs:663
 msgid "No document selected."
 msgstr "未选择文档。"
 
-#: src/FalconOcr.App/Pages/WorkspacePage.cs:652
+#: src/FalconOcr.App/Pages/WorkspacePage.cs:663
 msgid "This page has not been recognized yet."
 msgstr "此页面尚未识别。"
 
-#: src/FalconOcr.App/Pages/WorkspacePage.cs:741
+#: src/FalconOcr.App/Pages/WorkspacePage.cs:752
 msgid "1 page"
 msgstr "1 页"
 
-#: src/FalconOcr.App/Pages/WorkspacePage.cs:741
+#: src/FalconOcr.App/Pages/WorkspacePage.cs:752
 #, csharp-format
 msgid "{0} images"
 msgstr "{0} 张图像"
 
-#: src/FalconOcr.App/Pages/WorkspacePage.cs:741
+#: src/FalconOcr.App/Pages/WorkspacePage.cs:752
 #, csharp-format
 msgid "{0} pages"
 msgstr "{0} 页"
 
-#: src/FalconOcr.App/Pages/WorkspacePage.cs:742
+#: src/FalconOcr.App/Pages/WorkspacePage.cs:753
 msgid "recognized"
 msgstr "已识别"
 
-#: src/FalconOcr.App/Pages/WorkspacePage.cs:742
+#: src/FalconOcr.App/Pages/WorkspacePage.cs:753
 #, csharp-format
 msgid "{0}/{1} done"
 msgstr "已完成 {0}/{1}"
 
-#: src/FalconOcr.App/Pages/WorkspacePage.cs:750
+#: src/FalconOcr.App/Pages/WorkspacePage.cs:761
 msgid "Recognize all documents"
 msgstr "识别所有文档"
 
-#: src/FalconOcr.App/Pages/WorkspacePage.cs:752
+#: src/FalconOcr.App/Pages/WorkspacePage.cs:763
 msgid "Export as…"
 msgstr "导出为…"
 
-#: src/FalconOcr.App/Pages/WorkspacePage.cs:754
+#: src/FalconOcr.App/Pages/WorkspacePage.cs:765
 msgid "Rename…"
 msgstr "重命名…"
 
-#: src/FalconOcr.App/Pages/WorkspacePage.cs:755
+#: src/FalconOcr.App/Pages/WorkspacePage.cs:766
 msgid "Open containing folder"
 msgstr "打开所在文件夹"
 
-#: src/FalconOcr.App/Pages/WorkspacePage.cs:763
+#: src/FalconOcr.App/Pages/WorkspacePage.cs:774
 msgid "Remove"
 msgstr "移除"
 
-#: src/FalconOcr.App/Pages/WorkspacePage.cs:764
-#: src/FalconOcr.App/Pages/WorkspacePage.cs:846
+#: src/FalconOcr.App/Pages/WorkspacePage.cs:775
+#: src/FalconOcr.App/Pages/WorkspacePage.cs:857
 msgid "Remove all"
 msgstr "全部移除"
 
-#: src/FalconOcr.App/Pages/WorkspacePage.cs:77
-#: src/FalconOcr.App/Pages/WorkspacePage.cs:409
-#: src/FalconOcr.App/Pages/WorkspacePage.cs:425
-msgid "Add Files"
-msgstr "添加文件"
-
-#: src/FalconOcr.App/Pages/WorkspacePage.cs:772
+#: src/FalconOcr.App/Pages/WorkspacePage.cs:783
 msgid "Rename document"
 msgstr "重命名文档"
 
-#: src/FalconOcr.App/Pages/WorkspacePage.cs:772
+#: src/FalconOcr.App/Pages/WorkspacePage.cs:783
 msgid "Name:"
 msgstr "名称："
 
-#: src/FalconOcr.App/Pages/WorkspacePage.cs:78
-#: src/FalconOcr.App/Pages/WorkspacePage.cs:480
-msgid "Scan"
-msgstr "扫描"
-
-#: src/FalconOcr.App/Pages/WorkspacePage.cs:785
+#: src/FalconOcr.App/Pages/WorkspacePage.cs:796
 #, csharp-format
 msgid "{0} rotated to {1}° — recognize again to update the text."
 msgstr "{0} 已旋转到 {1}° — 请重新识别以更新文本。"
 
-#: src/FalconOcr.App/Pages/WorkspacePage.cs:79
-#: src/FalconOcr.App/Pages/WorkspacePage.cs:460
-#: src/FalconOcr.App/Pages/WorkspacePage.cs:470
-msgid "From Clipboard"
-msgstr "从剪贴板"
-
-#: src/FalconOcr.App/Pages/WorkspacePage.cs:796
+#: src/FalconOcr.App/Pages/WorkspacePage.cs:807
 msgid ""
 "This page is already cropped.\n"
 "\n"
@@ -1094,80 +1116,84 @@ msgstr ""
 "\n"
 "是 = 继续裁剪，否 = 恢复整页。"
 
-#: src/FalconOcr.App/Pages/WorkspacePage.cs:80
-msgid "Rotate"
-msgstr "旋转"
-
 #: src/FalconOcr.App/Pages/WorkspacePage.cs:81
-#: src/FalconOcr.App/Pages/WorkspacePage.cs:796
-msgid "Crop"
-msgstr "裁剪"
+#: src/FalconOcr.App/Pages/WorkspacePage.cs:420
+#: src/FalconOcr.App/Pages/WorkspacePage.cs:436
+msgid "Add Files"
+msgstr "添加文件"
 
-#: src/FalconOcr.App/Pages/WorkspacePage.cs:816
+#: src/FalconOcr.App/Pages/WorkspacePage.cs:82
+#: src/FalconOcr.App/Pages/WorkspacePage.cs:491
+msgid "Scan"
+msgstr "扫描"
+
+#: src/FalconOcr.App/Pages/WorkspacePage.cs:827
 #, csharp-format
 msgid "{0} cropped — recognize again to update the text."
 msgstr "{0} 已裁剪 — 请重新识别以更新文本。"
 
-#: src/FalconOcr.App/Pages/WorkspacePage.cs:82
-#: src/FalconOcr.App/Pages/WorkspacePage.cs:827
-#: src/FalconOcr.App/Pages/WorkspacePage.cs:833
-msgid "Delete"
-msgstr "删除"
+#: src/FalconOcr.App/Pages/WorkspacePage.cs:83
+#: src/FalconOcr.App/Pages/WorkspacePage.cs:471
+#: src/FalconOcr.App/Pages/WorkspacePage.cs:481
+msgid "From Clipboard"
+msgstr "从剪贴板"
 
-#: src/FalconOcr.App/Pages/WorkspacePage.cs:827
+#: src/FalconOcr.App/Pages/WorkspacePage.cs:838
 #, csharp-format
 msgid "Remove {0} from \"{1}\"?"
 msgstr "从“{1}”中移除 {0} 吗？"
 
-#: src/FalconOcr.App/Pages/WorkspacePage.cs:83
-#: src/FalconOcr.App/Pages/WorkspacePage.cs:749
-#: src/FalconOcr.App/Pages/WorkspacePage.cs:1087
-msgid "Recognize"
-msgstr "识别"
+#: src/FalconOcr.App/Pages/WorkspacePage.cs:84
+msgid "Rotate"
+msgstr "旋转"
 
-#: src/FalconOcr.App/Pages/WorkspacePage.cs:833
+#: src/FalconOcr.App/Pages/WorkspacePage.cs:844
 #, csharp-format
 msgid "Remove \"{0}\" and its recognition results?"
 msgstr "移除“{0}”及其识别结果吗？"
 
-#: src/FalconOcr.App/Pages/WorkspacePage.cs:846
+#: src/FalconOcr.App/Pages/WorkspacePage.cs:85
+#: src/FalconOcr.App/Pages/WorkspacePage.cs:807
+msgid "Crop"
+msgstr "裁剪"
+
+#: src/FalconOcr.App/Pages/WorkspacePage.cs:857
 msgid "Remove all documents from the workspace?"
 msgstr "从工作区移除所有文档吗？"
 
-#: src/FalconOcr.App/Pages/WorkspacePage.cs:88
-#: src/FalconOcr.App/Pages/WorkspacePage.cs:1370
-msgid "Help"
-msgstr "帮助"
+#: src/FalconOcr.App/Pages/WorkspacePage.cs:86
+#: src/FalconOcr.App/Pages/WorkspacePage.cs:838
+#: src/FalconOcr.App/Pages/WorkspacePage.cs:844
+msgid "Delete"
+msgstr "删除"
 
-#: src/FalconOcr.App/Pages/WorkspacePage.cs:890
+#: src/FalconOcr.App/Pages/WorkspacePage.cs:87
+#: src/FalconOcr.App/Pages/WorkspacePage.cs:760
+#: src/FalconOcr.App/Pages/WorkspacePage.cs:1165
+msgid "Recognize"
+msgstr "识别"
+
+#: src/FalconOcr.App/Pages/WorkspacePage.cs:901
 #, csharp-format
 msgid "Paragraph style changed to {0}."
 msgstr "段落样式已更改为 {0}。"
 
-#: src/FalconOcr.App/Pages/WorkspacePage.cs:940
-#, csharp-format
-msgid "You are using the trial version of Falcon OCR — {0} of {1} days left. All features are available during the trial."
-msgstr "您正在使用 Falcon OCR 试用版 — 剩余 {0}/{1} 天。试用期间可使用全部功能。"
+#: src/FalconOcr.App/Pages/WorkspacePage.cs:92
+#: src/FalconOcr.App/Pages/WorkspacePage.cs:1448
+msgid "Help"
+msgstr "帮助"
 
-#: src/FalconOcr.App/Pages/WorkspacePage.cs:942
-msgid "Activate now"
-msgstr "立即激活"
+#: src/FalconOcr.App/Pages/WorkspacePage.cs:939
+msgid "Show files and thumbnails"
+msgstr "显示文件和缩略图"
 
-#: src/FalconOcr.App/Pages/WorkspacePage.cs:947
-msgid "Hide until the next start"
-msgstr "在下次启动前隐藏"
+#: src/FalconOcr.App/Pages/WorkspacePage.cs:939
+msgid "Hide files and thumbnails"
+msgstr "隐藏文件和缩略图"
 
-#: src/FalconOcr.App/Pages/WorkspacePage.cs:96
-msgid "Add files (PDF, images)…\tCtrl+O"
-msgstr "添加文件（PDF、图像）…\tCtrl+O"
-
-#: src/FalconOcr.App/Pages/WorkspacePage.cs:97
-msgid "Add images as one document (image sequence)…"
-msgstr "将多张图像添加为一个文档（图像序列）…"
-
-#: src/FalconOcr.App/Pages/WorkspacePage.cs:98
-msgid "Add folder as image sequence…"
-msgstr "将文件夹添加为图像序列…"
+#: src/FalconOcr.App/Pages/WorkspacePage.cs:992
+msgid "Hide panel"
+msgstr "隐藏面板"
 
 #: src/FalconOcr.App/Program.cs:29
 msgid "Falcon OCR must run as a 64-bit process."
@@ -1190,11 +1216,11 @@ msgstr ""
 "详细信息已写入：\n"
 "{1}"
 
-#: src/FalconOcr.App/Services/AppServices.cs:176
+#: src/FalconOcr.App/Services/AppServices.cs:177
 msgid "Windows Image Acquisition (WIA) is not available on this computer."
 msgstr "此计算机上不可用 Windows 图像采集 (WIA)。"
 
-#: src/FalconOcr.App/Services/AppServices.cs:186
+#: src/FalconOcr.App/Services/AppServices.cs:187
 msgid "No scanner was found. Connect a WIA-compatible scanner and try again."
 msgstr "未找到扫描仪。请连接兼容 WIA 的扫描仪后重试。"
 

@@ -141,6 +141,18 @@ CASES = [
      "✕ hides the banner until the next start; after activation banner and title-bar badge disappear.", NOTRUN, "Manual"),
     ("TC-124", "FR-41", "No notification when licensed", "Valid license installed.", "Start the application.",
      "No banner below the toolbar, no trial badge.", NOTRUN, "Manual (requires a key of the current signing key)"),
+    ("TC-125", "FR-42", "Default font row", "—", "Open Settings.",
+     "Recognition section shows 'Default font:' with 'Automatic (by recognition language)' and the installed fonts, plus a hint.", PASS, "Snapshot tour, 2026-09-24"),
+    ("TC-126", "FR-42", "Default font applied", "Settings → Default font = Georgia → Save.", "Recognize a scanned page; export DOCX, XLSX, HTML.",
+     "Results view font combo shows Georgia; exported documents use Georgia for the body text.", NOTRUN, "Manual"),
+    ("TC-127", "FR-42", "CLI --font", "—", "falcon-ocr samples\\report.png --font Georgia -f docx.",
+     "DOCX body text uses Georgia.", NOTRUN, "Manual"),
+    ("TC-128", "FR-43", "Collapse the Files panel", "Workspace open.", "Click « Hide panel at the bottom of the Files / Thumbnails panel.",
+     "Panel shrinks to a 40 px strip with a vertical 'Files / Thumbnails' caption and »; the page viewers widen.", PASS, "Snapshot tour, 2026-09-24"),
+    ("TC-129", "FR-43", "Expand and remember", "Files panel collapsed.", "Restart; click ».",
+     "Panel still collapsed after restart; » restores the 214 px panel.", NOTRUN, "Manual"),
+    ("TC-130", "FR-44", "Icon and no model section", "—", "Start the application and KeyGen; open Settings.",
+     "New icon in the title bar, taskbar and Explorer; Settings has no 'OCR models' section.", PASS, "Snapshot tour and build output, 2026-09-24"),
 ]
 
 

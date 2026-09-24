@@ -44,5 +44,18 @@ namespace FalconOcr.App.UI
         public static readonly Font Nav = new Font(Family, 11f);
 
         public static Font Semibold(float size) => new Font(SemiboldFamily, size, SemiboldStyle);
+
+        /// <summary>The application icon (embedded app.ico) at the closest available size.</summary>
+        public static Icon AppIcon(int size)
+        {
+            using (var s = typeof(Theme).Assembly.GetManifestResourceStream("FalconOcr.App.app.ico"))
+                return s == null ? SystemIcons.Application : new Icon(s, size, size);
+        }
+
+        /// <summary>The application icon rendered as a bitmap (title bar, dialog headers).</summary>
+        public static Bitmap AppIconBitmap(int size)
+        {
+            using (var icon = AppIcon(size)) return icon.ToBitmap();
+        }
     }
 }

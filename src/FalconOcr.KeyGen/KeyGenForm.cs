@@ -34,6 +34,7 @@ namespace FalconOcr.KeyGen
             StartPosition = FormStartPosition.CenterScreen;
             ClientSize = new Size(780, 900);
             MinimumSize = new Size(700, 700);
+            Icon = Icon.ExtractAssociatedIcon(Application.ExecutablePath);
 
             var header = new Panel { Dock = DockStyle.Top, Height = 64, BackColor = Header };
             header.Controls.Add(new Label { Text = "License Key Generator", ForeColor = Color.White, Font = new Font("Segoe UI Semibold", 16f), AutoSize = true, Location = new Point(18, 8) });

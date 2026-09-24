@@ -44,7 +44,9 @@ def build():
     d.h2("2.2 Typography and icons")
     d.ul(["Segoe UI 9.75 pt for controls; Segoe UI Semibold 10 pt (bold), 12 pt (card titles), 15 pt (page titles), 17 pt (product name); navigation 11 pt. Chinese interface: Microsoft YaHei UI; Japanese interface: Yu Gothic UI (same sizes, bold instead of semibold).",
           "Icons are vector glyphs drawn with GDI+ on a 24 × 24 grid (no bitmaps), so they are sharp at every DPI: Home, OCR, Batch, History, Settings, Help, Add, Scanner, Clipboard, Rotate, Crop, Trash, Play/Stop, Export, zoom, fit, hand, chevrons, file types (PDF, image, images, Word, Excel, HTML).",
-          "All sizes are scaled with the monitor DPI (system DPI aware)."])
+          "All sizes are scaled with the monitor DPI (system DPI aware).",
+          "Application icon (app.ico, 16–256 px): green rounded tile with a white page, text lines and scan brackets — used for FalconOcr.exe, KeyGen, the window icons and the title-bar logo."])
+    d.img("app-icon.png", "Application icon", 96)
     d.h2("2.3 Interaction conventions")
     d.ul(["Primary action per screen in a filled green button (Export, Start, Save, Activate, Generate License Key).",
           "Hover highlight on all clickable owner-drawn controls; disabled controls are grey.",
@@ -67,7 +69,7 @@ def build():
     d.table(["Region", "Width", "Content"], [
         ("Toolbar", "full, 92 px", "Add Files, Scan, From Clipboard | Rotate, Crop, Delete | Recognize | Export; right: Settings, Help."),
         ("Trial notification", "full, 40 px", "Only while running as a trial: clock icon, 'You are using the trial version of Falcon OCR — n of 7 days left…', Activate now, ✕ (hide until the next start)."),
-        ("Files panel", "214 px", "Tabs Files / Thumbnails; document list (icon, name, 'n pages', 'recognized' or 'k/n done'); thumbnails of the pages of the selected document."),
+        ("Files panel", "214 px / 40 px collapsed", "Tabs Files / Thumbnails; document list (icon, name, 'n pages', 'recognized' or 'k/n done'); thumbnails of the pages of the selected document. At the bottom: « Hide panel — collapsed, a strip with the vertical caption 'Files / Thumbnails' and » remains; the state is remembered."),
         ("Source Page", "½ of centre", "Caption tab, viewer toolbar, ImageViewer, footer 'name · w × h px · dpi · rotated/cropped'."),
         ("Results", "½ of centre", "Tabs Recognized Text / Original Image, formatting toolbar, LayoutView, status 'Text recognition completed — n lines, n blocks, confidence (time)' and page 'i / n'."),
         ("Settings column", "340 px (280–640, draggable)", "Card 'OCR Settings', card 'Output Format', Export button. Its left edge is a splitter with grip dots: drag to resize; the width is remembered."),
@@ -129,6 +131,7 @@ def build():
     d.img("trial-banner.png", "Trial notification below the toolbar", 620)
     d.img("format-toolbar.png", "Results toolbar with style, font and size boxes", 460)
     d.img_grid([("sidebar-collapsed.png", "Collapsed navigation bar (icons only, » expands)"), ("right-panel-splitter.png", "Splitter with grip dots at the left edge of the settings column")], width=290)
+    d.img("files-panel-collapsed.png", "Collapsed Files / Thumbnails panel (» expands)", 290)
 
     d.h1("5. SCR-03 Original Image (analysis overlay)")
     d.img("main-overlay.png", "Original Image tab: detected lines (green), table (blue), picture (orange, dashed), blocks (dotted)", 640)
@@ -164,10 +167,9 @@ def build():
     d.img("settings.png", "Settings page", 600)
     d.table(["Section", "Fields"], [
         ("General", "Interface language: English / 简体中文 (Chinese) / 日本語 (Japanese). Changing it offers to restart the application."),
-        ("Recognition", "Default language, Layout analysis, Detect tables and columns, Recognize automatically when files are added, Highlight uncertain characters."),
+        ("Recognition", "Default language, Layout analysis, Detect tables and columns, Recognize automatically when files are added, Highlight uncertain characters, Default font (Automatic (by recognition language) or an installed font) with a hint."),
         ("Export", "Default output format (incl. Plain text), Document type, Output folder (double-click to browse), Keep text/fill/page colors, Include pictures, Open the document after export."),
         ("Advanced recognition", "Same fields as SCR-09."),
-        ("OCR models (offline)", "Model folder and each model with ✓ / ✗ missing and size; supported languages."),
         ("License", "State (✓ licensed to …, ⏳ trial n of 7 days, ✗ invalid) and machine code; Change license key… (SCR-08), Copy machine code."),
         ("Buttons", "Save (applies to the workspace immediately), Restore defaults, Open data folder."),
     ], [25, 75], "SCR-07 sections")
